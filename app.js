@@ -493,12 +493,13 @@ function setMode(m) {
   mode = m;
   document.querySelectorAll('#mode button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
   document.getElementById('voice-row').hidden = (m !== 'voice');
+  document.getElementById('speed-label').hidden = (m === 'voice');
   document.getElementById('speed').disabled = (m === 'voice');
-  document.getElementById('speed-label').textContent = (m === 'voice') ? 'Auto' : 'Speed';
+  if (m !== 'voice') document.getElementById('voice-heard').textContent = '';
   if (m === 'voice') {
     voiceRate = speedMultiplier > 0 ? speedMultiplier : 1;   // start from the slider's rate
     showRate(voiceRate);
-    if (playing) startListening(); else voiceStatus('Press ▶ to start listening');
+    if (playing) startListening(); else voiceStatus('press ▶');
   } else {
     stopListening();
     correction = null;
@@ -577,14 +578,14 @@ function matchHeardWord(word) {
 
 function startListening() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
-  if (!SR) { voiceStatus('Speech recognition is not available in this browser.'); return; }
+  if (!SR) { voiceStatus('no speech API'); return; }
   wantListening = true;
   if (recognizer) { try { recognizer.start(); } catch (e) { /* already running */ } return; }
   recognizer = new SR();
   recognizer.continuous = true;
   recognizer.interimResults = true;
   recognizer.lang = 'en-US';
-  recognizer.onstart = () => { heardSoFar = {}; lastMatchWord = null; voiceStatus('Listening'); document.getElementById('voice-dot').classList.add('listening'); };
+  recognizer.onstart = () => { heardSoFar = {}; lastMatchWord = null; voiceStatus('listening'); document.getElementById('voice-dot').classList.add('listening'); };
   recognizer.onresult = ev => {
     for (let r = ev.resultIndex; r < ev.results.length; r++) {
       const words = ev.results[r][0].transcript.trim().split(/\s+/).map(normalizeWord).filter(Boolean);
@@ -597,16 +598,16 @@ function startListening() {
   recognizer.onerror = ev => {
     if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
       wantListening = false;
-      voiceStatus('Microphone blocked — allow it in Settings › Safari');
+      voiceStatus('mic blocked');
     }
     // other errors ("no-speech", "aborted", "network") are followed by onend, which restarts
   };
   recognizer.onend = () => {
     document.getElementById('voice-dot').classList.remove('listening');
     if (wantListening) setTimeout(() => { if (wantListening) { try { recognizer.start(); } catch (e) {} } }, 300);
-    else voiceStatus(playing ? 'Off' : 'Press ▶ to start listening');
+    else voiceStatus(playing ? 'off' : 'press ▶');
   };
-  try { recognizer.start(); } catch (e) { voiceStatus('Could not start: ' + e.message); }
+  try { recognizer.start(); } catch (e) { voiceStatus('failed'); }
 }
 
 function stopListening() {
@@ -623,7 +624,7 @@ setInterval(() => {
   if (lastMatchAt === null || !wantListening) return;
   const ago = Math.round((Date.now() - lastMatchAt) / 1000);
   dot.classList.toggle('matched', ago < 2);
-  voiceStatus(ago < 2 ? 'Matched' : 'Listening · last match ' + ago + 's ago');
+  voiceStatus(ago < 2 ? 'match' : ago + 's');
 }, 1000);
 
 /* =====================================================================

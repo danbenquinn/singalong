@@ -9,39 +9,33 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#101418">
-  <link rel="stylesheet" href="style.css?v=1793214419">
+  <link rel="stylesheet" href="style.css?v=1793214866">
 </head>
 <body>
 
-  <!-- Top bar: song info and font-size buttons -->
+  <!-- Row 1: song (tap for the picker), words heard in Voice mode, text size -->
   <header id="topbar">
     <button id="open-picker" title="Song picker">
-      <span id="title">Loading…</span>
-      <span id="artist"></span>
+      <span id="title">Loading…</span><span id="artist"></span>
     </button>
+    <span id="voice-heard"></span>
     <div id="tools">
       <button id="font-minus" title="Smaller text">−</button>
       <button id="font-plus" title="Larger text">+</button>
     </div>
   </header>
 
-  <!-- Controls: mode toggle and key on one row, speed on the next -->
+  <!-- Row 2: mode, key, speed (or the live voice status) -->
   <div id="controls">
     <div id="mode">
       <button data-mode="manual">Manual</button>
       <button data-mode="voice">Voice</button>
     </div>
     <select id="key" title="Key (melody range)"></select>
-  </div>
-  <div id="speed-row">
     <span id="speed-label">Speed</span>
+    <span id="voice-row" hidden><span id="voice-dot"></span><span id="voice-status"></span></span>
     <input type="range" id="speed" min="0" max="2" step="0.05" value="1">
     <span id="speed-value">1×</span>
-  </div>
-  <div id="voice-row" hidden>
-    <span id="voice-dot"></span>
-    <span id="voice-status">Starting…</span>
-    <span id="voice-heard"></span>
   </div>
 
   <!-- The song scrolls inside this viewport; play button and drag bar sit in a column on its right edge -->
@@ -73,7 +67,7 @@
     </div>
   </div>
 
-  <script src="config.js?v=1793214419"></script>
-  <script src="app.js?v=1793214419"></script>
+  <script src="config.js?v=1793214866"></script>
+  <script src="app.js?v=1793214866"></script>
 </body>
 </html>

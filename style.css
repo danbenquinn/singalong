@@ -45,96 +45,78 @@ body {
            env(safe-area-inset-bottom) env(safe-area-inset-left);
 }
 
-/* ---------- Top bar ---------- */
+/* ---------- Row 1: top bar ---------- */
 #topbar {
   flex: 0 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 8px 12px;
+  gap: 8px;
+  padding: 4px 10px 2px;
+  height: 36px;
 }
 #open-picker {
-  display: flex; flex-direction: column; align-items: flex-start;
-  min-width: 0; padding: 4px 8px 4px 0; margin: 0;
+  flex: 1 1 auto; min-width: 0;
+  padding: 0; margin: 0;
   background: none; border: 0; color: var(--fg); text-align: left; font: inherit;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-#title { font-weight: 600; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-#artist { color: var(--dim); font-size: 14px; }
+#title { font-weight: 600; font-size: 16px; }
+#artist { color: var(--dim); font-size: 13px; }
+#artist:not(:empty)::before { content: ' · '; }
+#voice-heard { flex: 0 1 auto; min-width: 0; color: var(--dim); font-style: italic; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#tools { flex: 0 0 auto; display: flex; gap: 6px; }
 #tools button {
-  font-size: 20px;
-  width: 44px;
-  height: 36px;
-  margin-left: 6px;
-  background: #1a1a1f;
-  color: var(--fg);
-  border: 1px solid var(--support);
-  border-radius: 8px;
+  font-size: 18px; line-height: 1;
+  width: 36px; height: 28px;
+  background: #1a1a1f; color: var(--fg);
+  border: 1px solid var(--support); border-radius: 7px;
 }
 
-/* ---------- Controls row (key now; speed, mode and scroll bar come in stage 3) ---------- */
+/* ---------- Row 2: controls ---------- */
 #controls {
   flex: 0 0 auto;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  padding: 4px 12px 8px;
-  font-size: 16px;
+  gap: 8px;
+  padding: 2px 10px 4px;
+  height: 40px;
+  font-size: 14px;
 }
-#controls label { color: var(--dim); }
-#key {
-  font-size: 18px;
-  padding: 6px 10px;
-  background: #1a1a1f;
-  color: var(--fg);
-  border: 1px solid var(--support);
-  border-radius: 8px;
-}
-
-/* Manual | Voice segmented toggle */
-#mode { display: flex; border: 1px solid var(--support); border-radius: 8px; overflow: hidden; }
-#mode button {
-  font-size: 16px;
-  padding: 8px 14px;
-  background: #1a1a1f;
-  color: var(--dim);
-  border: 0;
-}
+#mode { flex: 0 0 auto; display: flex; border: 1px solid var(--support); border-radius: 7px; overflow: hidden; }
+#mode button { font-size: 14px; padding: 0 10px; height: 30px; background: #1a1a1f; color: var(--dim); border: 0; }
 #mode button.on { background: var(--mma-blue); color: #fff; }
-
-/* Speed slider */
-#speed-row {
-  flex: 0 0 auto;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 0 12px 8px;
+#key {
+  flex: 0 1 auto; min-width: 0; max-width: 42%;
+  font-size: 14px; height: 32px; padding: 0 6px;
+  background: #1a1a1f; color: var(--fg);
+  border: 1px solid var(--support); border-radius: 7px;
 }
-#speed-label { color: var(--dim); font-size: 14px; }
-#speed { flex: 1 1 auto; height: 44px; margin: 0; -webkit-appearance: none; appearance: none; background: transparent; }
+#speed-label { color: var(--dim); flex: 0 0 auto; }
+#speed-label[hidden] { display: none; }
+#speed { flex: 1 1 60px; min-width: 60px; height: 32px; margin: 0; -webkit-appearance: none; appearance: none; background: transparent; }
 /* A big, easy-to-grab knob (Safari and Chrome need these two separate rules) */
 #speed::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--support); }
 #speed::-webkit-slider-thumb {
-  -webkit-appearance: none; width: 34px; height: 34px; margin-top: -14px;
+  -webkit-appearance: none; width: 30px; height: 30px; margin-top: -12px;
   border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff;
 }
+#speed:disabled::-webkit-slider-thumb { background: var(--support); }
 #speed::-moz-range-track { height: 6px; border-radius: 3px; background: var(--support); }
-#speed::-moz-range-thumb { width: 34px; height: 34px; border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff; }
-#speed-value { color: var(--dim); font-size: 14px; min-width: 60px; text-align: right; }
+#speed::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff; }
+#speed-value { color: var(--dim); flex: 0 0 auto; min-width: 34px; text-align: right; }
 
-/* Voice status row */
-#voice-row { display: flex; align-items: center; gap: 8px; padding: 6px 12px 10px; font-size: 14px; color: var(--dim); min-height: 36px; }
+/* Voice status, in place of the "Speed" label */
+#voice-row { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; color: var(--dim); white-space: nowrap; }
 #voice-row[hidden] { display: none; }
-#voice-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--support); flex: 0 0 auto; }
+#voice-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--support); }
 #voice-dot.listening { background: var(--mma-red); animation: pulse 1.2s ease-in-out infinite; }
 #voice-dot.matched { background: var(--mma-green); animation: none; }
 @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
-#voice-heard { margin-left: auto; color: var(--fg); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50%; }
 
 /* Right-edge column: play button above the drag bar */
 #sidebar {
   position: absolute;
-  top: 8px; bottom: 8px; right: 4px;
+  top: 4px; bottom: 8px; right: 4px;
   width: 48px;
   display: flex; flex-direction: column; gap: 8px;
 }
@@ -266,3 +248,11 @@ body {
   background: var(--mma-blue); color: #fff; border: 0; border-radius: 10px;
 }
 #gate-msg { color: var(--mma-red); text-align: center; min-height: 1.2em; }
+
+/* Narrow (portrait phone): drop the "Speed" word and tighten the toggle so the slider keeps some length */
+@media (max-width: 600px) {
+  #speed-label { display: none; }
+  #mode button { padding: 0 8px; }
+  #key { max-width: 150px; }
+  #speed-value { min-width: 28px; }
+}
