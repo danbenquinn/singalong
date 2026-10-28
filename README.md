@@ -53,8 +53,7 @@ Rules of thumb:
   from the tags in the song files), tap a song to open it. The last song opened is remembered.
 - **Drag the lyrics** and they follow your finger, like a web page; a flick coasts. Finger down = earlier
   words (text moves down). The bar on the right works the same way: its thumb sits at the bottom at the
-  start of the song and dragging it down scrolls back. A tap (no drag) on the lower part of the lyrics
-  jumps to the next line, on the upper part to the previous one.
+  start of the song and dragging it down scrolls back.
 - **▶** (top of the right-hand column) starts the pointer moving; a song opens paused at 1×.
 - **Manual**: the speed slider sets the rate (1× = the song's `speed`).
 - **Voice**: the pointer still moves on its own, but ▶ also turns on the microphone (Safari asks the
@@ -65,10 +64,10 @@ Rules of thumb:
   Hearing nothing changes nothing: the pointer keeps going at the last rate. The status row shows a red
   pulsing dot while listening, green on a fresh match, the seconds since the last match, and the last
   words heard. Safari stops listening after a pause; the page restarts it.
-- Keys (desktop, or a Bluetooth page-turner pedal): ↓ / Page Down / → = next line, ↑ / Page Up / ← =
-  previous line, Space = pause / resume. A pedal pairs with the phone as a Bluetooth keyboard
-  (Settings › Bluetooth); set it to a mode that sends Page Up/Down or arrow keys and it needs nothing
-  from the site.
+- **Pedal / keys**: Page Down (or ↓ / →) = speed up by 0.1×, Page Up (or ↑ / ←) = slow down by 0.1×,
+  Space = pause / resume. In Voice mode the nudge applies to the fitted rate. A Bluetooth page-turner
+  pedal pairs with the phone as a keyboard (Settings › Bluetooth); set it to a mode that sends Page
+  Up/Down or arrow keys and it needs nothing from the site. The speed value flashes amber on each press.
 - **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
 - **− / +** change the text size. Remembered on the device.
 

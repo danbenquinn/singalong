@@ -388,6 +388,17 @@ function tick(now) {
   requestAnimationFrame(tick);
 }
 
+const SPEED_STEP = 0.1;             // one pedal press
+function nudgeSpeed(delta) {
+  if (mode === 'voice') { voiceRate = Math.max(0.5, Math.min(2, voiceRate + delta)); showRate(voiceRate); }
+  else setSpeed(speedMultiplier + delta);
+  flashRate();
+}
+function flashRate() {               // brief highlight so a pedal press is visibly acknowledged
+  const v = document.getElementById('speed-value');
+  v.classList.add('flash');
+  setTimeout(() => v.classList.remove('flash'), 400);
+}
 function setSpeed(mult) {
   speedMultiplier = Math.max(0, Math.min(2, mult));
   showRate(speedMultiplier);
@@ -446,7 +457,7 @@ function setupScrollBar() {
   });
 }
 
-// Dragging the lyrics: the text follows the finger; a flick coasts; a tap (no movement) steps a line.
+// Dragging the lyrics: the text follows the finger; a flick coasts.
 function setupLyricDrag() {
   const vp = document.getElementById('viewport');
   let active = false, startY = 0, startSongY = 0, moved = false;
@@ -469,11 +480,7 @@ function setupLyricDrag() {
   const release = ev => {
     if (!active) return;
     active = false; dragging = false;
-    if (!moved) {
-      const r = vp.getBoundingClientRect();
-      if (ev.clientY - r.top > r.height * 0.35) nextLine(); else prevLine();
-      return;
-    }
+    if (!moved) return;                                   // a plain tap does nothing
     const [t0, y0] = samples[0], [t1, y1] = samples[samples.length - 1];
     if (t1 > t0) flingVelocity = (y1 - y0) / ((t1 - t0) / 1000);   // px/s, sign = finger direction
     if (Math.abs(flingVelocity) < 300) flingVelocity = 0;
@@ -849,11 +856,12 @@ async function start() {
   setupLyricDrag();   // drag / flick / tap on the lyrics
 
   // Keys (desktop testing now; a Bluetooth page-turner pedal later sends the same keys)
+  // Pedal / keyboard. A Bluetooth page-turner pedal pairs as a keyboard and sends Page Down / Page Up
+  // (or arrows): here those nudge the SPEED, since that is what drifts mid-song. Space pauses.
   document.addEventListener('keydown', ev => {
     if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'SELECT') return;   // typing in the search box
-    // Pedals send Page Down / Page Up or arrows (next / previous line); Space pauses
-    if (['ArrowDown', 'PageDown', 'ArrowRight'].includes(ev.key)) { ev.preventDefault(); nextLine(); }
-    if (['ArrowUp', 'PageUp', 'ArrowLeft'].includes(ev.key)) { ev.preventDefault(); prevLine(); }
+    if (['ArrowDown', 'PageDown', 'ArrowRight'].includes(ev.key)) { ev.preventDefault(); nudgeSpeed(+SPEED_STEP); }
+    if (['ArrowUp', 'PageUp', 'ArrowLeft'].includes(ev.key)) { ev.preventDefault(); nudgeSpeed(-SPEED_STEP); }
     if (ev.key === ' ') { ev.preventDefault(); togglePause(); }
   });
 

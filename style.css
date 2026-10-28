@@ -103,7 +103,8 @@ body {
 #speed:disabled::-webkit-slider-thumb { background: var(--support); }
 #speed::-moz-range-track { height: 6px; border-radius: 3px; background: var(--support); }
 #speed::-moz-range-thumb { width: 30px; height: 30px; border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff; }
-#speed-value { color: var(--dim); flex: 0 0 auto; min-width: 34px; text-align: right; }
+#speed-value { color: var(--dim); flex: 0 0 auto; min-width: 34px; text-align: right; transition: color 0.3s; }
+#speed-value.flash { color: var(--mma-amber); }
 
 /* Voice status, in place of the "Speed" label */
 #voice-row { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; color: var(--dim); white-space: nowrap; }
