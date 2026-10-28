@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Singalong</title>
+  <!-- Fit the phone's width exactly; no pinch-zoom surprises on a music stand -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <!-- "Add to Home Screen" on iPhone opens this full-screen, without Safari's bars -->
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#101418">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top bar: song info and font-size buttons -->
+  <header id="topbar">
+    <div id="songinfo">
+      <span id="title">Loading…</span>
+      <span id="artist"></span>
+    </div>
+    <div id="tools">
+      <button id="font-minus" title="Smaller text">A−</button>
+      <button id="font-plus" title="Larger text">A+</button>
+    </div>
+  </header>
+
+  <!-- The song scrolls inside this viewport; the focus line is drawn across it -->
+  <main id="viewport">
+    <div id="focus-line"></div>
+    <div id="song"></div>
+  </main>
+
+  <!-- Temporary stage-1 help, will be replaced by the real controls later -->
+  <footer id="hint">tap lower half: next line · upper half: previous line · keyboard ↑ ↓ also work</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

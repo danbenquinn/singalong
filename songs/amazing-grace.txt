@@ -1,0 +1,50 @@
+title: Amazing Grace
+artist: John Newton
+key: G
+low: D4
+high: E5
+tags: xmas
+speed: 6
+---
+[Verse 1]
+G              G7  C         G
+Amazing grace, how sweet the sound
+                    D
+That saved a wretch like me
+G          G7        C      G
+I once was lost, but now am found
+    Em         D     G
+Was blind, but now I see
+
+[Verse 2]
+G                G7        C        G
+'Twas grace that taught my heart to fear
+             D
+And grace my fears relieved
+G            G7       C     G
+How precious did that grace appear
+    Em     D     G
+The hour I first believed
+
+[Verse 3]
+G            G7       C         G
+Through many dangers, toils and snares
+       D
+I have already come
+G               G7         C         G
+'Tis grace hath brought me safe thus far
+    Em         D       G
+And grace will lead me home
+
+[Verse 4]
+G          G7         C            G
+When we've been there ten thousand years
+                  D
+Bright shining as the sun
+G             G7      C          G
+We've no less days to sing God's praise
+     Em      D     G
+Than when we first begun
+
+[Outro]
+G   C   G   D   G

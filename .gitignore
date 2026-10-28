@@ -1,0 +1,4 @@
+# Mac / OneDrive bookkeeping, never part of the site
+.DS_Store
+._*
+*.tmp
