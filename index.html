@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#101418">
-  <link rel="stylesheet" href="style.css?v=1793208365">
+  <link rel="stylesheet" href="style.css?v=1793208711">
 </head>
 <body>
 
@@ -34,16 +34,23 @@
     <select id="key" title="Key (melody range)"></select>
   </div>
   <div id="speed-row">
-    <button id="play" title="Play / pause">▶</button>
+    <span id="speed-label">Speed</span>
     <input type="range" id="speed" min="0" max="2" step="0.05" value="1">
     <span id="speed-value">1×</span>
   </div>
-  <div id="voice-note" hidden>Voice mode arrives in stage 5. Manual controls still work.</div>
+  <div id="voice-row" hidden>
+    <span id="voice-dot"></span>
+    <span id="voice-status">Starting…</span>
+    <span id="voice-heard"></span>
+  </div>
 
-  <!-- The song scrolls inside this viewport; the drag bar sits on its right edge -->
+  <!-- The song scrolls inside this viewport; play button and drag bar sit in a column on its right edge -->
   <main id="viewport">
     <div id="song"></div>
-    <div id="scrollbar"><div id="thumb"></div></div>
+    <div id="sidebar">
+      <button id="play" title="Play / pause">▶</button>
+      <div id="scrollbar"><div id="thumb"></div></div>
+    </div>
   </main>
 
   <!-- Song picker: covers the screen when open -->
@@ -56,6 +63,6 @@
     <ul id="songlist"></ul>
   </div>
 
-  <script src="app.js?v=1793208365"></script>
+  <script src="app.js?v=1793208711"></script>
 </body>
 </html>

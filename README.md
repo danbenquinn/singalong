@@ -46,10 +46,15 @@ Rules of thumb:
 
 - **Tap the title** to open the song picker: search by title or artist, filter by tag (the buttons come
   from the tags in the song files), tap a song to open it. The last song opened is remembered.
-- **Manual / Voice** toggle. Manual: ▶ starts the pointer moving at the slider's speed (1× = the
-  song's `speed`; a song opens paused at 1×); the bar on the right edge drags through the song
-  (words un-green as you drag up); tapping the lower part of the lyrics jumps to the next line, the
-  upper part to the previous one.
+- **Manual / Voice** toggle. Manual: ▶ (top of the right-hand column) starts the pointer moving at the
+  slider's speed (1× = the song's `speed`; a song opens paused at 1×); the bar below it drags through
+  the song (words un-green as you drag up); tapping the lower part of the lyrics jumps to the next
+  line, the upper part to the previous one.
+- Voice: the phone listens (Safari asks for the microphone the first time) and each word it hears is
+  looked for in the next 14 words of the lyrics; a hit moves the pointer there. The row under the
+  controls shows a red pulsing dot while listening, green on a fresh match, the seconds since the last
+  match, and the last few words heard. Safari stops listening after a pause; the page restarts it. The
+  drag bar and pedal keys still work as overrides.
 - Keys (desktop, or a Bluetooth page-turner pedal): ↓ / Page Down = next line, ↑ / Page Up = previous
   line, Space = pause / resume at the last speed.
 - **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.

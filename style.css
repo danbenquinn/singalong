@@ -110,13 +110,7 @@ body {
   gap: 10px;
   padding: 0 12px 8px;
 }
-#play {
-  width: 48px; height: 44px; flex: 0 0 auto;
-  font-size: 22px;
-  background: var(--mma-blue); color: #fff;
-  border: 0; border-radius: 10px;
-}
-#play.paused { background: #1a1a1f; color: var(--fg); border: 1px solid var(--support); }
+#speed-label { color: var(--dim); font-size: 14px; }
 #speed { flex: 1 1 auto; height: 44px; margin: 0; -webkit-appearance: none; appearance: none; background: transparent; }
 /* A big, easy-to-grab knob (Safari and Chrome need these two separate rules) */
 #speed::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--support); }
@@ -127,13 +121,34 @@ body {
 #speed::-moz-range-track { height: 6px; border-radius: 3px; background: var(--support); }
 #speed::-moz-range-thumb { width: 34px; height: 34px; border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff; }
 #speed-value { color: var(--dim); font-size: 14px; min-width: 60px; text-align: right; }
-#voice-note { padding: 0 12px 8px; color: var(--mma-amber); font-size: 14px; }
 
-/* Drag bar on the right edge of the song area */
-#scrollbar {
+/* Voice status row */
+#voice-row { display: flex; align-items: center; gap: 8px; padding: 6px 12px 10px; font-size: 14px; color: var(--dim); min-height: 36px; }
+#voice-row[hidden] { display: none; }
+#voice-dot { width: 12px; height: 12px; border-radius: 50%; background: var(--support); flex: 0 0 auto; }
+#voice-dot.listening { background: var(--mma-red); animation: pulse 1.2s ease-in-out infinite; }
+#voice-dot.matched { background: var(--mma-green); animation: none; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
+#voice-heard { margin-left: auto; color: var(--fg); font-style: italic; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 50%; }
+
+/* Right-edge column: play button above the drag bar */
+#sidebar {
   position: absolute;
   top: 8px; bottom: 8px; right: 4px;
-  width: 44px;
+  width: 48px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+#play {
+  width: 48px; height: 48px; flex: 0 0 auto;
+  font-size: 22px;
+  background: var(--mma-blue); color: #fff;
+  border: 0; border-radius: 12px;
+}
+#play.paused { background: #1a1a1f; color: var(--fg); border: 1px solid var(--support); }
+#scrollbar {
+  position: relative;
+  flex: 1 1 auto;
+  margin: 0 2px;
   border-radius: 22px;
   background: rgba(255, 255, 255, 0.06);
   touch-action: none;           /* the page must not scroll while dragging */
@@ -158,7 +173,7 @@ body {
 
 #song {
   position: absolute;
-  left: 0; right: 52px;
+  left: 0; right: 56px;
   padding: 0 10px;
   font-family: ui-monospace, Menlo, Consolas, "Courier New", monospace;
   font-size: var(--font-size);

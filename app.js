@@ -144,6 +144,7 @@ let currentSemis = 0;      // transposition in semitones from the song's written
 let currentFlats = false;  // spell with flats (true) or sharps (false) in the current key
 let wordCount = 0;         // total number of words (progress-pointer stops) in the song
 let rowEls = [];           // one entry per screen row: {el, firstWord, lastWord}
+let lyricWords = [];       // for each word: its text, normalised for voice matching ('' for instrumental rows)
 let wordLine = [];         // for each word: which source line (as typed in the file) it is on
 let lineWords = [];        // for each source line: how many words it has (auto-scroll pacing)
 
@@ -198,6 +199,7 @@ function renderSong(song) {
   wordCount = 0;
   wordLine = [];
   lineWords = [];
+  lyricWords = [];
   const maxCols = measureColumns();
 
   for (const b of song.blocks) {
@@ -214,6 +216,7 @@ function renderSong(song) {
       row.dataset.i = wordCount;
       rowEls.push({ el: row, firstWord: wordCount, lastWord: wordCount });
       wordLine.push(lineWords.length); lineWords.push(1);
+      lyricWords.push('');
       wordCount++;
       container.appendChild(row);
       continue;
@@ -239,6 +242,7 @@ function renderSong(song) {
           const w = el('span', 'w', m[1]);
           w.dataset.i = wordCount++;
           wordLine.push(lineIdx); lineWords[lineIdx]++;
+          lyricWords.push(normalizeWord(m[1]));
           row.appendChild(w);
         } else {
           row.appendChild(document.createTextNode(m[2]));
@@ -396,15 +400,115 @@ function setupScrollBar() {
 }
 
 /* =====================================================================
-   3c. MODE TOGGLE — Manual now; Voice arrives in stage 5
+   3c. MODE TOGGLE — Manual or Voice
    ===================================================================== */
 
 let mode = 'manual';
 function setMode(m) {
   mode = m;
   document.querySelectorAll('#mode button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
-  document.getElementById('voice-note').hidden = (m !== 'voice');
+  document.getElementById('speed-row').hidden = (m === 'voice');
+  document.getElementById('voice-row').hidden = (m !== 'voice');
+  if (m === 'voice') { setPlaying(false); startListening(); } else { stopListening(); }
 }
+
+/* =====================================================================
+   3d. VOICE MODE — the browser listens, and words you sing turn green.
+   Uses the Web Speech API (webkitSpeechRecognition in Safari). Each
+   recognised word is looked for in a short window ahead of the pointer;
+   a hit moves the pointer there. Safari stops listening after a pause,
+   so we restart it whenever it ends.
+   ===================================================================== */
+
+const VOICE_WINDOW = 14;          // how many words ahead to search — small, so a repeated chorus can't cause a jump
+let recognizer = null;
+let wantListening = false;
+let lastMatchAt = null;
+let heardSoFar = {};              // per result index: how many words we have already handled
+
+function normalizeWord(w) {
+  return w.toLowerCase().replace(/[^a-z0-9']/g, '').replace(/^'+|'+$/g, '');
+}
+
+// Loose equality: exact, or one letter off for words of 4+ letters, or one is a prefix of the other (5+ letters)
+function similar(a, b) {
+  if (!a || !b) return false;
+  if (a === b) return true;
+  if (a.length >= 5 && b.length >= 5 && (a.startsWith(b) || b.startsWith(a))) return true;
+  if (a.length < 4 || b.length < 4 || Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, edits = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++edits > 1) return false;
+    if (a.length > b.length) i++; else if (b.length > a.length) j++; else { i++; j++; }
+  }
+  return edits + (a.length - i) + (b.length - j) <= 1;
+}
+
+function matchHeardWord(word) {
+  if (word.length < 3) return false;                      // "a", "the", "I" match everywhere; ignore them
+  const from = Math.floor(progress);
+  const to = Math.min(wordCount, from + VOICE_WINDOW);
+  for (let i = from; i < to; i++) {
+    if (similar(word, lyricWords[i])) {
+      setProgress(i + 1);
+      lastMatchAt = Date.now();
+      return true;
+    }
+  }
+  return false;
+}
+
+function startListening() {
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if (!SR) { voiceStatus('Speech recognition is not available in this browser.'); return; }
+  wantListening = true;
+  if (recognizer) return;
+  recognizer = new SR();
+  recognizer.continuous = true;
+  recognizer.interimResults = true;
+  recognizer.lang = 'en-US';
+  recognizer.onstart = () => { heardSoFar = {}; voiceStatus('Listening'); document.getElementById('voice-dot').classList.add('listening'); };
+  recognizer.onresult = ev => {
+    for (let r = ev.resultIndex; r < ev.results.length; r++) {
+      const words = ev.results[r][0].transcript.trim().split(/\s+/).map(normalizeWord).filter(Boolean);
+      const seen = heardSoFar[r] || 0;
+      for (let k = seen; k < words.length; k++) matchHeardWord(words[k]);
+      heardSoFar[r] = words.length;
+      document.getElementById('voice-heard').textContent = words.slice(-4).join(' ');
+    }
+  };
+  recognizer.onerror = ev => {
+    if (ev.error === 'not-allowed' || ev.error === 'service-not-allowed') {
+      wantListening = false;
+      voiceStatus('Microphone blocked — allow it in Settings › Safari');
+    }
+    // other errors ("no-speech", "aborted", "network") are followed by onend, which restarts
+  };
+  recognizer.onend = () => {
+    document.getElementById('voice-dot').classList.remove('listening');
+    if (wantListening) setTimeout(() => { if (wantListening) { try { recognizer.start(); } catch (e) {} } }, 300);
+    else voiceStatus('Off');
+  };
+  try { recognizer.start(); } catch (e) { voiceStatus('Could not start: ' + e.message); }
+}
+
+function stopListening() {
+  wantListening = false;
+  if (recognizer) { try { recognizer.stop(); } catch (e) {} }
+}
+
+function voiceStatus(text) { document.getElementById('voice-status').textContent = text; }
+
+// Once a second: say how long since the last matched word, and flash the dot green on a fresh match
+setInterval(() => {
+  if (mode !== 'voice') return;
+  const dot = document.getElementById('voice-dot');
+  if (lastMatchAt === null) return;
+  const ago = Math.round((Date.now() - lastMatchAt) / 1000);
+  dot.classList.toggle('matched', ago < 2);
+  if (wantListening) voiceStatus(ago < 2 ? 'Matched' : 'Listening · last match ' + ago + 's ago');
+}, 1000);
 
 /* =====================================================================
    4. SCREEN WAKE LOCK — keep the phone awake while a song is open.
@@ -554,6 +658,7 @@ async function loadSong(filename) {
   currentSong = parseSong(await res.text());
   currentSong.file = filename;
   progress = 0;
+  lastMatchAt = null;
   setSpeed(1);
   setPlaying(false);
   try { localStorage.setItem('lastSong', filename); } catch (e) {}
