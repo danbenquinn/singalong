@@ -1,0 +1,55 @@
+title: Wild Mountain Thyme
+artist: Traditional Scottish/Irish
+key: C
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+      G      C        G
+O the summer time has come
+        C                   G
+and the trees are sweetly bloomin'
+        C    G  G/F#  Em
+And the wild mountain thyme
+       C          Am        C
+grows around the bloomin' heather
+
+[Chorus]
+        G  C      G               C        G
+Will ye go lassie go? And we'll all go together
+        C    G  G/F#  Em            C          Am  C
+To pull wild mountain thyme all around the bloomin' heather
+        G  C      G
+Will ye go lassie go?
+
+       G        C      G
+I will build my love a bower
+       C            G
+By yon cool crystal fountain
+    C        G G/F#  Em
+And round it I  will pile
+        C       Am     C
+All the flowers o' the mountain
+[Chorus]
+
+       G     C           G
+I will range through the wilds
+        C             G
+And the deep glen sae dreary
+      C    G  G/F#   Em
+And return wi' their spoils
+        C     Am    C
+Tae the bower o' my dearie
+[Chorus]
+
+      G         C          G
+If my true love she'll not come
+          C            G
+Then I'll surely find another
+        C    G  G/F#  Em
+To pull wild mountain thyme
+     C         Am       C
+All around the bloomin' heather
+[Chorus]

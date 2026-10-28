@@ -1,0 +1,55 @@
+title: Gloucestershire Wassail
+artist: Unknown (Middle Ages)
+key: A
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+   A                  D        A
+Wassail, wassail, all over the town
+    E7                       A          E
+Our cup it is white, and our ale it is brown
+    A          E         A         E
+Our bowl it is made of a old maple tree
+     A              D       E          A
+With our wassailing bowl we drink unto thee.
+
+   A                       D               A
+So here's to our mule, and to his right ear,
+     E7                     A            E
+Pray God send our mu-le the happiest new year:
+    A            E       A           E
+The happiest new year as e'er he did see,
+         A          D       E          A
+With our wassailing bowl we drink unto thee.
+
+   A                        D               A
+So here’s to our father and to his right cheek
+     E7                      A           E
+Pray God send our father the meatiest of beef
+    A           E       A           E
+The meatiest of beef as e’re he did see,
+         A          D       E          A
+With our wassailing bowl we drink unto thee.
+
+   A                        D            A
+So here’s to our mother and to her broad horn
+    E7                    A              E
+May God send our mother a hearty crop of corn
+  A              E       A            E
+A hearty crop of corn as e’re she did see,
+         A          D       E          A
+With our wassailing bowl we drink unto thee.
+
+    A                       D            A
+Now here's to our children, and to their right eye,
+    E7                     A               E
+God send to our children a tasty Christmas pie;
+  A               E      A             E
+A tasty Christmas pie as e'er they did see,
+         A          D       E          A
+With our wassailing bowl we drink unto thee.
+         A          D       E          A
+With our wassailing bowl we drink unto thee.

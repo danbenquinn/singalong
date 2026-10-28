@@ -1,0 +1,67 @@
+title: Coffin Maker
+artist: Daniel Quinn (2005)
+key: D
+low: 
+high: 
+tags: original
+speed: 6
+capo: 3
+# key guessed from the last chord; fill in low/high · (Original by Alexa, modified by Dan in 2026; Capo 3)
+---
+    G                      C
+You work is your work, your life is your life;
+  D                    G
+I think that’s awfully good advice,
+   G                           C
+so I was heart-broken when you passed away -
+D                  G
+didn’t know really what to say.
+  G            C                    Am
+I put my arms around you, from your feet up to your face,
+         Em                   C                D
+‘cause I had to measure you lengthwise so that I could build your case.
+
+[Chorus]
+     G     C                 D            G
+     I’m a coffin maker, and you were my wife.
+     G     C                 D                      G
+     I     cherished you and loved you all of your life.
+        Em              C                G              C
+     We used to be such special friends, no one could deny it,
+         Em                 C                 D               G
+     but then you met your fateful day, when you became my client -
+     D           G
+       my client.
+
+G            C
+What was I supposed to do?
+  D              G
+I hope this is alright with you.
+   G                  C
+It all felt like some kind of sign
+     D                  G
+that my two loves could be aligned,
+    G              C              Am
+and funerals are expensive, and I aint no bourgoisie -
+   Em                  C              D
+at least this way, for one thing, the coffin’ll be free.
+
+[Chorus]
+
+   G               C
+As you got lowered into the ground,
+   D                     G
+my lip got stiff and the tears came down.
+G                   C
+Hard to believe I’d never see
+
+         D                   G
+what had come to feel like a part of me.
+        G                     C
+She was steadfast, beautiful, square, and true,
+        Am
+with an angel’s amber glow--
+  Em              C                   D
+I spent so long designing her, it was hard to let her go.
+
+[Chorus]

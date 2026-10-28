@@ -1,0 +1,54 @@
+title: The Rattlin’ Bog
+artist: Irish Folk Song
+key: Bb
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+[Chorus]
+     Bb          Eb
+Ho, ro, the rattlin’ bog
+Bb                    F
+The bog down in the valley-o
+Bb           Eb
+Ho, ro, the rattlin’ bog
+F                    Bb
+The bog down in the valley-o
+
+Verse 1:
+     Bb                      Eb
+And in that bog there was a tree -
+Bb              F
+a rare tree, a rattlin’ tree.
+    Bb          F
+The tree in the bog, and
+    Bb              F7     Bb
+the bog down in the valley-o.
+
+Verses 2-9:
+
+And in that tree there was a branch… /
+And on that branch there was a nest… /
+And in that nest there was an egg… /
+And on that egg there was a bird… /
+And on that bird there was a feather… /
+And on that feather there was a flea… /
+And in that flea there was a brain… /
+And in that brain there was a song… /
+And in that song there was a bog…
+
+          Bb         F
+(The bog in the song, and)
+(The song in the brain, and)
+(The brain in the flea, and)
+(The flea on the feather, and)
+(The feather on the bird, and)
+(The bird on the egg, and)
+(The egg in the nest, and)
+(The nest on the branch, and)
+The branch in the tree, and
+the tree in the bog, and
+    Bb              F7     Bb
+The bog down in the valley-o

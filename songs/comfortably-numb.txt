@@ -1,0 +1,53 @@
+title: Comfortably Numb
+artist: Pink Floyd
+key: D
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+F#m                     E
+Hello, is there anybody in there?
+                    D     C#m  Bm           F#m     Just nod if you can hear me;       is there anyone home?
+F#m                         E     Come on, now, I hear you’re feeling down
+      D          C#m  Bm            F#m     Well, I can ease your pain, get you on your feet again
+F#m                     E     Relax, I need some information first
+D              C#m   Bm          F#m     Just the basic facts:    Can you show me where it hurts?
+A                              E   There is no pain, you are receding
+A                                 E    E/F#        A distant ship smokes on the horizon
+G                                  D        You are only coming through in waves
+     G                                       D
+Your lips move, but I cant hear what you’re saying
+      A                     E     When I was a child I had a fever
+     A                           E    E/F#  My hands felt just like two balloons
+G                             D               Now I got that feeling once again, I can’t explain, you would not
+ G                             D     understand, this is not how I am
+E     E/F#  G         D              A                     I------------ have become comfortably numb
+
+A    E    A    E    G    D    G    D
+[guitar solo]
+
+E     E/F#  G         D              A                     I------------ have become comfortably numb
+
+F#m                E
+Ok,  just a little pinprick.
+                     D  C#m  Bm            F#m
+There’ll be no more, aaaaaah!  but you may feel a little sickF#m                                  E
+Can you stand up?  I do believe it’s working good
+                 D         C#m     Bm       F#m     That’ll keep you going for the show -  come on its time to goA                              E   There is no pain, you are receding
+A                                 E    E/F#        A distant ship smoke on the horizon
+G                                  D        You are only coming through in waves
+     G                                       D
+Your lips move, but I cant hear what you’re saying
+     A                        E     When I was a child I caught a fleeting glimpse
+A                          E     E/F#
+   Out of the corner of my eye
+G                                  D
+   I turned to look but it was gone - I cannot put my finger
+ G                                  D
+on it now - the child is grown, the dream is gone
+E     E/F#  G         D              A                     I------------ have become comfortably numb
+
+F#m    F#m    E    E    D   Bm   F#m (x8)
+[guitar solo]

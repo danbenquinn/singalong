@@ -1,0 +1,89 @@
+title: Hallelujah
+artist: Leonard Cohen
+key: Bb
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+         Bb                Gm
+Now I've heard there was a secret chord
+     Bb                   Gm
+That David played, and it pleased the Lord
+    Eb               F               Bb      F
+But you don't really care for music, do you?
+   Bb                 Eb          F
+It goes like this the fourth, the fifth
+    Gm              Eb
+The minor fall, the major lift
+    F               D7          Gm
+The baffled king composing Hallelujah
+     Eb          Gm          Eb          Bb F Bb
+Hallelujah, Hallelujah, Hallelujah, Hallelu-u-jah
+
+     Bb                             Gm
+Well your faith was strong, but you needed proof
+    Bb              Gm
+You saw her bathing on the roof
+    Eb             F             Bb        F
+Her beauty and the moonlight overthrew ya
+    Bb            Eb      F
+She tied you to a kitchen chair
+    Gm                         Eb
+She broke your throne, and she cut your hair
+    F                  D7            Gm
+And from your lips she drew the Hallelujah
+     Eb          Gm          Eb          Bb F Bb
+Hallelujah, Hallelujah, Hallelujah, Hallelu-u-jah
+
+Bb             Gm
+Baby I've been here before
+     Bb                        Gm
+I've seen this room and I've walked this floor
+  Eb            F             Bb       F
+I used to live alone before I knew you
+     Bb                    Eb     F
+I've seen your flag on the marble arch
+    Gm            Eb
+But love is not a victory march
+       F               D7          Gm
+It's a cold and it's a broken hallelujah
+     Eb          Gm          Eb          Bb F Bb
+Hallelujah, Hallelujah, Hallelujah, Hallelu-u-jah
+            Bb                  Gm
+Well there was a time when you let me know
+       Bb           Gm
+What's really going on below
+    Eb            F               Bb           F
+But now you never show that to me do you
+      Bb            Eb       F
+But remember when I moved in you
+        Gm            Eb
+And the holy dove was moving too
+    F               D7            Gm
+And every breath we drew was hallelujah
+     Eb          Gm          Eb          Bb F Bb
+Hallelujah, Hallelujah, Hallelujah, Hallelu-u-jah
+
+      Bb              Gm
+Well, maybe there's a god above
+    Bb            Gm
+But all I've ever learned from love
+    Eb              F              Bb         F
+Was how to shoot at someone who outdrew you
+     Bb                 Eb      F
+It's not a cry that you hear at night
+     Gm                 Eb
+It's not somebody who's seen the light
+       F               D7          Gm
+It's a cold and it's a broken hallelujah
+
+     Eb          Gm          Eb          Bb  F
+Hallelujah, Hallelujah, Hallelujah, Hallelu-
+     Eb          Gm          Eb          Bb  F
+Hallelujah, Hallelujah, Hallelujah, Hallelu-
+     Eb          Gm          Eb          Bb  F
+Hallelujah, Hallelujah, Hallelujah, Hallelu-
+     Eb          Gm          Eb          Bb F Bb
+Hallelujah, Hallelujah, Hallelujah, Hallelujah

@@ -763,6 +763,45 @@ function setupPicker() {
 }
 
 /* =====================================================================
+   5d. PASSWORD GATE
+   The password's SHA-256 hash lives in config.js (set-password.sh writes
+   it). A correct entry is remembered on this device until the password
+   changes. This keeps casual visitors out; it is not strong protection,
+   since the song files themselves are still on the public site.
+   ===================================================================== */
+
+async function sha256(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function unlock() {
+  return new Promise(resolve => {
+    const hash = (typeof PASSWORD_HASH === 'string') ? PASSWORD_HASH : '';
+    let saved = null;
+    try { saved = localStorage.getItem('unlocked'); } catch (e) {}
+    if (!hash || saved === hash) { resolve(); return; }
+    const gate = document.getElementById('gate');
+    const input = document.getElementById('password');
+    const msg = document.getElementById('gate-msg');
+    gate.hidden = false;
+    setTimeout(() => input.focus(), 100);
+    const attempt = async () => {
+      if (await sha256(input.value) === hash) {
+        try { localStorage.setItem('unlocked', hash); } catch (e) {}
+        gate.hidden = true;
+        resolve();
+      } else {
+        msg.textContent = 'Nope.';
+        input.select();
+      }
+    };
+    document.getElementById('gate-go').addEventListener('click', attempt);
+    input.addEventListener('keydown', ev => { if (ev.key === 'Enter') attempt(); });
+  });
+}
+
+/* =====================================================================
    6. START-UP: load the song, wire up taps and keys
    ===================================================================== */
 
@@ -779,7 +818,8 @@ async function loadSong(filename) {
   setPlaying(false);
   try { localStorage.setItem('lastSong', filename); } catch (e) {}
   document.getElementById('title').textContent = currentSong.meta.title || filename;
-  document.getElementById('artist').textContent = currentSong.meta.artist || '';
+  document.getElementById('artist').textContent =
+    (currentSong.meta.artist || '') + (currentSong.meta.capo ? ' · Capo ' + currentSong.meta.capo : '');
   document.title = currentSong.meta.title || 'Singalong';
   buildKeyDropdown(currentSong);   // also renders the song and resets the pointer
   keepAwake();
@@ -787,6 +827,7 @@ async function loadSong(filename) {
 
 async function start() {
   document.documentElement.style.setProperty('--font-size', getFontSize() + 'px');
+  await unlock();
 
   // Which song? ?song=file.txt in the address, otherwise the first one in the index.
   const params = new URLSearchParams(location.search);

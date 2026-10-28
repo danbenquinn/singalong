@@ -1,0 +1,50 @@
+title: Title and Registration
+artist: Death Cab For Cutie
+key: C
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Cm                     Eb                   Ab
+   The glove compartment, is'nt accurately named,
+     Abmaj7
+And everybody knows it.
+Cm                 Eb                   Ab
+   So I'm proposing, a swift orderly change.
+
+[Chorus]
+                  Eb                      Bb              Ab
+‘Cause behind its door there's nothing to keep my fingers warm,
+             Eb           Bb                Ab
+And all I find, are souvenirs from better times.
+            Eb              Bb                Ab
+Before the gleam, of your taillights fading east,
+     Eb       Bb             Cm
+To find, yourself a better life.
+Cm Eb Ab
+[instrumental]
+
+Cm                 Eb                    Ab
+   I was searching, for some legal document,
+       Abmaj7
+As the rain beat down on the hood.
+Cm                     Eb                         Ab
+   When I stumbled upon, pictures I tried to forget,
+Cm                         Eb                      Ab
+   And that's how this idea, was drilled into my head.
+
+[Chorus]
+
+Cm                        Eb                        Ab
+   Cause it's too important, to stay the way it's been.
+
+           Eb                   Bb              Ab
+There's no blame, for how our love did slowly fade,
+                  Eb                   Bb              Ab
+And now that it's gone, it's like it wasn't there at all.
+           Eb                  Bb              Ab
+And here I rest, where disappointment and regret,
+    Eb    Bb          Cm
+collide – lyin’ awake at night.

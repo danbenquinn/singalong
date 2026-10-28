@@ -1,0 +1,77 @@
+title: Closing Time
+artist: Semisonic
+key: F
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+(C  G  Dm  F) x 4
+[Instrumental]
+
+C        G
+Closing time
+Dm            F         C           G        Dm     F
+Open all the doors and let you out into the world
+C         G
+Closing time
+Dm               F             C             G      Dm  F
+Turn all of the lights on over every boy and every girl
+C         G
+Closing time
+Dm                 F         C             G         Dm    F
+One last call for alcohol so finish your whiskey or beer
+C         G
+Closing time
+Dm                 F              C      G    Dm    F
+You don't have to go home but you can't stay here
+
+[Chorus]
+C       G     Dm             F
+I know who I want to take me home
+C       G     Dm             F
+I know who I want to take me home
+C       G     Dm             F
+I know who I want to take me home
+      C  G    Dm    F
+Take me ho - me
+
+C         G
+Closing time
+Dm               F            C           G       Dm   F
+Time for you to go out to the places you will be from
+C         G
+Closing time
+ Dm                 F             C                G        Dm    F
+This room won't be open till your brothers or your sisters come
+   C               G      Dm              F
+So gather up your jackets move it to the exits
+  C             G        Dm      F
+I hope you have found a friend
+C        G
+Closing time
+Dm           F                 C            G          Dm   F
+Every new beginning comes from some other beginning's end.. yeah
+F
+[Chorus]
+
+Eb   Db   Ab   Eb   Eb   Db   Ab   Eb
+[Instrumental]
+(C G Dm F) x 4
+[Instrumental]
+
+C        G
+Closing time
+Dm               F            C           G       Dm    F
+Time for you to go out to the places you will be from
+
+[Chorus]
+
+(C  G  Dm  F) x 4
+[Instrumental]
+
+C        G
+Closing time
+Dm           F                 C            G          Dm  F
+Every new beginning comes from some other beginning's end

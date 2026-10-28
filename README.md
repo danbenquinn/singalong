@@ -12,8 +12,11 @@ A phone-sized lyrics-and-chords teleprompter. Plain HTML, CSS and JavaScript; no
 ├── songs/
 │   ├── index.json    the list of song files — generated, do not edit by hand
 │   └── *.txt         one song per file
+├── config.js         the SHA-256 hash of the password (written by set-password.sh)
+├── set-password.sh   choose a new password, then publish
 ├── make-index.sh     rebuilds songs/index.json from the files in songs/ (publish.sh runs it)
 ├── publish.sh        commit + push to GitHub, which republishes the site
+├── tools/import_songs.py   the one-off importer that built the library from the docx and the originals
 └── README.md         this file
 ```
 
@@ -27,6 +30,8 @@ low: D4             ← lowest melody note, scientific pitch (middle C is C4)
 high: E5            ← highest melody note
 tags: xmas          ← comma-separated; any word works, the picker's filter buttons come from these
 speed: 6            ← seconds per typed line when the speed slider is at 1× (slider runs 0–2×)
+capo: 3             ← optional; shown after the artist
+# any line without a colon, like this one, is a comment
 ---
 [Verse 1]
 G              G7  C         G
@@ -65,13 +70,36 @@ Rules of thumb:
 - **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
 - **− / +** change the text size. Remembered on the device.
 
-## Adding a song
+## Adding or editing a song
 
-Drop a new `.txt` into `songs/` and run `bash publish.sh` — it rebuilds the index and pushes.
+Drop a new `.txt` into `songs/` (or edit one), then in Terminal:
 
-## Testing
+```
+cd ~/Library/CloudStorage/OneDrive-UniversityofVirginia/DQ/Life/Art/active/-singalong && bash publish.sh
+```
 
-Desktop: open a terminal in this folder, run `python3 -m http.server 8000`, then visit http://localhost:8000 in Chrome.
-(Opening index.html directly from Finder does not work: browsers refuse to read the song files from a `file://` page.)
+It rebuilds the index, commits, and pushes; the site updates about a minute later. The imported songs
+still have empty `low:` / `high:` lines and a guessed `key:` — fill those in as you get to each song.
 
-iPhone: the easiest way is GitHub Pages — see the stage-6 notes once we get there, or follow the quick instructions in the chat.
+## Password
+
+The page asks for a password once per device (remembered until the password changes). To change it:
+`bash set-password.sh`, type the new one, then `bash publish.sh`. Only the hash is published.
+
+This is a courtesy lock, not security: the song files are still fetchable from the public site by
+anyone who knows the address. The free stronger option is Cloudflare Pages + Cloudflare Access (a real
+login in front of the whole site); say the word if that ever matters.
+
+## Hosting
+
+GitHub Pages serves the `main` branch of github.com/danbenquinn/singalong at
+https://danbenquinn.github.io/singalong/. The push uses the same token as the classes site
+(`Work/Teaching/github-credential.txt`, wired in with `git config credential.helper`; the token must
+list this repo under its repository access). Cache-busting `?v=` stamps are added by `publish.sh` so
+phones never pair a new page with an old script.
+
+## Testing on the Mac
+
+Open a terminal in this folder, run `python3 -m http.server 8000`, then visit http://localhost:8000 in
+Chrome. (Opening index.html directly from Finder does not work: browsers refuse to read the song files
+from a `file://` page.) Wake lock and the microphone only work on the real HTTPS site.

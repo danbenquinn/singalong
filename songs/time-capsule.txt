@@ -1,0 +1,49 @@
+title: Time Capsule
+artist: Daniel Quinn (2009)
+key: G
+low: 
+high: 
+tags: original
+speed: 6
+capo: 4
+# key guessed from the last chord; fill in low/high
+---
+C            G        F
+     What’s this dusty steel?
+C            G    F
+     What’s this I feel?
+C           G            F
+     Don’t open ‘til this year
+C                 G            F
+     And only if both of you are here
+Em                 F            C             G
+    And there’s a poster on my wall I got at seventeen
+Em              F                  C              G
+    I never even liked that movie - what does that mean?
+
+[Chorus]
+C          Em          F                G
+    Let’s not, but pretend that we made this into a thing
+C             Em          F                   G
+    I may be slow, but I know that this, that this is gonna sting
+Am             E              F    C   G
+    Yes, time passes, people cha---nge
+Am                     E           F    G
+    Yes, I stole that from a video   ga---me.
+     C    G    Am    E    F    C    F    G    C
+     [Instrumental]
+
+C          G          F
+     I’d open it but you have the key
+C          G              F
+     I’d call, but I’m afraid of who I’d be
+C                       G          F
+     And what could it even have to say
+C                       G            F
+     That could mean anything if said today
+Em           F            C             G
+    And I know that it was meant for more
+Em              F            C             G
+    So why’m I headed for the carport door?
+
+[Chorus]

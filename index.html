@@ -9,7 +9,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#101418">
-  <link rel="stylesheet" href="style.css?v=1793209625">
+  <link rel="stylesheet" href="style.css?v=1793214419">
 </head>
 <body>
 
@@ -63,6 +63,17 @@
     <ul id="songlist"></ul>
   </div>
 
-  <script src="app.js?v=1793209625"></script>
+  <!-- Password gate: shown until the right password is entered once on this device -->
+  <div id="gate" hidden>
+    <div id="gate-box">
+      <div id="gate-title">Singalong</div>
+      <input type="password" id="password" placeholder="Password" autocomplete="current-password">
+      <button id="gate-go">Open</button>
+      <div id="gate-msg"></div>
+    </div>
+  </div>
+
+  <script src="config.js?v=1793214419"></script>
+  <script src="app.js?v=1793214419"></script>
 </body>
 </html>

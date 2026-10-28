@@ -1,0 +1,59 @@
+title: Fog of Peace
+artist: Daniel Quinn (2025)
+key: E
+low: 
+high: 
+tags: original
+speed: 6
+capo: 3
+# key guessed from the last chord; fill in low/high
+---
+A                   Em
+   Snow day in the parking lot.
+A                    Em
+   Church bells and hooves: the only sound.
+A                    Em                  C
+   I’m starting to regret getting out of bed
+         D
+‘til the sleigh driver turns around.
+A                       Em
+   Can’t see what’s in front of me,
+A                   Em
+   can’t tell how far this goes,
+A                        Em                      C  D    E
+   all I’ve got is this one little light and the compass rose.
+
+[Chorus]
+A
+   No sign of the pier,
+        C                 D
+but I’m hoping that’s the corner of an eye.
+A
+   It’s starting to clear,
+        C            E
+and the faces in the fog solidify.
+A
+   I’m three sheets to the wind,
+        C              D
+but I’m holding on the line for you.
+A
+   Where have you been?
+      C             E                          A
+I was starting to believe that it wasn’t true.
+
+A                   Em
+   Slow day at the studio:
+A                   Em
+   software and a still life party game.
+A                  Em              C
+   I managed to forget every other word
+D
+filing away a name.
+A                       Em
+   Can’t tell what I’m doing here -
+A                   Em
+   on a tangent or on the nose -
+A                        Em                      C  D    E
+   all I’ve got is this one little light and the compass rose.
+
+[Chorus]

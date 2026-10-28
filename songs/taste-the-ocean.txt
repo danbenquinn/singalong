@@ -1,0 +1,58 @@
+title: Taste the Ocean
+artist: Daniel Quinn (2022)
+key: C
+low: 
+high: 
+tags: original
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+C                                                  G
+    There’s a way that we both know of making tea -
+                            F
+I know cause you taught me.
+C                                                G
+    There’s a way that we both feel about wars -
+                           F
+I know cause I took yours.
+Am                                                Ab+
+   There’s a million little drawers and bins and boxes,
+                       C/G
+so many more than these,
+                       Gbø7        Fmaj7     G
+and I’ve just got this one set of keys, so please, tell me
+
+[Chorus]
+C                    Fmaj7   C                    Fmaj7
+    Can I taste the ocean?     Can I climb that tree?
+C                         Dm                G
+    Can I go down in the basement? Can you come with me?
+Am          G    F                         C           G
+    Can I go up ahead, I promise I’ll come back again.
+Am        G          F                        C
+    I know that you said, there would come a day when
+                      G                  F
+I could answer for myself but I’m still waiting.
+
+C                                                  G
+    There’s a way that we both pretend to chew -
+                            F
+I know cause I taught you.
+C                                                G
+    There’s a little curve in your hairline -
+                           F
+I know cause you took mine.
+Am                                                Ab+
+   There’s a million little drawers and bins and boxes,
+                       C/G
+so many more than these,
+                       Gbø7        Fmaj7     G
+and I’ve just got this one pair of keys, so please, tell me
+
+[Chorus]
+Am                         G              F
+     And how could I have wasted any of those days?
+Am                          G
+     I’m only turning left, just like you said,
+              F              C     G    F    C
+but I’m still caught in the maze.

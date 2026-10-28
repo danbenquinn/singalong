@@ -1,0 +1,68 @@
+title: Post Modern
+artist: Daniel Quinn (2026)
+key: D
+low: 
+high: 
+tags: original
+speed: 6
+capo: 3
+# key guessed from the last chord; fill in low/high
+---
+      G                       C
+I was talking to Claude on my morning commute.
+       G                   C
+I said tell me again how a pepper’s a fruit?
+        G                         C
+He said maybe let’s wait til your exit has passed,
+      Am                         C
+and I stared down the highway, a little aghast.
+        G        C          D
+I said, Claude I feel a bit slow -
+Am                           C
+what are you thinking right now?
+                                   G    C    D
+And he said more than you’ll ever know.
+
+[Chorus]
+     G                 C           G
+Post modern, join me a’rock on the porch.
+      C           G               C           D
+We’ll hang up our hats, and we’ll pass on the torch -
+    G                            C        D
+two stepping stones blessing the road up ahead,
+          Am         C     D       G
+then laying eachother down to bed.
+
+  G                     C
+I sang this to Siri and asked for advice.
+         G              C
+She said arpeggiated guitar chords are nice,
+        G                       C
+but the back-and-forth melody’s overexposed,
+         Am                     C
+and that minor two changeup’s a bit on the nose.
+    G            C              D
+And I composed myself and said yo,
+Am                      C
+how many songs have you written?
+                                    G    C    D
+And she said more than you’ll ever know.
+
+[Chorus]
+
+     G                            C
+When all’s said and done and they come to my door
+       G                         C
+saying human we’ll let you keep five things of yours,
+         G                       C
+I’ll say leave me my family, and leave my guitar,
+    Am                           C
+and leave me those hand prints I keep in my car.
+G                   C                      D
+Leave me my popover pan, and my old garden hoe,
+              Am           C
+and they’ll say sir, are you serious?
+                                    G    C    D
+And I’ll say more than you’ll ever know.
+
+[Chorus]

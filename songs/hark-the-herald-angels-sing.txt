@@ -1,0 +1,41 @@
+title: Hark the Herald Angels Sing
+artist: Charles Wesley (lyrics, 1739) & Felix Mendelssohn
+key: D
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+D                           A             D   A    D
+Hark the herald angels sing "Glory to the new born King
+D                              A              A E7 A
+Peace on earth and mercy mild  God an sinners reconciled"
+D5            G       A      D5               G      A
+Joyful all ye nations rise_  Join the triumph of the skies
+G        D   Em   B7  Em     A7        D       D   A  D
+With angelic host proclaim  "Christ is born in Bethlehem"
+G           D  Em  B7  Em    A7    D      D    A7    D
+Hark the herald angels sing "Glory to the new born King"
+
+D                                 A              D  A    D
+Christ, by highest heaven adored; Christ the everlasting Lord;
+D                             A                A E7     A
+Late in time behold him come, Offspring of the favoured one.
+D5                   G        A    D                  G  A
+Veiled in flesh, the God-head see; hail the incarnate Diety
+G              D    Em  B7  Em    A7     D   D   A  D
+Pleased as man with men to dwell, Jesus, our Immanuel
+G         D  Em  B7  Em     A7    D       D   A7    D
+Hark the herald angels sing, "Glory to the new born King"
+
+D                                      A               D   A    D
+Hail! the heaven-born Prince of Peace. Hail the son of Righteousness
+D                                A                  A  E7  A
+Light and life to all He brings, risen with healing in His wings
+D5           G         A   D5               G        A
+Mild He lays His glory by, born that man no more may die
+G             D   Em   B7  Em    A7       D        D  A    D
+Born to raise the sons of earth, born to Give them second birth
+G            D  Em  B7 Em     A7    D      D   A7   D
+Hark the herald angels sing, "Glory to the new born King"

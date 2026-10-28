@@ -1,0 +1,43 @@
+title: There’s Even More
+artist: Daniel Quinn (2026)
+key: A
+low: 
+high: 
+tags: original
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+      Am                                  C
+There once was a girl I dated, said she’d been reincarnated--
+       F                     Dm                E
+had to document the lunacy I simply couldn’t ignore.
+     Am                               C
+So I rushed to get my journal ‘fore I lost the fragile kernel
+      F                   Dm             G              Am
+of my thoughts but then I saw that I had written them before
+
+[Chorus]
+           Am     F    G      Am
+(Oh!) Why oh why, by and by,
+    C        G         F
+the one, the five, the four?
+      Am         F        G       Am
+We’ve used these chords a million times,
+       C    G       C
+here’s to a million more.
+G               F               C         G
+Tired of words, tired of words, tried and true.
+G          F           C   G  C
+Li di day, lay di dah, lah di doo.
+
+     Am                            C
+Some say we’re simulated, that the paths we take are fated,
+      F                               Dm                     E
+Gotta teach this generation that deep down there’s something more.
+     Am                        C
+So I wrote it in a poem for my kids and went to show ‘em
+            F                  Dm             G            Am
+They said, ‘Dad, that’s not too bad, but you’ve written it before.’
+
+[Chorus]
+[Chorus + verse overlay]

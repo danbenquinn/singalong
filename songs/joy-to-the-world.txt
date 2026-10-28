@@ -1,0 +1,47 @@
+title: Joy To the World
+artist: Isaac Watts (lyrics, 1719) & Lowell Mason
+key: C
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+C                     C    G  C
+Joy to the world, the Lord is come!
+    F     G           C
+Let earth receive her King;
+    C
+Let every heart prepare Him room,
+    C
+And Heaven and nature sing,
+    G
+And Heaven and nature sing,
+    C                       C G    C
+And Heaven, and Heaven, and nature sing.
+
+C                     C  G   C
+Joy to the earth, the Savior reigns!
+    F         G        C
+Let men their songs employ;
+      C
+While fields and floods, rocks, hills and plains
+  C
+Repeat the sounding joy,
+  G
+Repeat the sounding joy,
+  C                 C   G    C
+Repeat, repeat, the sounding joy.
+
+C                       C     G   C
+He rules the world with truth and grace,
+    F         G       C
+And makes the nations prove
+    C
+The glories of His righteousness,
+    C
+And wonders of His love,
+    G
+And wonders of His love,
+    C                 C  G   C
+And wonders, wonders, of His love.

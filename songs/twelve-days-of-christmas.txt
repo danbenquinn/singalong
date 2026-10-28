@@ -1,0 +1,40 @@
+title: Twelve Days of Christmas
+artist: Frederic Austin (music, 1909) & Unknown (lyrics)
+key: C
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Verses 1-4:
+             C                  Am            Dm                C
+On the 1st/2nd…/4th day of Christmas, my true love gave to me
+G7
+(Four calling birds),
+(Three French hens),
+(Two turtle doves, and)
+  C F       C    G    C
+A partridge in a pear tree
+
+Verses 5-12:
+  C                   Am            Dm                C
+On the 5th/6th/…12th day of Christmas, my true love gave to me
+G7
+(Twelve drummers drumming),
+(Eleven pipers piping),
+(Ten lords a’leaping),
+(Nine ladies dancing),
+(Eight maids a’milking),
+(Seven swans a’swimming),
+(Six geese a’laying),
+C    D7       G7
+Five go-olden rings
+C
+Four calling birds
+F
+Three French hens
+G
+Two turtle doves, and
+  C F       C    G    C
+A partridge in a pear tree

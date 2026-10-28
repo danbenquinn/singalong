@@ -1,0 +1,35 @@
+title: Go The Distance
+artist: Alan Menken (music) & David Zippel (lyrics), 1997
+key: G
+low: 
+high: 
+tags: pop, disney
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+       B  Db   Gb          B   Db    Gb
+I have often dreamed, of a far off place
+         B    Db   Ebm             B            Db
+Where a Great warm welcome will be waiting for me.
+          B      Db    Gb               B   Db Gb
+Where the crowds will cheer, when they see my face
+         B   Bb     Ebm            B                Db
+And a voice keeps saying this is where I’m meant to be;
+
+        Gb      Db   Ebm           Db
+I will find my way, I can go the distance
+         Gb        Db  Ebm           Db
+I'll be there someday, if I can be strong
+        Gb     Abm           Ebm      Abm7
+I know ev’ry mile, will be worth my while
+        B  Db   Gb   Gb/F     Bmaj7    Db   Gb
+I would go most anywhere to feel like I belong
+
+        G        D     Em             D
+I will beat the odds, I will go the distance
+       G         D     Em                     D
+I will face the world, fearless, proud, and strong
+       G          C           Em7     Am
+I will please the gods, I can go the distance
+      C   D   G      G/F#       C           D  G
+Til I find my hero's welcome right where I belong.

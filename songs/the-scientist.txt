@@ -1,0 +1,59 @@
+title: The Scientist
+artist: Coldplay
+key: G
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Am             F                      C
+   Come up to meet you, tell you I'm sorry
+                    Gsus4     G
+You don't know how lovely you are
+Am           F                    C
+   I had to find you, tell you I need you
+            Gsus4   G
+Tell you I set you apart
+Am               F                         C
+   Tell me your secrets, and ask me your questions
+             Gsus4      G
+Oh let's go back to the start
+Am             F                  C
+   Running in circles, coming up tails
+             Gsus4  G
+Heads on a science apart
+
+[Chorus]
+F                           C
+   Nobody said it was easy
+              Gsus4         G
+It's such a shame for us to part
+F                           C
+   Nobody said it was easy
+            Gsus4                 G     G7
+No one ever said it would be this hard
+              C      F     C     Gsus4  G
+Oh take me back to the start
+
+Am              F                      C
+   I was just guessing at numbers and figures
+             Gsus4   G
+Pulling the puzzles apart
+Am                F                    C
+   Questions of science, science and progress
+                Gsus4     G
+Don’t speak as loud as my heart
+Am              F                      C
+   Tell me you love me, come back and haunt me
+         Gsus4         G
+Oh and I rush to the start
+Am             F                    C
+   Running in circles, chasing our tails
+       Gsus4      G
+Coming back as we are
+
+[Chorus]
+
+Ah-Oooohh...
+Am  F  C  C (rep)

@@ -1,0 +1,105 @@
+title: Oh Holy Night
+artist: Adolphe Adam
+key: C
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+F                 Bb                 F
+O holy night, the stars are brightly shining;
+                       C             F
+It is the night of the dear Savior’s birth!
+F                     Bb            F
+Long lay the world in sin and error pining,
+          Am             E7            Am
+Till He appeared and the soul felt its worth.
+  C                   F
+A thrill of hope, the weary soul rejoices,
+    C               F
+For yonder breaks a new and glorious morn.
+
+[Chorus]
+Dm           Am       Gm             Dm
+Fall on your knees, O hear the angel voices!
+  F C     F Bb    F    C                F
+O night divine, O night when Christ was born!
+  C7      F Bb   F      C7        F
+O night divine O night, O night divine!
+
+F                   Bb              F
+Led by the light of faith serenely beaming,
+                           C         F
+With glowing hearts by His cradle we stand.
+F                    Bb           F
+So led by light of a star sweetly gleaming,
+              Am            E7     Am
+Here came the wise men from Orient land.
+    C                 F
+The King of kings lay thus in lowly manger,
+   C              F
+In all our trials born to be our friend!
+
+[Chorus]
+
+F                     Bb        F
+Truly He taught us to love one another;
+                        C         F
+His law is love and His Gospel is peace.
+F                             Bb           F
+Chains shall He break for the slave is our brother
+           Am         E7             Am
+And in His Name all oppression shall cease.
+      C               F
+Sweet hymns of joy in grateful chorus raise we,
+    C             F
+Let all within us praise His holy Name!
+
+[Chorus]
+Rudolph the Red-Nosed Reindeer
+Johnny Marks (1939)
+
+F          Em7        Dm7         C
+You know Dasher and Dancer and Prancer and Vixen
+F         Em7       Dm7        C
+Comet and Cupid and Donner and Blitzen
+Am           D
+But do you recall
+         D7                 G7
+The most famous reindeer of all
+
+C
+Rudolph the red-nosed reindeer (reindeer)
+                 G
+Had a very shiny nose (like a light-bulb)
+G7
+And if you ever saw it (saw it)
+                      C
+You would even say it glows (like a flash light)
+C
+All of the other reindeer (reindeer)
+                           G
+Used to laugh and call him names (like Pinnochio)
+G7
+They never let poor Rudolph (Rudolph)
+                     C
+Play in any reindeer games (like Monopoly)
+
+F              C
+Then one foggy Christmas Eve
+F             C
+Santa came to say (ho ho ho)
+G
+Rudolph with your nose so bright
+D7                 G7
+Won't you guide my sleigh tonight.
+
+C
+Then how the reindeer loved him (loved him)
+                         G
+As they shouted out with glee (yippee)
+G7
+Rudolph the red-nosed reindeer (reindeer)
+                  C
+You'll go down in history! (like George Washington)

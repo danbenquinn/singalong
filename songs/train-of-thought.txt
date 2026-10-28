@@ -1,0 +1,48 @@
+title: Train of Thought
+artist: Daniel Quinn (2026)
+key: G
+low: 
+high: 
+tags: original
+speed: 6
+capo: 7
+# key guessed from the last chord; fill in low/high
+---
+[Chorus]
+  G                C          D     Am    C      D
+I lost my train of thought today so every one be wary
+     G            C   D        C         D7        G
+It’s surely now a vagabond who roams the trackless prairie
+
+  G                                  C             D
+I warn you cause I worry that you’ll be out for a drink
+       Am                                 C                D
+And my thought will hit your noggin and direct you how to think.
+    G                          C               D
+You may blurt out equations or fears of going bald
+    Am               C             D7         G
+I’d give you better warning if the content I recalled.
+
+[Chorus]
+
+  G                                C             D
+I warn you cause I worry you’ll be trying for a job
+     Am                       C                 D
+When suddenly mid-answer your head’ll start to throb
+    G                          C               D
+You may become a’frightened or radically short-tempered
+    Am               C             D7          G
+I’d give you better warning if the idea... I remembered.
+
+[Chorus]
+
+  G                                  C               D
+I warn you cause I worry that you’ll head on out to vote
+     Am                                 C              D
+Then at the booth get triggered by some out-of-context quote.
+    G                                  C               D
+You may swing left or center-right God knows who gets elected
+    Am               C             D7                G
+I’d give you better warning if the thing...... I recollected.
+
+[Chorus]

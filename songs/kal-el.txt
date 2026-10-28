@@ -1,0 +1,47 @@
+title: Kal-El
+artist: Daniel Quinn (2006)
+key: C
+low: 
+high: 
+tags: original
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+C
+   Hey little starman,      dot in the sky;
+C
+   Before even walking, you learned how to fly.
+F                                       C
+   Have you a purpose, have you a part?
+F                                        C
+   Have you my eyebrows, have you my heart?
+F
+   If you can read me still, well
+  G           F      G   F           C
+I lo--ve you so, now g---o carry me on
+
+C
+   Sweet little starman,   I know that you’re cold;
+C
+   We threw it together, you’re all it’ll hold.
+F                                       C
+   Will you recognize we didn’t have a choice?
+F                                        C
+   Will you recognize the sound of my voice?
+F
+   If you can read me still, well
+  G           F      G   F           C
+I lo--ve you so, now g---o carry me on
+
+C
+   Dear little starman,   don’t know what’s ahead;
+C
+   Got nothing to promise, we’ll cry out instead.
+F                                       C
+   Damn you transmission, give us more time,
+F                                        C
+   We’ve got a good reason, give us more rhyme.
+F
+   If you can read us still, well
+   G           F      G   F           C
+We lo--ve you so, now g---o carry us on

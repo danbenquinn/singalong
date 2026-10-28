@@ -1,0 +1,55 @@
+title: To Build a Home
+artist: The Cinematic Orchestra
+key: G
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Interlude:
+F    C    G    Dm   F   C   G
+
+F             C              G
+   There is a house built out of stone
+F             C                G
+   Wooden floors, walls and window sills
+F                C             G
+   Tables and chairs worn by all of the dust
+Dm           F+2           C           G
+   This is a place where I don't feel alone
+Dm           F+2           C       G
+   This is a place where I feel at home.
+
+[Chorus]
+F    Cmaj7    F    C   G
+(piano)
+     F Cmaj7   F        C       G
+And, I built a home for you for me
+  F      Cmaj7 F          C       G
+Until it disappeared from me from you
+    F         Cmaj7   F  Am        C       G
+And now, it's time to le---ave and turn to dust
+
+[Interlude]
+
+F            C                G
+Out in the garden where we planted the seeds
+Dm           F      C      G
+There is a tree as old as me
+F               C          G
+Branches were sewn by the color of green
+Dm           F          C            G
+Ground had arose and passed it's knees
+       F             C          G
+By the cracks of the skin I climbed to the top
+Dm             F       C      G
+I climbed the tree to see the world
+         F            C         G
+When the gusts came around to blow me down
+Dm              F            C        G
+I held on as tightly as you held onto me
+Dm              F            C        G
+I held on as tightly as you held onto me.
+
+[Interlude] [Chorus] [Interlude]

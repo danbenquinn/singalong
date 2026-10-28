@@ -1,0 +1,46 @@
+title: Chestnuts Roasting on an Open Fire
+artist: Bob Wells & Mel Tormé
+key: C
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+C          Dm6           Em    Am/F
+Chestnuts roasting on an open fire
+C    C6    C7              F   E/G#
+Jack Frost nipping at your nose
+Am       Fm6/G#       C/G      B
+Yuletide carols being sung by a choir
+    Emaj7         Bb7/F      G
+And folks dressed up like Eskimos
+
+          C       Dm7             Em      Am/F
+Everybody knows a turkey and some mistletoe
+C    C6  C7             F      E/G#
+Help to make the season bright
+Am   Fm6/G#          C/G      B
+Tiny tots with their eyes all aglow
+     Em      Am      F/G   G   C
+Will find it hard to sleep tonight
+
+               Gm7           Am7/F
+They know that Santa's on his way
+            Bb/G              Gm/C
+He’s loaded lots of toys and goodies
+       Am7/F
+On his sleigh
+          Ab/F           Ab/Bb    Bb/Eb
+And every mother’s child is gonna spy
+          D7                          Fm6/D  G
+To see if Reindeer really know how to fly
+
+    C      Dm6           Em           Am/F
+And so I’m offering this simple phrase
+     C  C6   C7            F    E/G#
+To kids from one to ninety-two
+   Am             Fm/G#     C/G         B/F#
+Although its been said many times, many ways
+F     C/G   Dm/G   C
+Merry Christmas to you

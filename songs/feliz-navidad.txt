@@ -1,0 +1,32 @@
+title: Feliz Navidad
+artist: José Feliciano
+key: G
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Refrain:
+G           C    D
+Feliz Navidad
+D           G
+Feliz Navidad
+G           C       D           G
+Feliz Navidad, próspero ano y felicidad.
+G           C    D
+Feliz Navidad
+D           G
+Feliz Navidad
+G           C       D           G
+Feliz Navidad, próspero ano y felicidad.
+
+[Chorus]
+     G                    C
+     I wanna wish you a Merry Christmas,
+     D                    G
+I wanna wish you a Merry Christmas,
+G                   C
+I wanna wish you a Merry Christmas,
+         D        G
+From the bottom of my heart.

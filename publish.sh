@@ -24,7 +24,7 @@ done
 # cached the old app.js or style.css fetches the new ones (Safari otherwise keeps them for days).
 bash make-index.sh
 STAMP="$(date +%s)"
-sed -i.bak -E "s/(style\.css|app\.js)\?v=[0-9]+/\1?v=$STAMP/g" index.html && rm -f index.html.bak
+sed -i.bak -E "s/(style\.css|app\.js|config\.js)\?v=[0-9]+/\1?v=$STAMP/g" index.html && rm -f index.html.bak
 
 git add -A
 if git diff --cached --quiet; then

@@ -1,0 +1,28 @@
+title: White Christmas
+artist: Irving Berlin
+key: G
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+G                 Am    D     D7
+I’m dreaming of a white Christmas,
+C             Am             G
+Just like the ones I used to know.
+          G         G7/F
+Where the tree tops glisten,
+    C/E      Cm/Eb
+And Children listen,
+   G        Em                  Am    D   D7
+To hear the sleigh bells in the snow.
+
+G                 Am    D     D7
+I’m dreaming of a white Christmas,
+C          Am               G
+With every Christmas card I write.
+         G       G7/F      C/E        Cm/Eb
+May your days be merry and bright,
+        G   Em   Am      D7     Eb          G
+And may all your Christmas‘s be white.

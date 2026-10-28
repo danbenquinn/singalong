@@ -1,0 +1,44 @@
+title: Winter Wonderland
+artist: Felix Bernard (music) & Richard Smith (lyrics)
+key: D
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+             D
+Sleigh bells ring are you listening
+       A
+In the lane snow is glistening
+  A7        Em            A      A7
+A beautiful sight we're happy tonight
+Bm           A            D
+Walking in a Winter Wonderland
+
+     D
+Gone away is the blue bird
+       A
+Here to stay is the new bird
+    A7          Em         A   A7
+He’s singing our song as we go along
+Bm           A            D
+Walking in a Winter Wonderland
+
+F#            B              F#
+In the meadow we can build a snowman
+F#                B            F#
+Then pretend that he is Parson Brown
+A                  D                A
+He'll say Are you married We'll say No man
+    A7             E                  A
+But you can do the job when you're in town
+
+      D
+Later on we'll conspire
+      A
+As we dream by the fire
+   A7      Em        A             A7
+To face unafraid the plans that we made
+Bm           A            D
+Walking in a Winter Wonderland

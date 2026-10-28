@@ -1,0 +1,57 @@
+title: You’re a Mean One, Mr. Grinch
+artist: Theodor Geidel (lyrics) & Albert Hague (music)
+key: Eb
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+                                                                                                                        Gm      Cm    F      Bb     Gm     A7    D
+                                                                                                               You're a mean one, Mr. Grinch.   You really are a heel.
+                                                                                                                         Gm           Cm               F                Bb     Eb
+                                                                                                               You're as cuddly as a cactus, you're as charming as an eel, Mr. Grinch.
+                                                                                                               (A7)                       D D                   Gm A (x3) D7
+                                                                                                               You're a bad banana with a     greasy black peel!
+
+                                                                                                                        Gm      Cm   F      Bb       Gm         A7    D
+                                                                                                               You're a monster, Mr. Grinch.    Your heart's an empty hole.
+                                                                                                                    Gm                Cm               F                 Bb     Eb
+                                                                                                               Your brain is full of spiders, you have garlic in your soul, Mr. Grinch.
+                                                                                                               (A7)                           D D                             Gm A (x3) D7
+                                                                                                                   I wouldn't touch you with a    thirty-nine-and-a-half foot pole!
+
+                                                                                                                        Gm      Cm    F     Bb          Gm       A7      D
+                                                                                                               You're a foul one, Mr. Grinch.  You have termites in your smile.
+                                                                                                                        Gm               Cm           F              Bb      Eb
+                                                                                                               You have all the tender sweetness of a seasick crocodile, Mr. Grinch.
+                                                                                                               (A7)                                  D    D                   Gm A (x3) D7
+                                                                                                               Given a choice between the two of you  I'd take the seasick crocodile!
+
+                                                                                                                        Gm    Cm    F      Bb             Gm      A7     D
+                                                                                                               You're a rotter, Mr. Grinch.    You're the king of sinful sots.
+                                                                                                                    Gm               Cm                  F               Bb      Eb
+                                                                                                               Your heart's a dead tomato splotched with moldy purple spots, Mr. Grinch.
+                                                                                                               (A7)
+                                                                                                                   You're a three decker sauerkraut and toadstool sandwich
+                                                                                                               D D                 Gm A (x3) D7
+                                                                                                                   with arsenic sauce!
+
+                                                                                                                        Gm     Cm   F     Bb          Gm       A7    D
+                                                                                                               You nauseate me, Mr. Grinch.    With a nauseous super "naus"!
+                                                                                                                        Gm             Cm               F              Bb      Eb
+                                                                                                               You're a crooked dirty jockey and you drive a crooked hoss, Mr. Grinch.
+                                                                                                               (A7)
+                                                                                                               Your soul is an appalling dump heap overflowing with the most disgraceful
+                                                                                                               assortment of rubbish imaginable
+                                                                                                               D D                          Gm A (x3) D7
+                                                                                                                mangled up in tangled up knots!
+
+                                                                                                                        Gm      Cm    F     Bb           Gm    A7    D
+                                                                                                               You're a foul one, Mr. Grinch.   You're a nasty wasty skunk.
+                                                                                                                    Gm                Cm                  F                 Bb      Eb
+                                                                                                               Your heart is full of unwashed socks, your soul is full of gunk, Mr. Grinch.
+                                                                                                                  (A7)
+                                                                                                               The three words that best describe you are as follows, and I quote:
+                                                                                                                     Am      D  Gm  A (x3) C  D7  Gm+7+9
+                                                                                                               "STINK...STANK...STUUUNK"!

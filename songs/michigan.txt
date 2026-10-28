@@ -1,0 +1,55 @@
+title: Michigan
+artist: Milk Carton Kids
+key: G
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Em   G    C    Em   D    C    Em   G     C    Em   D    G
+[Instrumental]
+
+C                    G
+The clouds move over Pontiac skies
+C                              G
+Their silent thunder matches mine
+C                        G    D  Em
+I know this feeling from long a--go
+C                                D
+I wondered was it gone but now I know
+
+[Chorus]
+  Em          D          C
+So when she calls don't send her my way
+             Em           D              C
+When it hurts you'll know it’s the right thing
+Em                  G       C
+Michigans in the rear view now
+          Em                G    C
+Keep your hands where I can see em
+    Em                   G       C
+You took the words right out my mouth
+         Em                G     C
+When you knew that I would need em
+Em          G              C
+What am I supposed to do now?
+         G            D
+Without you, without you
+
+Em   G     C     Em    D     G
+[Instrumental]
+
+C                       G
+It's unannounced, like you'd expect it
+      C                          G
+Among broke down brake lines and Motown records
+    C                    G     D  Em
+And all that’s left is a blind re-flection
+        C                            D
+But you know what’s coming and you regret it
+
+[Chorus] [Chorus lines 3+]
+
+Em   G    C    Em   D    C    Em   G     C    Em   D    G
+[Instrumental]

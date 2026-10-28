@@ -1,0 +1,28 @@
+title: Oh Hannukah
+artist: (traditional)
+key: E
+low: 
+high: 
+tags: xmas
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Am
+Hanukkah, oh Hanukkah, come light the menorah
+Am
+Let's have a party, we'll all dance the hora
+Am                            Dm         Am
+Gather round the table, we'll give you a treat
+Am                        Dm        Am
+Dreidels to play with and latkes to eat
+
+Am
+And while we are playing
+    Dm                  Am
+The candles are burning low
+Am           Dm          Am           Dm
+One for each night, they shed a sweet light
+     Am         Dm         E
+To remind us of days long ago---
+
+[repeat]

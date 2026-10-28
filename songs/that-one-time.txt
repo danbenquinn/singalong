@@ -1,0 +1,57 @@
+title: That One Time
+artist: Daniel Quinn (2026)
+key: C
+low: 
+high: 
+tags: original
+speed: 6
+capo: 4
+# key guessed from the last chord; fill in low/high
+---
+C           Cmaj7
+     Was it March or February?
+C           Cmaj7             F      Fmaj7♭5  F
+     Was it you or on the radio?
+                  C       Cmaj7      C       Cmaj7
+Guess I’ll never    know
+C           Cmaj7
+     Was it strange or ordinary?
+C           Cmaj7                F      Fmaj7♭5  F
+     Was it twice or was it deja vu?
+              C        Cmaj7
+God I wish I    knew
+
+[Chorus]
+        F                                      C        Cmaj7
+And I’m not gonna say gonna say gonna say goodnight
+        F                                      C        Cmaj7
+And I’m not gonna say gonna say gonna say goodnight
+        F
+And I’m not gonna say gonna say gonna say
+    Am
+I’m not gonna say gonna say gonna say
+    G                                      F    Fmaj7♭5  F
+I’m not gonna say gonna say gonna say goodnight
+            C     G     G9  G
+Until we’re ho----me
+           F     Fmaj7♭5  F
+It’s not a crime
+       C             G               C
+If you only meant to sing it that one time
+
+C               Cmaj7
+     I think it might’ve been a Tuesday,
+C                  Cmaj7                  F      Fmaj7♭5  F
+     I think there might’ve been an apple pie,
+                  C       Cmaj7
+I don’t remember    why
+C               Cmaj7
+     I think we might’ve broke a record,
+C               Cmaj7                  F      Fmaj7♭5  F
+     I think we might’ve made a solemn vow
+                 C       Cmaj7     C       Cmaj7
+I don’t remember    how
+
+[Chorus]
+
+[Lines 1-3]

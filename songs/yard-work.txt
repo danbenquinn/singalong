@@ -1,0 +1,58 @@
+title: Yard Work
+artist: Daniel Quinn (2021)
+key: G
+low: 
+high: 
+tags: original
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+G                C                       D
+  You rake the leaves, they grow on the trees,
+         C
+and they fall back down again [Repeat]
+G                C                    D
+   You mow the lawn, the grass is gone,
+        C
+then it grows back up again. [Repeat]
+D          C
+   then it grows back up again [Repeat]
+
+[Chorus]
+G   F   E    Am           Em              G
+                Grab your coat, get the door,
+             D                  Am
+it’s time to   mop the forest floor
+          Em            G
+grab that dirt get that grime
+   D                              Am
+no questions please we’ve not the time
+            Em         D
+I’ve got to see Nature purely
+   C                      G               D
+so all this shit must go, surely you understand?
+            C                       G   F   E
+It’s how we give back to the land
+
+G                      C                       D
+    You’re covered in ticks, you pick up the sticks,
+         C
+and they blow back down again [Repeat]
+G                  C                       D
+   You plant the seeds, you pull up the weeds,
+       C
+then a deer eats everything [Repeat]
+D         C
+   then a deer eats everything [Repeat]
+
+[Chorus Lines 1-4]
+            Em          D
+I’ve got to hear Nature clearly
+    C                                    G
+but all I hear’s this frickin’ bird in my ear we
+        G   F   E
+have to g-------o  so
+[Chorus]
+
+G              C                    G
+   It’s how we give back to the land  (Repeat)

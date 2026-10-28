@@ -1,0 +1,35 @@
+title: Town Portal
+artist: Daniel Quinn (2007)
+key: C
+low: 
+high: 
+tags: original
+speed: 6
+# key guessed from the last chord; fill in low/high · note: relyriced in 2026
+---
+Am               C/G
+   Do you remember that time at the lake -
+Dsus4                                      D
+   the one with the cardboard boat and the   chocolate cake?
+Am                                           C/G
+   We sat on the dock and looked up at the stars - what a view.
+Dsus4                         D
+   We didn’t have a log line,   but we already knew.
+C                        G   Bb                         F  Bb-B-
+   Candidates for humanhood:  how the kids are understood -
+C                        G   Bb                          F
+   chrysalises in the sun,     snickerdoodles not quite done.
+Em                          A7
+   But if all of it’s for today,
+Em                               A7          Em   F
+   then why’m I hoping that I’ll find a way  back to
+
+[Chorus]
+C       A7                   Fmaj7        G
+Linwood Place, where there’s light at the door -
+C      A7          Bb                         F
+just a trace, but enough to know there’s even more?
+C       A7     C        A7
+What if we had accidentally
+          Fmaj7            G        C
+built the one thing that’s meant to be?

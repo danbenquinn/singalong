@@ -246,3 +246,23 @@ body {
 #songlist li .artist { display: block; color: var(--dim); font-size: 15px; }
 #songlist li:active { background: #1a1a1f; }
 #songlist .empty { color: var(--dim); padding: 20px 8px; }
+
+/* ---------- Password gate ---------- */
+#gate {
+  position: fixed; inset: 0; z-index: 20;
+  background: var(--bg);
+  display: flex; align-items: center; justify-content: center;
+}
+#gate[hidden] { display: none; }
+#gate-box { display: flex; flex-direction: column; gap: 12px; width: min(320px, 80vw); }
+#gate-title { font-size: 28px; font-weight: 600; text-align: center; margin-bottom: 8px; }
+#password {
+  font-size: 20px; padding: 12px; text-align: center;
+  background: #1a1a1f; color: var(--fg);
+  border: 1px solid var(--support); border-radius: 10px;
+}
+#gate-go {
+  font-size: 18px; padding: 12px;
+  background: var(--mma-blue); color: #fff; border: 0; border-radius: 10px;
+}
+#gate-msg { color: var(--mma-red); text-align: center; min-height: 1.2em; }

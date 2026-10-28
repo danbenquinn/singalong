@@ -1,0 +1,196 @@
+title: Let It Go
+artist: Kristen Anderson-Lopez & Robert Lopez, 2013
+key: Ab
+low: 
+high: 
+tags: pop, disney
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Em+2   C+4#   D+2   Asus4    Am
+[instrumental]
+Em+2   C+4#   D+2   Asus4    A
+[instrumental]
+
+    Em                      C
+The snow glows white on the mountain tonight
+      D               Asus4   Am
+Not a footprint to be seen
+  Em            C
+A kingdom of isolation
+       D                  Asus4    A
+And it looks like I'm the queen
+Em            C                 D                 Asus4  Am
+  The wind is howling like this swirling storm inside
+Em                 D                    A
+  Couldn't keep it in, heaven knows I've tried
+
+D                                      C
+  Don't let them in, don't let them see
+                                      D
+Be the good girl you always have to be
+                                     C
+Conceal, don't feel, don't let them know
+               Cadd9
+Well, now they know
+
+       G          D/F#
+Let it go, let it go
+      Em7             Cadd9
+Can't hold it back anymore
+       G          D/F#
+Let it go, let it go
+      Em7              Cadd9
+Turn away and slam the door
+G         D/F#            Em7        Cadd9
+I don't care what they're going to say
+        Bm7         Bb
+Let the storm rage on
+    C
+The cold never bothered me anyway
+
+G/D    D
+[instrumental]
+Em/B                    C              D               Am/C
+  It's funny how some distance makes everything seem small
+        Em/B                 D                Asus4        A
+And the fears that once controlled me can't get to me at all
+
+D                             Cadd9
+  It's time to see what I can do
+                             D
+To test the limits and break through
+                                 Cadd9
+No right, no wrong, no rules for me
+
+I'm free---
+
+       G          D/F#
+Let it go, let it go
+      Em7                   Cadd9
+I am one with the wind and sky
+       G          D/F#
+Let it go, let it go
+       Em7          Cadd9
+You'll never see me cry
+G      D/F#      Em7       Cadd9
+Here I stand and here I'll stay
+        Bm7        Bb      C
+Let the storm rage on
+
+C
+  My power flurries through the air into the ground
+C
+  My soul is spiraling in frozen fractals all around
+D
+  And one thought crystallizes like an icy blast
+Em          C               D              Am     C
+  I'm never going back, the past is in the past
+
+       G          D/F#
+Let it go, let it go
+         Em7                    Cadd9
+And I'll rise like the break of dawn
+       G          D/F#
+Let it go, let it go
+     Em7             Cadd9
+That perfect girl is gone
+G      D/F#        Em7       Cadd9    Cm
+Here I stand in the light of day
+        Bm7         Bb
+Let the storm rage on
+    C
+The cold never bothered me anyway
+Mulan: Make a Man Out of You
+Matthew Wilder (music) & David Zippel (1998)
+
+Gm          F/A       Bb     F/A  Bb   Cm        F
+  Let's get down to business      to defeat the Huns [Hoo-ah!]
+Gm          F/A       Bb     F/A  Bb     Cm         F/A
+   Did they send me daughters     When I asked for sons?
+           Eb/G            F/A
+You're the saddest bunch I ever met
+           Bb                 Eb
+but you can bet before we’re through
+   Eb          F          Gm    F  Gm
+Mister, I'll make a man out of you
+
+Gm         F/A    Bb     F/A Bb     Cm        F
+  Tranquil as a forest       but on fire within
+
+Gm          F/A       Bb     F/A  Bb      Cm        F/A
+   Once you find your center      you are sure to win
+         Eb/G             F/A
+You're a spineless pale pathetic lot
+        Bb          Eb
+and you haven’t got a clue
+    Eb          F          Gm    F  Gm
+Somehow, I'll make a man out of you
+
+Eb                  F
+    I'm never gonna catch my breath [Chien Po]
+D/F#                       Gm
+Say good-bye to those who knew me [Yao]
+F/A                  Bb                 Eb
+Boy, was I a fool in school for cutting gym [Ling]
+  Eb                   F
+    This guy's got 'em scared to death [Mushu]
+D/F#                      Gm
+Hope he doesn't see right through me [Mulan]
+F/A                     Bb            Eb
+Now I really wish that I knew how to swim [Chien Po]
+
+Gm  F  Eb/G
+Be  a  man [Choir]
+Eb/G           F/A           Bb
+    We must be swift as the coursing river
+Gm  F  Eb/G
+Be  a  man [Choir, overlaid]
+Eb/G             F/A            Bb
+    With all the force of a great typhoon
+Gm  F  Eb/G
+Be  a  man [Choir, overlaid]
+Eb/G             F/A            Bb
+    With all the strength of a raging fire
+   Eb             F                Gm+2
+Mysterious as the dark side of the moon
+
+Abm        Gb/Bb    B       Gb/Bb  B       Dbm      Gb
+   Time is racing toward us        til the Huns arrive
+Abm        Gb/Bb   B       Gb/Bb  B       Dbm       Gb
+   Heed my every warning          and you might survive
+         E/G#           Gb/Bb
+You're unsuited for the rage of war
+        B                     E
+so pack up, go home, you’re through
+      E         Gb         Abm    Gb  Abm
+How could I   make a man
+
+Abm  Gb  E/G#
+Be   a   man [Choir]
+E/G#           Gb/Bb           B
+    We must be swift as the coursing river
+Abm  Gb  E/G#
+Be   a   man [Choir, overlaid]
+E/G#             Gb/Bb             B
+    With all the force of a great typhoon
+Abm  Gb  E/G#
+Be   a   man [Choir, overlaid]
+E/G#             Gb/B            B
+    With all the strength of a raging fire
+   E             Gb                Abm+2
+Mysterious as the dark side of the moon
+
+A Capella:
+(Be a man)
+We must be swift as
+the coursing river
+(Be a man)
+With all the force
+of a great typhoon
+(Be a man)
+With all the strength
+of a raging fire
+
+   E             Gb                Abm+2
+Mysterious as the dark side of the moon

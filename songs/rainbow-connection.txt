@@ -1,0 +1,55 @@
+title: Rainbow Connection
+artist: Paul Williams and Kenneth Ascher
+key: D
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Eb            Cm      Ab          Bb
+Why are there so many songs about rainbows,
+Eb                Cm    Ab  Bb
+and what's on the other si--de?
+Eb           Cm           Ab     Bb
+Rainbows are visions, but only illusions,
+Eb                   Cm    Ab
+and surely have nothing to hide.
+Abmaj7
+So we've been told and some choose to believe it.
+Dm7
+I know they're wrong, wait and see
+
+[Chorus]
+Fm7           Bb           Gm7        C
+Someday we'll find it, the rainbow connection,
+    Ab          Bb            Eb
+The lovers, the dreamers, and me.
+
+Eb            Cm               Ab           Bb
+Who said that every wish would be heard and answered
+     Eb        Cm      Ab  Bb
+when made on a morning star?
+Eb       Cm                  Ab        Bb
+Somebody thought of that and someone believed it,
+    Eb             Cm      Ab
+and look what it's done so far.
+Abmaj7
+What's so amazing and keeps us stargazing?
+Dm7
+What do we think we might see?
+[Chorus]
+
+Eb             Cm               Ab         Bb
+Have you been half asleep and have you heard voices?
+Eb               Cm    Ab    Bb
+I've heard them calling my name.
+Eb             Cm                 Ab             Bb
+Are these the sweet sounds that called the young sailors?
+Eb               Cm    Ab
+I think they're one and the same.
+Abmaj7
+I've heard it too many times to ignore it.
+Dm7
+It's something that I'm supposed to be.
+[Chorus] [Chorus]

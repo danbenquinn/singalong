@@ -1,0 +1,85 @@
+title: Stay or Leave
+artist: Dave Matthews Band
+key: Eb
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Fm    Ab     Eb         Db       Fm7
+        Maybe different, but remember
+Ab         Eb        Cm        Fm
+  winter’s warm when you and I
+Ab       Eb      Db       Fm+4+7
+  kissing whiskey by the fire, with the snow outside
+Fm    Ab             Eb          Db      Fm7
+        And when the summer comes in the river
+Ab          Eb       Cm       Fm
+  swims at midnight, shiver cold
+Ab         Eb      Db        Fm7+4
+  touch the bottom, you and I, with muddy toes
+
+[Chorus]
+Bbm        Db        Ab               Eb
+    Stay or leave, I want you not to go but you
+Bbm            Db      Ab    Eb
+should - it was good as good goes
+Bbm        Db        Ab              Eb
+    Stay or leave, I want you not to go but you
+
+Fm   Ab   Eb   Db   Fm7   Ab  Eb  Cm  Fm   Ab   Eb  Db  Fm7+4
+Did
+
+Fm    Ab       Eb    Db         Fm7
+        Wake up naked  drinking coffee
+Ab        Eb      Cm         Fm
+   making plans to  change the world
+Ab        Eb         Db          Fm7+4
+   but the  world was  changing us, it was good, good love
+Fm    Ab           Eb         Db      Fm7
+        We used to  laugh under the covers
+Ab       Eb     Cm      Fm
+   maybe not so often now
+Ab        Eb     Db         Fm7+4
+   but the  way I  used to laugh with you, was louder somehow
+
+[Chorus]
+
+Bb/D
+did
+   Db         Ab                  Eb/G                Bb/D
+so what to do with the rest of today's afternoon, hey
+Ab               Eb/G          Eb
+Isn't it strange how we change everything we did
+Bb/D     Db         Fm   Ab   Eb   Db   Fm7   Ab  Eb
+Did I do all that I should
+     Cm         Fm     Ab     Eb
+That I could'a done
+
+Db                     Bbm7
+Remember we used to dance and everyone wanted to be
+Ab            Eb/G            Bbm
+   You and me I want to be too
+     Db           Eb              Eb/G        Bbm
+What day is this      besides the day you left me?
+     Db           Eb              Eb/G
+What day is this      besides the day you went
+
+   Db         Ab                  Eb/G                Bb/D
+so what to do with the rest of today's afternoon, hey
+Ab               Eb/G          Eb
+Isn't it strange how we change everything we did
+Bb/D     Db         Fm   Ab   Eb   Db   Fm7   Ab  Eb
+Did I do all that I should
+     Cm         Fm     Ab     Eb
+That I could'a done
+
+Db                     Bbm7
+Remember we used to dance and everyone wanted to be
+Ab            Eb/G            Bbm
+   You and me I want to be too
+     Db           Eb              Eb/G        Bbm
+What day is this      besides the day you left me?
+     Db           Eb
+What day is this?

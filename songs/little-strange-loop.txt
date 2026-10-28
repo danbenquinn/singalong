@@ -1,0 +1,58 @@
+title: Little Strange Loop
+artist: Daniel Quinn (2021)
+key: G
+low: 
+high: 
+tags: original
+speed: 6
+capo: 4
+# key guessed from the last chord; fill in low/high
+---
+G                                         Em
+Cheerios: what a way to start the day are cheerios.
+                         C                                     G
+It’s not that they’re so grandiose - in fact it’s that they’re  plain.
+G
+When you’re almost done,
+                            Em
+they stick together in the milk, isn’t that fun?
+       C                               G
+Two become one. Let’s run it back again.
+    Am                       C
+And if that’s all that there is,
+           Em                         D
+I wouldn’t bide my time and beg for more,
+  Am                C             G
+oh no, I would just set my coffee down
+    D
+and join you on the floor,
+                     C               Em
+and we would talk of   trees, you and  me,
+                         C
+and the air that we just   breathed,
+             G                     D                       G
+all of us together, floating on a carpet, gently out to sea.
+G                                 Em
+Hydrogen: most of the universe is hydrogen,
+                    C                           G
+just lonely protons gliding in the emptiness of   space.
+    G
+But under the sun,
+                             Em
+thank your lucky stars, the spell can be undone;
+       C                     G
+two become one, happy as balloons.
+    Am                         C
+And if that’s all that there is,
+           Em                         D
+I wouldn’t bide my time and beg for more,
+  Am                C                  G
+oh no, I would just take your hand in mine
+    D
+and walk you through the door,
+                    C              Em
+and we would be the trees, you and  me,
+                         C
+and the air that we just   breathed,
+             G                     D                       G
+all of us together, floating on a mountain, gently out to sea.

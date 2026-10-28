@@ -1,0 +1,99 @@
+title: Freight Train
+artist: Elizabeth Cotten
+key: A
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+C                             G7
+Freight train, freight train, goin' so fast,
+G                             C
+freight train, freight train, goin' so fast
+E7                     F
+Please don't tell what train I'm on,
+        C          G7        C
+so they won't know where I'm gone.
+
+C                             G7
+Freight train, freight train, goin' round the bend,
+G                             C
+freight train, freight train, comin' back again
+E7                          F
+One of these days turn that train around,
+       C       G7      C
+and go back to my home town.
+
+C              G7
+One more place I'd like to be,
+G              C
+one more place I'd like to see
+   E7                        F
+To watch them old Blue Ridge Mountains climb,
+       C        G7     C
+when I ride old Number Nine.
+
+C                G7
+When I die Lord, bury me deep,
+G                  C
+down at the end of Chestnut Street
+E7                   F
+Where I can hear old Number Nine,
+   C         G7       C
+as she comes down the line.
+
+C                             G7
+Freight train, freight train, goin' so fast,
+G                             C
+freight train, freight train, goin' so fast
+E7                     F
+Please don't tell what train I'm on,
+        C          G7        C
+so they won't know where I'm gone.
+
+Green Eyes
+Coldplay (2002)
+
+G        D         Am     Amsus2
+   Honey you are a rock,
+G       D       Am      Amsus2
+   Upon which I stand,
+G        D            Am     Amsus2
+   And I come here to talk,
+G             D    Am      Amsus2
+   I hope you understand,
+    Am                   C                  G         D
+The green eyes, yeah the spotlight, shines upon you
+    Am           C      G         D
+And how could anybody deny you
+
+[Chorus]
+Am                           Cmaj7
+   ‘Cause I came here with a load
+     G   D         Amsus2   C  C/B
+and it feels so much lighter now I met you
+Am                        Cmaj7
+   And honey you should know
+                   G  D        Amsus2  C  C/B  Am
+that I could never go home without you        green eyes
+
+G        D           Am    Amsus2
+   Honey you are the sea,
+G       D       Am        Amsus2
+   Upon which I float
+G        D            Am     Amsus2
+   And I came here to talk,
+G          D          Am    Amsus2
+   I think you should know
+    Am                    Cmaj7                G     D
+The green eyes you're the one that I wanted to   fi--nd
+  Am                 Cmaj7                     G     D
+And anyone who tried to deny you must be out of their   mi--nd
+
+[Chorus]
+
+     G            Am           G            Am
+Uuh oh oh oh, uh oh oh oh, uh oh oh oh, uh oh oh oh
+G        D         Am    G        D      Am
+   Honey you are a rock,    upon which I stand.

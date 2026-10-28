@@ -1,0 +1,27 @@
+title: End Credits
+artist: Daniel Quinn (2026)
+key: F
+low: 
+high: 
+tags: original
+speed: 6
+capo: 5
+# key guessed from the last chord; fill in low/high
+---
+[Round Part I]
+C                      Em
+Take me from my money, take me from my speech,
+F
+  I’m out of time, and anyway, of things to teach, so
+
+[Round Part II]
+C                         Em
+   May your days be sunny,    may you hone in on each,
+F
+   may the chimes ring out as you go up to preach, so
+
+[Round Part III]
+C                 Em
+    Milk, honey,  warm beach,
+F
+think I’m in reach.

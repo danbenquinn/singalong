@@ -1,0 +1,51 @@
+title: Imagine
+artist: John Lennon
+key: D
+low: 
+high: 
+tags: pop
+speed: 6
+# key guessed from the last chord; fill in low/high
+---
+Intro:
+G     Gmaj7   C    G    Gmaj7    C
+(piano)
+
+G                Gmaj7  C     G              Gmaj7  C
+ Imagine there's no   heaven.  It's easy if you   try
+G        Gmaj7 C   G          Gmaj7   C
+ No hell below us.  Above us only   sky
+C        Em/B    Am7   C/G
+ Imagine all the people
+D          G/D  D7
+Living for to - day a-hah
+
+G                 Gmaj7 C        G             Gmaj7  C
+  Imagine there's no    countries. It isn't hard to    do
+G                 Gmaj7 C     G             Gmaj7  C
+  Nothing to kill or    die for.   And no religion   too
+C        Em/B    Am7   C/G
+ Imagine all the people
+D           G/D D7
+Living life in  peace - you-hou-hou-ou-ou
+
+[Chorus]
+C         D          G    Gmaj7  B  B7
+  You may say I'm a dreamer
+C         D             G  Gmaj7  B  B7
+  But I'm not the only one
+C            D           G    Gmaj7  B  B7
+ I hope some day you'll join us
+C         D          G
+  And the world will be as one
+
+G             Gmaj7 C      G             Gmaj7 C
+   Imagine no pos – sessions.   I wonder if you   can
+G                  Gmaj7 C    G              Gmaj7    C
+ No need for greed or    hunger.   A brotherhood of    man
+C        Em/B    Am7   C/G
+ Imagine all the people
+D           G/D D7
+Sharing all the world - you-hou-hou-ou
+
+[Chorus]
