@@ -22,6 +22,7 @@ done
 
 # Cache-busting: stamp the ?v= on the two links in index.html with the current time, so a phone that
 # cached the old app.js or style.css fetches the new ones (Safari otherwise keeps them for days).
+bash make-index.sh
 STAMP="$(date +%s)"
 sed -i.bak -E "s/(style\.css|app\.js)\?v=[0-9]+/\1?v=$STAMP/g" index.html && rm -f index.html.bak
 

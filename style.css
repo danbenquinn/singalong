@@ -53,7 +53,11 @@ body {
   align-items: center;
   padding: 8px 12px;
 }
-#songinfo { display: flex; flex-direction: column; min-width: 0; }
+#open-picker {
+  display: flex; flex-direction: column; align-items: flex-start;
+  min-width: 0; padding: 4px 8px 4px 0; margin: 0;
+  background: none; border: 0; color: var(--fg); text-align: left; font: inherit;
+}
 #title { font-weight: 600; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #artist { color: var(--dim); font-size: 14px; }
 #tools button {
@@ -106,7 +110,22 @@ body {
   gap: 10px;
   padding: 0 12px 8px;
 }
-#speed { flex: 1 1 auto; height: 36px; accent-color: var(--mma-blue); }
+#play {
+  width: 48px; height: 44px; flex: 0 0 auto;
+  font-size: 22px;
+  background: var(--mma-blue); color: #fff;
+  border: 0; border-radius: 10px;
+}
+#play.paused { background: #1a1a1f; color: var(--fg); border: 1px solid var(--support); }
+#speed { flex: 1 1 auto; height: 44px; margin: 0; -webkit-appearance: none; appearance: none; background: transparent; }
+/* A big, easy-to-grab knob (Safari and Chrome need these two separate rules) */
+#speed::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: var(--support); }
+#speed::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 34px; height: 34px; margin-top: -14px;
+  border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff;
+}
+#speed::-moz-range-track { height: 6px; border-radius: 3px; background: var(--support); }
+#speed::-moz-range-thumb { width: 34px; height: 34px; border-radius: 50%; background: var(--mma-blue); border: 2px solid #fff; }
 #speed-value { color: var(--dim); font-size: 14px; min-width: 60px; text-align: right; }
 #voice-note { padding: 0 12px 8px; color: var(--mma-amber); font-size: 14px; }
 
@@ -114,8 +133,8 @@ body {
 #scrollbar {
   position: absolute;
   top: 8px; bottom: 8px; right: 4px;
-  width: 36px;
-  border-radius: 18px;
+  width: 44px;
+  border-radius: 22px;
   background: rgba(255, 255, 255, 0.06);
   touch-action: none;           /* the page must not scroll while dragging */
 }
@@ -123,8 +142,8 @@ body {
   position: absolute;
   left: 4px; right: 4px;
   top: 0;
-  height: 64px;
-  border-radius: 14px;
+  height: 80px;
+  border-radius: 18px;
   background: var(--support);
   touch-action: none;
 }
@@ -139,7 +158,7 @@ body {
 
 #song {
   position: absolute;
-  left: 0; right: 44px;
+  left: 0; right: 52px;
   padding: 0 10px;
   font-family: ui-monospace, Menlo, Consolas, "Courier New", monospace;
   font-size: var(--font-size);
@@ -175,3 +194,39 @@ body {
 }
 .gap { height: 0.8em; }
 
+
+/* ---------- Song picker ---------- */
+#picker {
+  position: fixed; inset: 0;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  z-index: 10;
+}
+#picker[hidden] { display: none; }
+#picker-top { display: flex; gap: 8px; padding: 10px 12px 6px; }
+#search {
+  flex: 1 1 auto; font-size: 18px; padding: 10px 12px;
+  background: #1a1a1f; color: var(--fg);
+  border: 1px solid var(--support); border-radius: 10px;
+}
+#close-picker {
+  width: 48px; font-size: 20px;
+  background: #1a1a1f; color: var(--fg);
+  border: 1px solid var(--support); border-radius: 10px;
+}
+#filters { display: flex; flex-wrap: wrap; gap: 8px; padding: 6px 12px 10px; }
+#filters label {
+  padding: 8px 14px; border-radius: 20px; font-size: 16px;
+  background: #1a1a1f; color: var(--dim); border: 1px solid var(--support);
+}
+#filters input { display: none; }
+#filters label.on { background: var(--mma-blue); color: #fff; border-color: var(--mma-blue); }
+#songlist { list-style: none; margin: 0; padding: 0 12px; overflow-y: auto; flex: 1 1 auto; -webkit-overflow-scrolling: touch; }
+#songlist li {
+  padding: 14px 8px; border-bottom: 1px solid #1f1f25;
+  font-size: 20px;
+}
+#songlist li .artist { display: block; color: var(--dim); font-size: 15px; }
+#songlist li:active { background: #1a1a1f; }
+#songlist .empty { color: var(--dim); padding: 20px 8px; }

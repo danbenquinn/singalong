@@ -9,16 +9,16 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#101418">
-  <link rel="stylesheet" href="style.css?v=1793207807">
+  <link rel="stylesheet" href="style.css?v=1793208365">
 </head>
 <body>
 
   <!-- Top bar: song info and font-size buttons -->
   <header id="topbar">
-    <div id="songinfo">
+    <button id="open-picker" title="Song picker">
       <span id="title">Loading…</span>
       <span id="artist"></span>
-    </div>
+    </button>
     <div id="tools">
       <button id="font-minus" title="Smaller text">−</button>
       <button id="font-plus" title="Larger text">+</button>
@@ -34,8 +34,9 @@
     <select id="key" title="Key (melody range)"></select>
   </div>
   <div id="speed-row">
-    <input type="range" id="speed" min="0" max="2" step="0.05" value="0">
-    <span id="speed-value">stopped</span>
+    <button id="play" title="Play / pause">▶</button>
+    <input type="range" id="speed" min="0" max="2" step="0.05" value="1">
+    <span id="speed-value">1×</span>
   </div>
   <div id="voice-note" hidden>Voice mode arrives in stage 5. Manual controls still work.</div>
 
@@ -45,6 +46,16 @@
     <div id="scrollbar"><div id="thumb"></div></div>
   </main>
 
-  <script src="app.js?v=1793207807"></script>
+  <!-- Song picker: covers the screen when open -->
+  <div id="picker" hidden>
+    <div id="picker-top">
+      <input type="search" id="search" placeholder="Search title or artist" autocomplete="off">
+      <button id="close-picker" title="Back to song">✕</button>
+    </div>
+    <div id="filters"></div>
+    <ul id="songlist"></ul>
+  </div>
+
+  <script src="app.js?v=1793208365"></script>
 </body>
 </html>

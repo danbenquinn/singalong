@@ -10,8 +10,10 @@ A phone-sized lyrics-and-chords teleprompter. Plain HTML, CSS and JavaScript; no
 ├── style.css         colours, sizes, fonts
 ├── app.js            all the behaviour (parsing song files, drawing, scrolling)
 ├── songs/
-│   ├── index.json    the list of song files (one filename per line)
+│   ├── index.json    the list of song files — generated, do not edit by hand
 │   └── *.txt         one song per file
+├── make-index.sh     rebuilds songs/index.json from the files in songs/ (publish.sh runs it)
+├── publish.sh        commit + push to GitHub, which republishes the site
 └── README.md         this file
 ```
 
@@ -42,13 +44,20 @@ Rules of thumb:
 
 ## Controls
 
-- **Manual / Voice** toggle. Manual: the speed slider (0 = stopped; 1× = the song's `speed`) advances the
-  pointer steadily; the bar on the right edge drags through the song (words un-green as you drag up);
-  tapping the lower part of the lyrics jumps to the next line, the upper part to the previous one.
+- **Tap the title** to open the song picker: search by title or artist, filter by tag (the buttons come
+  from the tags in the song files), tap a song to open it. The last song opened is remembered.
+- **Manual / Voice** toggle. Manual: ▶ starts the pointer moving at the slider's speed (1× = the
+  song's `speed`; a song opens paused at 1×); the bar on the right edge drags through the song
+  (words un-green as you drag up); tapping the lower part of the lyrics jumps to the next line, the
+  upper part to the previous one.
 - Keys (desktop, or a Bluetooth page-turner pedal): ↓ / Page Down = next line, ↑ / Page Up = previous
   line, Space = pause / resume at the last speed.
 - **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
 - **− / +** change the text size. Remembered on the device.
+
+## Adding a song
+
+Drop a new `.txt` into `songs/` and run `bash publish.sh` — it rebuilds the index and pushes.
 
 ## Testing
 

@@ -1,0 +1,47 @@
+title: Home on the Range
+artist: Brewster Higley
+key: G
+low: D4
+high: D5
+tags: pop
+speed: 7
+---
+[Verse 1]
+G        C               G
+Oh, give me a home where the buffalo roam
+      A7               D7
+Where the deer and the antelope play
+G                     C              G
+Where seldom is heard a discouraging word
+    D7                       G
+And the skies are not cloudy all day
+
+[Chorus]
+G             D7  G
+Home, home on the range
+      A7               D7
+Where the deer and the antelope play
+G                     C              G
+Where seldom is heard a discouraging word
+    D7                       G
+And the skies are not cloudy all day
+
+[Verse 2]
+G            C              G
+How often at night when the heavens are bright
+     A7                 D7
+With the light from the glittering stars
+G                  C          G
+Have I stood there amazed and asked as I gazed
+         D7                 G
+If their glory exceeds that of ours
+
+[Chorus]
+G             D7  G
+Home, home on the range
+      A7               D7
+Where the deer and the antelope play
+G                     C              G
+Where seldom is heard a discouraging word
+    D7                       G
+And the skies are not cloudy all day
