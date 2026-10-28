@@ -98,6 +98,14 @@ https://danbenquinn.github.io/singalong/. The push uses the same token as the cl
 list this repo under its repository access). Cache-busting `?v=` stamps are added by `publish.sh` so
 phones never pair a new page with an old script.
 
+## Offline
+
+`sw.js` is a service worker: the first time the site is opened online it stores the page and every
+song on the phone, and from then on serves them when there is no signal (network first, so edits
+still arrive when online). Each publish stamps a new version into `sw.js`; the phone picks it up on
+its next online visit. Manual mode, transposing and wake lock all work offline. Voice mode does not:
+Safari's speech recogniser runs on Apple's servers, so with no internet it reports "offline".
+
 ## Testing on the Mac
 
 Open a terminal in this folder, run `python3 -m http.server 8000`, then visit http://localhost:8000 in

@@ -579,6 +579,7 @@ function matchHeardWord(word) {
 function startListening() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) { voiceStatus('no speech API'); return; }
+  if (navigator.onLine === false) { voiceStatus('offline'); return; }   // Safari's recogniser needs the internet
   wantListening = true;
   if (recognizer) { try { recognizer.start(); } catch (e) { /* already running */ } return; }
   recognizer = new SR();
@@ -828,6 +829,8 @@ async function loadSong(filename) {
 
 async function start() {
   document.documentElement.style.setProperty('--font-size', getFontSize() + 'px');
+  // Offline support: the service worker (sw.js) keeps a copy of the site and every song on the phone
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(() => {});
   await unlock();
 
   // Which song? ?song=file.txt in the address, otherwise the first one in the index.

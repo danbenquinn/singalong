@@ -25,6 +25,8 @@ done
 bash make-index.sh
 STAMP="$(date +%s)"
 sed -i.bak -E "s/(style\.css|app\.js|config\.js)\?v=[0-9]+/\1?v=$STAMP/g" index.html && rm -f index.html.bak
+# Same stamp into the service worker, so phones replace their offline copy with this version
+sed -i.bak -E "s/const CACHE_VERSION = '[^']*'/const CACHE_VERSION = 'v$STAMP'/" sw.js && rm -f sw.js.bak
 
 git add -A
 if git diff --cached --quiet; then
