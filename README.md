@@ -24,7 +24,7 @@ key: G              ← the key the chords below are written in
 low: D4             ← lowest melody note, scientific pitch (middle C is C4)
 high: E5            ← highest melody note
 tags: xmas          ← comma-separated; any word works, the picker's filter buttons come from these
-speed: 6            ← default auto-scroll speed (worked out in stage 3; harmless for now)
+speed: 6            ← seconds per typed line when the speed slider is at 1× (slider runs 0–2×)
 ---
 [Verse 1]
 G              G7  C         G
@@ -39,6 +39,16 @@ Rules of thumb:
 - `[Verse 1]`, `[Chorus]`, `[Bridge]` — anything in square brackets on its own line — is a section label.
 - Blank lines separate sections.
 - Long lines are wrapped on the phone automatically; each chord stays over its character.
+
+## Controls
+
+- **Manual / Voice** toggle. Manual: the speed slider (0 = stopped; 1× = the song's `speed`) advances the
+  pointer steadily; the bar on the right edge drags through the song (words un-green as you drag up);
+  tapping the lower part of the lyrics jumps to the next line, the upper part to the previous one.
+- Keys (desktop, or a Bluetooth page-turner pedal): ↓ / Page Down = next line, ↑ / Page Up = previous
+  line, Space = pause / resume at the last speed.
+- **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
+- **− / +** change the text size. Remembered on the device.
 
 ## Testing
 

@@ -144,6 +144,8 @@ let currentSemis = 0;      // transposition in semitones from the song's written
 let currentFlats = false;  // spell with flats (true) or sharps (false) in the current key
 let wordCount = 0;         // total number of words (progress-pointer stops) in the song
 let rowEls = [];           // one entry per screen row: {el, firstWord, lastWord}
+let wordLine = [];         // for each word: which source line (as typed in the file) it is on
+let lineWords = [];        // for each source line: how many words it has (auto-scroll pacing)
 
 function measureColumns() {
   // How many monospace characters fit across the song area?
@@ -194,6 +196,8 @@ function renderSong(song) {
   container.innerHTML = '';
   rowEls = [];
   wordCount = 0;
+  wordLine = [];
+  lineWords = [];
   const maxCols = measureColumns();
 
   for (const b of song.blocks) {
@@ -209,6 +213,7 @@ function renderSong(song) {
       for (const c of placeChords(chords, 0, Infinity)) row.appendChild(chordEl(c));
       row.dataset.i = wordCount;
       rowEls.push({ el: row, firstWord: wordCount, lastWord: wordCount });
+      wordLine.push(lineWords.length); lineWords.push(1);
       wordCount++;
       container.appendChild(row);
       continue;
@@ -216,6 +221,7 @@ function renderSong(song) {
 
     // Chords that sit past the end of the lyric text belong to the last row
     const rows = wrapLine(b.text, maxCols);
+    const lineIdx = lineWords.length; lineWords.push(0);
     for (let r = 0; r < rows.length; r++) {
       const { start } = rows[r];
       const end = (r === rows.length - 1) ? Infinity : rows[r].end;
@@ -232,6 +238,7 @@ function renderSong(song) {
         if (m[1]) {
           const w = el('span', 'w', m[1]);
           w.dataset.i = wordCount++;
+          wordLine.push(lineIdx); lineWords[lineIdx]++;
           row.appendChild(w);
         } else {
           row.appendChild(document.createTextNode(m[2]));
@@ -257,46 +264,140 @@ function chordEl(c) {
 
 /* =====================================================================
    3. THE PROGRESS POINTER
-   One number, `progress`, says how many words have been sung. Everything
-   that moves through the song (taps now; slider, drag, voice later)
-   changes this number and calls setProgress().
+   One number, `progress`, says how many words have been sung (it can be
+   fractional: 12.4 means word 12 is being sung and is 40% through).
+   Everything that moves through the song — taps, the speed slider, the
+   drag bar, voice later — changes this number and calls setProgress().
    ===================================================================== */
 
 let progress = 0;
 
+function rowAt(wordIndex) {
+  const i = Math.max(0, Math.min(wordIndex, wordCount - 1));
+  return rowEls.find(r => i >= r.firstWord && i <= r.lastWord) || rowEls[rowEls.length - 1];
+}
+function rowAnchorY(row) {           // where the lyric text of a row sits, in song coordinates
+  return row.el.offsetTop + row.el.offsetHeight * 0.65;
+}
+
 function setProgress(p) {
   progress = Math.max(0, Math.min(wordCount, p));
+  if (!rowEls.length) return;
   const done = Math.floor(progress);
 
-  // Colour words
+  // Colour the words that have been sung
   document.querySelectorAll('#song .w, #song .row.instr').forEach(w => {
     w.classList.toggle('done', Number(w.dataset.i) < done);
   });
 
-  // Find the row holding the current (next unsung) word and bring it to the focus line
-  const cur = Math.min(done, wordCount - 1);
-  const row = rowEls.find(r => cur >= r.firstWord && cur <= r.lastWord) || rowEls[rowEls.length - 1];
-  if (!row) return;
-  const viewport = document.getElementById('viewport');
-  const focusY = viewport.clientHeight * 0.35;
-  const song = document.getElementById('song');
-  const rowCenter = row.el.offsetTop + row.el.offsetHeight * 0.65; // roughly the lyric baseline
-  song.style.transform = `translateY(${focusY - rowCenter}px)`;
+  // Position: glide from the current row towards the next one as the words of this row go by
+  const row = rowAt(done);
+  const idx = rowEls.indexOf(row);
+  const next = rowEls[idx + 1];
+  const frac = Math.min(1, Math.max(0, (progress - row.firstWord) / (row.lastWord - row.firstWord + 1)));
+  const y = next ? rowAnchorY(row) + frac * (rowAnchorY(next) - rowAnchorY(row)) : rowAnchorY(row);
+  const focusY = document.getElementById('viewport').clientHeight * 0.35;
+  document.getElementById('song').style.transform = `translateY(${focusY - y}px)`;
+
+  updateScrollBar();
 }
 
-function rowIndexOfProgress() {
-  const cur = Math.min(Math.floor(progress), wordCount - 1);
-  return rowEls.findIndex(r => cur >= r.firstWord && cur <= r.lastWord);
-}
 function nextLine() {
-  const idx = rowIndexOfProgress();
-  if (idx < rowEls.length - 1) setProgress(rowEls[idx + 1].firstWord);
-  else setProgress(wordCount);
+  const row = rowAt(Math.floor(progress));
+  const idx = rowEls.indexOf(row);
+  setProgress(idx < rowEls.length - 1 ? rowEls[idx + 1].firstWord : wordCount);
 }
 function prevLine() {
-  const idx = rowIndexOfProgress();
-  if (progress > rowEls[idx].firstWord) setProgress(rowEls[idx].firstWord);
+  const row = rowAt(Math.floor(progress));
+  const idx = rowEls.indexOf(row);
+  if (progress > row.firstWord + 0.01) setProgress(row.firstWord);
   else if (idx > 0) setProgress(rowEls[idx - 1].firstWord);
+}
+
+/* =====================================================================
+   3b. MANUAL MODE — the speed slider and the drag bar
+   Pacing: the song file's `speed` is seconds per typed line at slider
+   position 1×. Each word of a line gets an equal share of that time, so
+   the pointer moves steadily and the view glides. Slider 0 = stopped.
+   ===================================================================== */
+
+let speedMultiplier = 0;           // 0 … 2, the slider position
+let lastNonZeroSpeed = 1;          // what Space (or a pedal) resumes to
+let lastTick = null;
+
+function secondsPerLine() {
+  const v = Number(currentSong && currentSong.meta.speed);
+  return v > 0 ? v : 6;
+}
+
+function tick(now) {
+  if (lastTick !== null && speedMultiplier > 0 && !dragging && progress < wordCount) {
+    const dt = (now - lastTick) / 1000;
+    const i = Math.min(Math.floor(progress), wordCount - 1);
+    const secondsPerWord = secondsPerLine() / (lineWords[wordLine[i]] || 1);
+    setProgress(progress + dt * speedMultiplier / secondsPerWord);
+  }
+  lastTick = now;
+  requestAnimationFrame(tick);
+}
+
+function setSpeed(mult) {
+  speedMultiplier = Math.max(0, Math.min(2, mult));
+  if (speedMultiplier > 0) lastNonZeroSpeed = speedMultiplier;
+  const slider = document.getElementById('speed');
+  if (Number(slider.value) !== speedMultiplier) slider.value = speedMultiplier;
+  document.getElementById('speed-value').textContent =
+    speedMultiplier === 0 ? 'stopped' : speedMultiplier.toFixed(2).replace(/0$/, '') + '×';
+}
+function togglePause() { setSpeed(speedMultiplier > 0 ? 0 : lastNonZeroSpeed); }
+
+// The drag bar: a thumb on the right edge whose height is the whole song.
+let dragging = false;
+function updateScrollBar() {
+  const bar = document.getElementById('scrollbar');
+  const thumb = document.getElementById('thumb');
+  const travel = bar.clientHeight - thumb.offsetHeight;
+  thumb.style.top = (wordCount ? progress / wordCount : 0) * travel + 'px';
+}
+function setupScrollBar() {
+  const bar = document.getElementById('scrollbar');
+  const thumb = document.getElementById('thumb');
+  let startY = 0, startProgress = 0;
+  const wordsPerPixel = () => wordCount / (bar.clientHeight - thumb.offsetHeight);
+
+  thumb.addEventListener('pointerdown', ev => {
+    dragging = true;
+    startY = ev.clientY;
+    startProgress = progress;
+    thumb.setPointerCapture(ev.pointerId);
+    thumb.classList.add('active');
+    ev.preventDefault();
+  });
+  thumb.addEventListener('pointermove', ev => {
+    if (!dragging) return;
+    setProgress(startProgress + (ev.clientY - startY) * wordsPerPixel());
+  });
+  const release = () => { dragging = false; thumb.classList.remove('active'); };
+  thumb.addEventListener('pointerup', release);
+  thumb.addEventListener('pointercancel', release);
+  // Tapping the bar itself (not the thumb) jumps there
+  bar.addEventListener('pointerdown', ev => {
+    if (ev.target === thumb) return;
+    const r = bar.getBoundingClientRect();
+    const frac = (ev.clientY - r.top - thumb.offsetHeight / 2) / (bar.clientHeight - thumb.offsetHeight);
+    setProgress(Math.max(0, Math.min(1, frac)) * wordCount);
+  });
+}
+
+/* =====================================================================
+   3c. MODE TOGGLE — Manual now; Voice arrives in stage 5
+   ===================================================================== */
+
+let mode = 'manual';
+function setMode(m) {
+  mode = m;
+  document.querySelectorAll('#mode button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
+  document.getElementById('voice-note').hidden = (m !== 'voice');
 }
 
 /* =====================================================================
@@ -357,7 +458,6 @@ function applyKey() {
   const k = sel.value;
   currentSemis = semitonesBetween(keyRoot(currentSong.meta.key), k);
   currentFlats = FLAT_KEYS.has(k);
-  document.getElementById('range').textContent = rangeText(currentSong.meta, currentSemis, currentFlats);
   try { localStorage.setItem('key:' + currentSong.file, k); } catch (e) {}
   renderSong(currentSong);
   setProgress(progress);
@@ -375,6 +475,7 @@ async function loadSong(filename) {
   currentSong = parseSong(await res.text());
   currentSong.file = filename;
   progress = 0;
+  setSpeed(0);
   document.getElementById('title').textContent = currentSong.meta.title || filename;
   document.getElementById('artist').textContent = currentSong.meta.artist || '';
   document.title = currentSong.meta.title || 'Singalong';
@@ -400,17 +501,25 @@ async function start() {
 
   // Taps: lower part of the song area = next line, upper part = previous line
   document.getElementById('viewport').addEventListener('click', ev => {
+    if (ev.target.closest('#scrollbar')) return;
     const vp = ev.currentTarget.getBoundingClientRect();
     if (ev.clientY - vp.top > vp.height * 0.35) nextLine(); else prevLine();
   });
 
   // Keys (desktop testing now; a Bluetooth page-turner pedal later sends the same keys)
   document.addEventListener('keydown', ev => {
-    if (['ArrowDown', 'PageDown', ' ', 'ArrowRight'].includes(ev.key)) { ev.preventDefault(); nextLine(); }
+    if (['ArrowDown', 'PageDown', 'ArrowRight'].includes(ev.key)) { ev.preventDefault(); nextLine(); }
     if (['ArrowUp', 'PageUp', 'ArrowLeft'].includes(ev.key)) { ev.preventDefault(); prevLine(); }
+    if (ev.key === ' ') { ev.preventDefault(); togglePause(); }
   });
 
   document.getElementById('key').addEventListener('change', applyKey);
+  document.getElementById('speed').addEventListener('input', ev => setSpeed(Number(ev.target.value)));
+  document.querySelectorAll('#mode button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
+  setupScrollBar();
+  setSpeed(0);
+  setMode('manual');
+  requestAnimationFrame(tick);
   document.getElementById('font-minus').addEventListener('click', () => setFontSize(getFontSize() - 2));
   document.getElementById('font-plus').addEventListener('click', () => setFontSize(getFontSize() + 2));
 

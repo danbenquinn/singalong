@@ -25,16 +25,24 @@
     </div>
   </header>
 
-  <!-- Key / transpose row -->
+  <!-- Controls: mode toggle and key on one row, speed on the next -->
   <div id="controls">
-    <label for="key">Key</label>
-    <select id="key"></select>
-    <span id="range" title="Melody range in this key"></span>
+    <div id="mode">
+      <button data-mode="manual">Manual</button>
+      <button data-mode="voice">Voice</button>
+    </div>
+    <select id="key" title="Key (melody range)"></select>
   </div>
+  <div id="speed-row">
+    <input type="range" id="speed" min="0" max="2" step="0.05" value="0">
+    <span id="speed-value">stopped</span>
+  </div>
+  <div id="voice-note" hidden>Voice mode arrives in stage 5. Manual controls still work.</div>
 
-  <!-- The song scrolls inside this viewport -->
+  <!-- The song scrolls inside this viewport; the drag bar sits on its right edge -->
   <main id="viewport">
     <div id="song"></div>
+    <div id="scrollbar"><div id="thumb"></div></div>
   </main>
 
   <script src="app.js"></script>

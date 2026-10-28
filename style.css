@@ -71,6 +71,7 @@ body {
 #controls {
   flex: 0 0 auto;
   display: flex;
+  justify-content: space-between;
   align-items: center;
   gap: 10px;
   padding: 4px 12px 8px;
@@ -85,11 +86,49 @@ body {
   border: 1px solid var(--support);
   border-radius: 8px;
 }
-#range {
-  font-family: ui-monospace, Menlo, Consolas, monospace;
-  color: var(--mma-ltblue);
-  font-size: 18px;
+
+/* Manual | Voice segmented toggle */
+#mode { display: flex; border: 1px solid var(--support); border-radius: 8px; overflow: hidden; }
+#mode button {
+  font-size: 16px;
+  padding: 8px 14px;
+  background: #1a1a1f;
+  color: var(--dim);
+  border: 0;
 }
+#mode button.on { background: var(--mma-blue); color: #fff; }
+
+/* Speed slider */
+#speed-row {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 12px 8px;
+}
+#speed { flex: 1 1 auto; height: 36px; accent-color: var(--mma-blue); }
+#speed-value { color: var(--dim); font-size: 14px; min-width: 60px; text-align: right; }
+#voice-note { padding: 0 12px 8px; color: var(--mma-amber); font-size: 14px; }
+
+/* Drag bar on the right edge of the song area */
+#scrollbar {
+  position: absolute;
+  top: 8px; bottom: 8px; right: 4px;
+  width: 36px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.06);
+  touch-action: none;           /* the page must not scroll while dragging */
+}
+#thumb {
+  position: absolute;
+  left: 4px; right: 4px;
+  top: 0;
+  height: 64px;
+  border-radius: 14px;
+  background: var(--support);
+  touch-action: none;
+}
+#thumb.active { background: var(--mma-blue); }
 
 /* ---------- Song viewport ---------- */
 #viewport {
@@ -100,13 +139,12 @@ body {
 
 #song {
   position: absolute;
-  left: 0; right: 0;
+  left: 0; right: 44px;
   padding: 0 10px;
   font-family: ui-monospace, Menlo, Consolas, "Courier New", monospace;
   font-size: var(--font-size);
   line-height: 1.25;
   will-change: transform;
-  transition: transform 0.25s ease-out;   /* smooth hop between lines, stage 1 only */
 }
 
 /* A "row" is one screen-line of lyrics with its chord line above it */
