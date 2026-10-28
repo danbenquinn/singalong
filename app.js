@@ -319,27 +319,70 @@ function prevLine() {
 }
 
 /* =====================================================================
-   3b. MANUAL MODE — the speed slider and the drag bar
-   Pacing: the song file's `speed` is seconds per typed line at slider
-   position 1×. Each word of a line gets an equal share of that time, so
-   the pointer moves steadily and the view glides. Slider 0 = stopped.
+   3b. MOTION — one loop moves the pointer
+   Pacing: the song file's `speed` is seconds per typed line at 1×. Each
+   word of a line gets an equal share of that time, so the pointer moves
+   steadily and the view glides. In Manual mode the rate is the slider;
+   in Voice mode it is fitted live to the words heard (section 3d).
+   Dragging the lyrics or the bar overrides everything while the finger
+   is down; a flick on the lyrics coasts to a stop.
    ===================================================================== */
 
-let speedMultiplier = 1;           // 0 … 2, the slider position
+let speedMultiplier = 1;           // 0 … 2, the slider position (Manual)
 let playing = false;               // the play/pause button; the page loads paused at 1×
 let lastTick = null;
+let dragging = false;              // finger on the bar or the lyrics
+let flingVelocity = 0;             // px/s of a lyric flick still coasting
+let correction = null;             // Voice: the position a match says we should be at (approached smoothly)
 
 function secondsPerLine() {
   const v = Number(currentSong && currentSong.meta.speed);
   return v > 0 ? v : 6;
 }
+function secondsPerWordAt(p) {
+  const i = Math.max(0, Math.min(Math.floor(p), wordCount - 1));
+  return secondsPerLine() / (lineWords[wordLine[i]] || 1);
+}
+function currentRate() { return mode === 'voice' ? voiceRate : speedMultiplier; }
+
+// progress → y (song coordinates) and back; both piecewise-linear between row anchors
+function yOfProgress(p) {
+  const row = rowAt(Math.floor(p));
+  const idx = rowEls.indexOf(row);
+  const next = rowEls[idx + 1];
+  const frac = Math.min(1, Math.max(0, (p - row.firstWord) / (row.lastWord - row.firstWord + 1)));
+  return next ? rowAnchorY(row) + frac * (rowAnchorY(next) - rowAnchorY(row)) : rowAnchorY(row);
+}
+function progressOfY(y) {
+  if (!rowEls.length) return 0;
+  if (y <= rowAnchorY(rowEls[0])) return 0;
+  for (let i = 0; i < rowEls.length - 1; i++) {
+    const y0 = rowAnchorY(rowEls[i]), y1 = rowAnchorY(rowEls[i + 1]);
+    if (y < y1) {
+      const r = rowEls[i];
+      return r.firstWord + (y - y0) / (y1 - y0) * (r.lastWord - r.firstWord + 1);
+    }
+  }
+  return wordCount;
+}
 
 function tick(now) {
-  if (lastTick !== null && playing && speedMultiplier > 0 && !dragging && progress < wordCount) {
-    const dt = (now - lastTick) / 1000;
-    const i = Math.min(Math.floor(progress), wordCount - 1);
-    const secondsPerWord = secondsPerLine() / (lineWords[wordLine[i]] || 1);
-    setProgress(progress + dt * speedMultiplier / secondsPerWord);
+  if (lastTick !== null) {
+    const dt = Math.min(0.1, (now - lastTick) / 1000);
+    if (!dragging && Math.abs(flingVelocity) > 5) {
+      // Coasting after a flick: content keeps moving the way the finger went, slowing down
+      setProgress(progressOfY(yOfProgress(progress) - flingVelocity * dt));
+      flingVelocity *= Math.pow(0.08, dt);           // ~ gone after a second
+      if (progress <= 0 || progress >= wordCount) flingVelocity = 0;
+    } else if (!dragging && playing && progress < wordCount) {
+      let p = progress + dt * currentRate() / secondsPerWordAt(progress);
+      if (correction !== null) {                      // Voice: ease towards where the last match put us
+        p += (correction - p) * Math.min(1, dt * 4);
+        if (Math.abs(correction - p) < 0.05) correction = null;
+      }
+      setProgress(p);
+      if (progress >= wordCount) setPlaying(false);
+    }
   }
   lastTick = now;
   requestAnimationFrame(tick);
@@ -347,27 +390,31 @@ function tick(now) {
 
 function setSpeed(mult) {
   speedMultiplier = Math.max(0, Math.min(2, mult));
+  showRate(speedMultiplier);
+}
+function showRate(r) {
   const slider = document.getElementById('speed');
-  if (Number(slider.value) !== speedMultiplier) slider.value = speedMultiplier;
-  document.getElementById('speed-value').textContent =
-    speedMultiplier === 0 ? '0' : speedMultiplier.toFixed(2).replace(/\.?0+$/, '') + '×';
+  if (Number(slider.value) !== r) slider.value = r;
+  document.getElementById('speed-value').textContent = r === 0 ? '0' : r.toFixed(2).replace(/\.?0+$/, '') + '×';
 }
 function setPlaying(on) {
   playing = on;
+  flingVelocity = 0;
   if (playing && progress >= wordCount) setProgress(0);   // play at the end starts over
   const b = document.getElementById('play');
   b.textContent = playing ? '❚❚' : '▶';
   b.classList.toggle('paused', !playing);
+  if (mode === 'voice') { if (playing) startListening(); else stopListening(); }
 }
 function togglePause() { setPlaying(!playing); }
 
-// The drag bar: a thumb on the right edge whose height is the whole song.
-let dragging = false;
+// The drag bar on the right. Thumb at the BOTTOM = start of the song, so dragging it down scrolls
+// back, the same direction as dragging the lyrics themselves.
 function updateScrollBar() {
   const bar = document.getElementById('scrollbar');
   const thumb = document.getElementById('thumb');
   const travel = bar.clientHeight - thumb.offsetHeight;
-  thumb.style.top = (wordCount ? progress / wordCount : 0) * travel + 'px';
+  thumb.style.top = (1 - (wordCount ? progress / wordCount : 0)) * travel + 'px';
 }
 function setupScrollBar() {
   const bar = document.getElementById('scrollbar');
@@ -376,7 +423,7 @@ function setupScrollBar() {
   const wordsPerPixel = () => wordCount / (bar.clientHeight - thumb.offsetHeight);
 
   thumb.addEventListener('pointerdown', ev => {
-    dragging = true;
+    dragging = true; flingVelocity = 0; correction = null;
     startY = ev.clientY;
     startProgress = progress;
     thumb.setPointerCapture(ev.pointerId);
@@ -385,7 +432,7 @@ function setupScrollBar() {
   });
   thumb.addEventListener('pointermove', ev => {
     if (!dragging) return;
-    setProgress(startProgress + (ev.clientY - startY) * wordsPerPixel());
+    setProgress(startProgress - (ev.clientY - startY) * wordsPerPixel());
   });
   const release = () => { dragging = false; thumb.classList.remove('active'); };
   thumb.addEventListener('pointerup', release);
@@ -395,35 +442,87 @@ function setupScrollBar() {
     if (ev.target === thumb) return;
     const r = bar.getBoundingClientRect();
     const frac = (ev.clientY - r.top - thumb.offsetHeight / 2) / (bar.clientHeight - thumb.offsetHeight);
-    setProgress(Math.max(0, Math.min(1, frac)) * wordCount);
+    setProgress((1 - Math.max(0, Math.min(1, frac))) * wordCount);
   });
+}
+
+// Dragging the lyrics: the text follows the finger; a flick coasts; a tap (no movement) steps a line.
+function setupLyricDrag() {
+  const vp = document.getElementById('viewport');
+  let active = false, startY = 0, startSongY = 0, moved = false;
+  let samples = [];                                   // recent [time, y] for the flick velocity
+  vp.addEventListener('pointerdown', ev => {
+    if (ev.target.closest('#sidebar')) return;
+    active = true; moved = false; dragging = true; flingVelocity = 0; correction = null;
+    startY = ev.clientY; startSongY = yOfProgress(progress);
+    samples = [[ev.timeStamp, ev.clientY]];
+    vp.setPointerCapture(ev.pointerId);
+  });
+  vp.addEventListener('pointermove', ev => {
+    if (!active) return;
+    const d = ev.clientY - startY;
+    if (Math.abs(d) > 6) moved = true;
+    if (moved) setProgress(progressOfY(startSongY - d));   // finger down → text down → earlier words
+    samples.push([ev.timeStamp, ev.clientY]);
+    while (samples.length > 2 && ev.timeStamp - samples[0][0] > 120) samples.shift();
+  });
+  const release = ev => {
+    if (!active) return;
+    active = false; dragging = false;
+    if (!moved) {
+      const r = vp.getBoundingClientRect();
+      if (ev.clientY - r.top > r.height * 0.35) nextLine(); else prevLine();
+      return;
+    }
+    const [t0, y0] = samples[0], [t1, y1] = samples[samples.length - 1];
+    if (t1 > t0) flingVelocity = (y1 - y0) / ((t1 - t0) / 1000);   // px/s, sign = finger direction
+    if (Math.abs(flingVelocity) < 300) flingVelocity = 0;
+  };
+  vp.addEventListener('pointerup', release);
+  vp.addEventListener('pointercancel', () => { active = false; dragging = false; });
 }
 
 /* =====================================================================
    3c. MODE TOGGLE — Manual or Voice
+   Voice only changes what ▶ does: play then also listens, and the rate
+   is fitted to the words heard instead of taken from the slider.
    ===================================================================== */
 
 let mode = 'manual';
 function setMode(m) {
   mode = m;
   document.querySelectorAll('#mode button').forEach(b => b.classList.toggle('on', b.dataset.mode === m));
-  document.getElementById('speed-row').hidden = (m === 'voice');
   document.getElementById('voice-row').hidden = (m !== 'voice');
-  if (m === 'voice') { setPlaying(false); startListening(); } else { stopListening(); }
+  document.getElementById('speed').disabled = (m === 'voice');
+  document.getElementById('speed-label').textContent = (m === 'voice') ? 'Auto' : 'Speed';
+  if (m === 'voice') {
+    voiceRate = speedMultiplier > 0 ? speedMultiplier : 1;   // start from the slider's rate
+    showRate(voiceRate);
+    if (playing) startListening(); else voiceStatus('Press ▶ to start listening');
+  } else {
+    stopListening();
+    correction = null;
+    showRate(speedMultiplier);
+  }
 }
 
 /* =====================================================================
-   3d. VOICE MODE — the browser listens, and words you sing turn green.
-   Uses the Web Speech API (webkitSpeechRecognition in Safari). Each
-   recognised word is looked for in a short window ahead of the pointer;
-   a hit moves the pointer there. Safari stops listening after a pause,
-   so we restart it whenever it ends.
+   3d. VOICE MODE — live-fitting the speed to the words heard.
+   The pointer always moves on its own at `voiceRate` (starting at 1×).
+   Each recognised word is looked for near the projected position; the
+   search window grows the longer it has been since the last match (a
+   diffusion law: ± a few words, widening with the square root of the
+   elapsed time). A hit does two things: eases the pointer towards the
+   matched word, and nudges the rate so the projection drifts less next
+   time. Hearing nothing changes nothing — the pointer just keeps going.
+   Uses the Web Speech API; Safari stops after pauses, so we restart it.
    ===================================================================== */
 
-const VOICE_WINDOW = 14;          // how many words ahead to search — small, so a repeated chorus can't cause a jump
+let voiceRate = 1;
 let recognizer = null;
 let wantListening = false;
 let lastMatchAt = null;
+let lastMatchWord = null;         // {index, time} of the previous match, for the rate estimate
 let heardSoFar = {};              // per result index: how many words we have already handled
 
 function normalizeWord(w) {
@@ -447,28 +546,45 @@ function similar(a, b) {
 
 function matchHeardWord(word) {
   if (word.length < 3) return false;                      // "a", "the", "I" match everywhere; ignore them
-  const from = Math.floor(progress);
-  const to = Math.min(wordCount, from + VOICE_WINDOW);
+  const since = lastMatchAt ? (Date.now() - lastMatchAt) / 1000 : 10;
+  const ahead = Math.min(30, 4 + 3 * Math.sqrt(since));   // widen the search as confidence decays
+  const back = Math.min(12, 1 + Math.sqrt(since));
+  const centre = correction !== null ? correction : progress;
+  const from = Math.max(0, Math.floor(centre - back));
+  const to = Math.min(wordCount, Math.ceil(centre + ahead));
+  let best = -1;
   for (let i = from; i < to; i++) {
-    if (similar(word, lyricWords[i])) {
-      setProgress(i + 1);
-      lastMatchAt = Date.now();
-      return true;
-    }
+    if (similar(word, lyricWords[i]) && (best < 0 || Math.abs(i - centre) < Math.abs(best - centre))) best = i;
   }
-  return false;
+  if (best < 0) return false;
+
+  const now = Date.now();
+  // Rate estimate: how fast the singer actually covered the words since the previous match,
+  // compared with how long the file says they take at 1×. Blended in gently.
+  if (lastMatchWord && best > lastMatchWord.index && now - lastMatchWord.time > 1500) {
+    let expected = 0;
+    for (let i = lastMatchWord.index; i < best; i++) expected += secondsPerWordAt(i);
+    const measured = (now - lastMatchWord.time) / 1000;
+    const observed = Math.max(0.5, Math.min(2, expected / measured));
+    voiceRate = Math.max(0.5, Math.min(2, voiceRate * 0.7 + observed * 0.3));
+    showRate(voiceRate);
+  }
+  lastMatchWord = { index: best, time: now };
+  lastMatchAt = now;
+  correction = best + 1;                                   // the loop eases towards it
+  return true;
 }
 
 function startListening() {
   const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
   if (!SR) { voiceStatus('Speech recognition is not available in this browser.'); return; }
   wantListening = true;
-  if (recognizer) return;
+  if (recognizer) { try { recognizer.start(); } catch (e) { /* already running */ } return; }
   recognizer = new SR();
   recognizer.continuous = true;
   recognizer.interimResults = true;
   recognizer.lang = 'en-US';
-  recognizer.onstart = () => { heardSoFar = {}; voiceStatus('Listening'); document.getElementById('voice-dot').classList.add('listening'); };
+  recognizer.onstart = () => { heardSoFar = {}; lastMatchWord = null; voiceStatus('Listening'); document.getElementById('voice-dot').classList.add('listening'); };
   recognizer.onresult = ev => {
     for (let r = ev.resultIndex; r < ev.results.length; r++) {
       const words = ev.results[r][0].transcript.trim().split(/\s+/).map(normalizeWord).filter(Boolean);
@@ -488,7 +604,7 @@ function startListening() {
   recognizer.onend = () => {
     document.getElementById('voice-dot').classList.remove('listening');
     if (wantListening) setTimeout(() => { if (wantListening) { try { recognizer.start(); } catch (e) {} } }, 300);
-    else voiceStatus('Off');
+    else voiceStatus(playing ? 'Off' : 'Press ▶ to start listening');
   };
   try { recognizer.start(); } catch (e) { voiceStatus('Could not start: ' + e.message); }
 }
@@ -504,10 +620,10 @@ function voiceStatus(text) { document.getElementById('voice-status').textContent
 setInterval(() => {
   if (mode !== 'voice') return;
   const dot = document.getElementById('voice-dot');
-  if (lastMatchAt === null) return;
+  if (lastMatchAt === null || !wantListening) return;
   const ago = Math.round((Date.now() - lastMatchAt) / 1000);
   dot.classList.toggle('matched', ago < 2);
-  if (wantListening) voiceStatus(ago < 2 ? 'Matched' : 'Listening · last match ' + ago + 's ago');
+  voiceStatus(ago < 2 ? 'Matched' : 'Listening · last match ' + ago + 's ago');
 }, 1000);
 
 /* =====================================================================
@@ -658,7 +774,7 @@ async function loadSong(filename) {
   currentSong = parseSong(await res.text());
   currentSong.file = filename;
   progress = 0;
-  lastMatchAt = null;
+  lastMatchAt = null; lastMatchWord = null; correction = null; flingVelocity = 0;
   setSpeed(1);
   setPlaying(false);
   try { localStorage.setItem('lastSong', filename); } catch (e) {}
@@ -685,12 +801,7 @@ async function start() {
     document.getElementById('title').textContent = e.message;
   }
 
-  // Taps: lower part of the song area = next line, upper part = previous line
-  document.getElementById('viewport').addEventListener('click', ev => {
-    if (ev.target.closest('#scrollbar')) return;
-    const vp = ev.currentTarget.getBoundingClientRect();
-    if (ev.clientY - vp.top > vp.height * 0.35) nextLine(); else prevLine();
-  });
+  setupLyricDrag();   // drag / flick / tap on the lyrics
 
   // Keys (desktop testing now; a Bluetooth page-turner pedal later sends the same keys)
   document.addEventListener('keydown', ev => {
