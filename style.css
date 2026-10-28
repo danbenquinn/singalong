@@ -1,10 +1,23 @@
 /* ---------- Colours and sizes in one place ---------- */
 :root {
-  --bg: #101418;          /* near-black background, easy on the eyes on stage */
-  --fg: #f2f2f2;          /* lyric text */
-  --chord: #ffd166;       /* chords: warm yellow */
-  --done: #4ade80;        /* words already sung: green */
-  --dim: #8a94a0;         /* section labels, hints */
+  /* Mathematica ColorData[97] palette — the slide-suite house colours */
+  --mma-blue: #5e81b5;
+  --mma-amber: #e19c24;
+  --mma-green: #8fb032;
+  --mma-red: #eb6235;
+  --mma-purple: #8778b3;
+  --mma-brown: #c56e1a;
+  --mma-ltblue: #5d9ec7;
+  --mma-gold: #ffbf00;
+  --mma-mauve: #a5609d;
+  --mma-olive: #929600;
+
+  --bg: #000000;          /* one background, as in the decks */
+  --fg: #f0f0f5;          /* lyric text */
+  --chord: var(--mma-amber);   /* chords */
+  --done: var(--mma-green);    /* words already sung */
+  --dim: #9090a0;         /* section labels, secondary text */
+  --support: #4a4a52;     /* button borders and the like */
   --focus: 35%;           /* where the current line sits, as a fraction of the viewport height */
   --font-size: 22px;      /* changed by the A− / A+ buttons */
 }
@@ -39,19 +52,43 @@ body {
   justify-content: space-between;
   align-items: center;
   padding: 8px 12px;
-  border-bottom: 1px solid #2a3038;
 }
 #songinfo { display: flex; flex-direction: column; min-width: 0; }
 #title { font-weight: 600; font-size: 18px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #artist { color: var(--dim); font-size: 14px; }
 #tools button {
-  font-size: 16px;
-  padding: 6px 12px;
+  font-size: 20px;
+  width: 44px;
+  height: 36px;
   margin-left: 6px;
-  background: #1e242b;
+  background: #1a1a1f;
   color: var(--fg);
-  border: 1px solid #343b44;
+  border: 1px solid var(--support);
   border-radius: 8px;
+}
+
+/* ---------- Controls row (key now; speed, mode and scroll bar come in stage 3) ---------- */
+#controls {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 12px 8px;
+  font-size: 16px;
+}
+#controls label { color: var(--dim); }
+#key {
+  font-size: 18px;
+  padding: 6px 10px;
+  background: #1a1a1f;
+  color: var(--fg);
+  border: 1px solid var(--support);
+  border-radius: 8px;
+}
+#range {
+  font-family: ui-monospace, Menlo, Consolas, monospace;
+  color: var(--mma-ltblue);
+  font-size: 18px;
 }
 
 /* ---------- Song viewport ---------- */
@@ -59,14 +96,6 @@ body {
   flex: 1 1 auto;
   position: relative;
   overflow: hidden;
-}
-
-#focus-line {
-  position: absolute;
-  left: 0; right: 0;
-  top: var(--focus);
-  border-top: 2px solid #2f3a46;
-  pointer-events: none;
 }
 
 #song {
@@ -108,12 +137,3 @@ body {
 }
 .gap { height: 0.8em; }
 
-/* ---------- Bottom hint ---------- */
-#hint {
-  flex: 0 0 auto;
-  padding: 8px 12px;
-  color: var(--dim);
-  font-size: 12px;
-  text-align: center;
-  border-top: 1px solid #2a3038;
-}

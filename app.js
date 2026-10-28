@@ -73,6 +73,66 @@ function parseSong(text) {
 }
 
 /* =====================================================================
+   1b. MUSIC: note names, keys, transposition
+   Every note is a number 0–11 (C=0 … B=11); a melody note also has an
+   octave, so C4 = 4*12+0 = 48. Transposing adds a number of semitones,
+   then the result is spelled with sharps or flats to suit the key.
+   ===================================================================== */
+
+const NOTE_INDEX = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
+const SHARP_NAMES = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
+const FLAT_NAMES  = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'Gb', 'G', 'Ab', 'A', 'Bb', 'B'];
+// The 12 keys as offered in the dropdown, with the usual guitar-friendly spellings
+const KEYS = ['C', 'Db', 'D', 'Eb', 'E', 'F', 'F#', 'G', 'Ab', 'A', 'Bb', 'B'];
+const FLAT_KEYS = new Set(['F', 'Bb', 'Eb', 'Ab', 'Db', 'Gb']);
+
+function noteToIndex(name) {           // "F#" → 6, "Bb" → 10
+  let n = NOTE_INDEX[name[0].toUpperCase()];
+  if (n === undefined) return null;
+  if (name[1] === '#') n += 1;
+  if (name[1] === 'b') n -= 1;
+  return (n + 12) % 12;
+}
+function spell(index, useFlats) { return (useFlats ? FLAT_NAMES : SHARP_NAMES)[(index % 12 + 12) % 12]; }
+
+function keyRoot(key) {                // "Am" → "A" (we only care about the tonic letter)
+  const m = (key || 'C').match(/^[A-G][#b]?/);
+  return m ? m[0] : 'C';
+}
+
+// Scientific pitch ("C4", "F#5") ↔ MIDI-style number
+function pitchToNumber(p) {
+  const m = (p || '').trim().match(/^([A-G][#b]?)(-?\d)$/i);
+  if (!m) return null;
+  return (Number(m[2]) + 1) * 12 + noteToIndex(m[1]);
+}
+function numberToPitch(n, useFlats) {
+  return spell(n % 12, useFlats) + (Math.floor(n / 12) - 1);
+}
+
+// Shift one chord symbol by `semis`, spelling the result for the target key. Handles Am7, Dsus4, G/B.
+function transposeChord(name, semis, useFlats) {
+  const m = name.match(/^([A-G][#b]?)([^/]*)(?:\/([A-G][#b]?))?$/);
+  if (!m) return name;                                   // N.C., |, etc. pass through
+  let out = spell(noteToIndex(m[1]) + semis, useFlats) + m[2];
+  if (m[3]) out += '/' + spell(noteToIndex(m[3]) + semis, useFlats);
+  return out;
+}
+
+// Semitones from the song's key to a target key, chosen as the smallest move (−5 … +6)
+function semitonesBetween(fromKey, toKey) {
+  let d = (noteToIndex(keyRoot(toKey)) - noteToIndex(keyRoot(fromKey)) + 12) % 12;
+  if (d > 6) d -= 12;
+  return d;
+}
+
+function rangeText(meta, semis, useFlats) {
+  const lo = pitchToNumber(meta.low), hi = pitchToNumber(meta.high);
+  if (lo === null || hi === null) return '';
+  return numberToPitch(lo + semis, useFlats) + '–' + numberToPitch(hi + semis, useFlats);
+}
+
+/* =====================================================================
    2. LAYOUT
    Phones are narrow, so a long lyric line is wrapped onto several screen
    rows at word boundaries. Each chord travels with the character it sits
@@ -80,6 +140,8 @@ function parseSong(text) {
    (one monospace character), which makes the maths exact.
    ===================================================================== */
 
+let currentSemis = 0;      // transposition in semitones from the song's written key
+let currentFlats = false;  // spell with flats (true) or sharps (false) in the current key
 let wordCount = 0;         // total number of words (progress-pointer stops) in the song
 let rowEls = [];           // one entry per screen row: {el, firstWord, lastWord}
 
@@ -138,10 +200,13 @@ function renderSong(song) {
     if (b.type === 'gap') { container.appendChild(el('div', 'gap')); continue; }
     if (b.type === 'label') { container.appendChild(el('div', 'label', b.text)); continue; }
 
+    // Chords as displayed in the current key (columns unchanged: alignment is by column, not by text)
+    const chords = b.chords.map(c => ({ col: c.col, name: transposeChord(c.name, currentSemis, currentFlats) }));
+
     if (b.text === '') {
       // Chords only: an instrumental row. It counts as one "word" so the pointer can pass through it.
       const row = el('div', 'row instr');
-      for (const c of placeChords(b.chords, 0, Infinity)) row.appendChild(chordEl(c));
+      for (const c of placeChords(chords, 0, Infinity)) row.appendChild(chordEl(c));
       row.dataset.i = wordCount;
       rowEls.push({ el: row, firstWord: wordCount, lastWord: wordCount });
       wordCount++;
@@ -154,9 +219,9 @@ function renderSong(song) {
     for (let r = 0; r < rows.length; r++) {
       const { start } = rows[r];
       const end = (r === rows.length - 1) ? Infinity : rows[r].end;
-      const row = el('div', 'row' + (b.chords.length ? '' : ' no-chords'));
+      const row = el('div', 'row' + (chords.length ? '' : ' no-chords'));
       const rangeStart = (r === 0) ? 0 : rows[r - 1].end;   // chords typed over the wrap space move down too
-      for (const c of placeChords(b.chords, start, end, rangeStart)) row.appendChild(chordEl(c));
+      for (const c of placeChords(chords, start, end, rangeStart)) row.appendChild(chordEl(c));
 
       // Lyric text: each word in its own span so it can turn green
       const segment = b.text.slice(start, rows[r].end);
@@ -263,6 +328,42 @@ function setFontSize(px) {
 }
 
 /* =====================================================================
+   5b. KEY DROPDOWN
+   Each option shows the key and the melody range you would get in it.
+   The chosen key is remembered per song on this device.
+   ===================================================================== */
+
+function buildKeyDropdown(song) {
+  const sel = document.getElementById('key');
+  sel.innerHTML = '';
+  const home = keyRoot(song.meta.key);
+  for (const k of KEYS) {
+    const semis = semitonesBetween(home, k);
+    const opt = document.createElement('option');
+    opt.value = k;
+    const range = rangeText(song.meta, semis, FLAT_KEYS.has(k));
+    opt.textContent = k + (range ? ' (' + range + ')' : '');
+    sel.appendChild(opt);
+  }
+  // Start from the remembered key for this song, else the written key
+  let chosen = null;
+  try { chosen = localStorage.getItem('key:' + song.file); } catch (e) {}
+  sel.value = KEYS.includes(chosen) ? chosen : KEYS[noteToIndex(home)];   // KEYS is indexed by semitone
+  applyKey();
+}
+
+function applyKey() {
+  const sel = document.getElementById('key');
+  const k = sel.value;
+  currentSemis = semitonesBetween(keyRoot(currentSong.meta.key), k);
+  currentFlats = FLAT_KEYS.has(k);
+  document.getElementById('range').textContent = rangeText(currentSong.meta, currentSemis, currentFlats);
+  try { localStorage.setItem('key:' + currentSong.file, k); } catch (e) {}
+  renderSong(currentSong);
+  setProgress(progress);
+}
+
+/* =====================================================================
    6. START-UP: load the song, wire up taps and keys
    ===================================================================== */
 
@@ -272,11 +373,12 @@ async function loadSong(filename) {
   const res = await fetch('songs/' + filename, { cache: 'no-cache' });
   if (!res.ok) throw new Error('Could not load ' + filename);
   currentSong = parseSong(await res.text());
+  currentSong.file = filename;
+  progress = 0;
   document.getElementById('title').textContent = currentSong.meta.title || filename;
   document.getElementById('artist').textContent = currentSong.meta.artist || '';
   document.title = currentSong.meta.title || 'Singalong';
-  renderSong(currentSong);
-  setProgress(0);
+  buildKeyDropdown(currentSong);   // also renders the song and resets the pointer
   keepAwake();
 }
 
@@ -308,6 +410,7 @@ async function start() {
     if (['ArrowUp', 'PageUp', 'ArrowLeft'].includes(ev.key)) { ev.preventDefault(); prevLine(); }
   });
 
+  document.getElementById('key').addEventListener('change', applyKey);
   document.getElementById('font-minus').addEventListener('click', () => setFontSize(getFontSize() - 2));
   document.getElementById('font-plus').addEventListener('click', () => setFontSize(getFontSize() + 2));
 

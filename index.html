@@ -20,19 +20,22 @@
       <span id="artist"></span>
     </div>
     <div id="tools">
-      <button id="font-minus" title="Smaller text">A−</button>
-      <button id="font-plus" title="Larger text">A+</button>
+      <button id="font-minus" title="Smaller text">−</button>
+      <button id="font-plus" title="Larger text">+</button>
     </div>
   </header>
 
-  <!-- The song scrolls inside this viewport; the focus line is drawn across it -->
+  <!-- Key / transpose row -->
+  <div id="controls">
+    <label for="key">Key</label>
+    <select id="key"></select>
+    <span id="range" title="Melody range in this key"></span>
+  </div>
+
+  <!-- The song scrolls inside this viewport -->
   <main id="viewport">
-    <div id="focus-line"></div>
     <div id="song"></div>
   </main>
-
-  <!-- Temporary stage-1 help, will be replaced by the real controls later -->
-  <footer id="hint">tap lower half: next line · upper half: previous line · keyboard ↑ ↓ also work</footer>
 
   <script src="app.js"></script>
 </body>
