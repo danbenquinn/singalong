@@ -3,7 +3,7 @@
    publish.sh rewrites CACHE_VERSION on every publish, so a new version replaces the old copy the
    next time the phone opens the site while online. */
 
-const CACHE_VERSION = 'v1793215156';
+const CACHE_VERSION = 'v1793215298';
 const CACHE = 'singalong-' + CACHE_VERSION;
 
 // Everything the page needs. The song list is read and every song file added at install time.

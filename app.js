@@ -461,7 +461,7 @@ function setupLyricDrag() {
   vp.addEventListener('pointermove', ev => {
     if (!active) return;
     const d = ev.clientY - startY;
-    if (Math.abs(d) > 6) moved = true;
+    if (Math.abs(d) > 12) moved = true;                   // a fingertip wobbles; under 12px is still a tap
     if (moved) setProgress(progressOfY(startSongY - d));   // finger down → text down → earlier words
     samples.push([ev.timeStamp, ev.clientY]);
     while (samples.length > 2 && ev.timeStamp - samples[0][0] > 120) samples.shift();
@@ -850,13 +850,14 @@ async function start() {
 
   // Keys (desktop testing now; a Bluetooth page-turner pedal later sends the same keys)
   document.addEventListener('keydown', ev => {
-    if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'SELECT') return;
+    if (ev.target.tagName === 'INPUT' || ev.target.tagName === 'SELECT') return;   // typing in the search box
+    // Pedals send Page Down / Page Up or arrows (next / previous line); Space pauses
     if (['ArrowDown', 'PageDown', 'ArrowRight'].includes(ev.key)) { ev.preventDefault(); nextLine(); }
     if (['ArrowUp', 'PageUp', 'ArrowLeft'].includes(ev.key)) { ev.preventDefault(); prevLine(); }
     if (ev.key === ' ') { ev.preventDefault(); togglePause(); }
   });
 
-  document.getElementById('key').addEventListener('change', applyKey);
+  document.getElementById('key').addEventListener('change', ev => { applyKey(); ev.target.blur(); });   // blur: pedal keys must not change the key
   document.getElementById('speed').addEventListener('input', ev => setSpeed(Number(ev.target.value)));
   document.querySelectorAll('#mode button').forEach(b => b.addEventListener('click', () => setMode(b.dataset.mode)));
   document.getElementById('play').addEventListener('click', togglePause);

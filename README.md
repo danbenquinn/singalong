@@ -65,8 +65,10 @@ Rules of thumb:
   Hearing nothing changes nothing: the pointer keeps going at the last rate. The status row shows a red
   pulsing dot while listening, green on a fresh match, the seconds since the last match, and the last
   words heard. Safari stops listening after a pause; the page restarts it.
-- Keys (desktop, or a Bluetooth page-turner pedal): ↓ / Page Down = next line, ↑ / Page Up = previous
-  line, Space = pause / resume at the last speed.
+- Keys (desktop, or a Bluetooth page-turner pedal): ↓ / Page Down / → = next line, ↑ / Page Up / ← =
+  previous line, Space = pause / resume. A pedal pairs with the phone as a Bluetooth keyboard
+  (Settings › Bluetooth); set it to a mode that sends Page Up/Down or arrow keys and it needs nothing
+  from the site.
 - **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
 - **− / +** change the text size. Remembered on the device.
 
