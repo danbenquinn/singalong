@@ -3,7 +3,7 @@
    publish.sh rewrites CACHE_VERSION on every publish, so a new version replaces the old copy the
    next time the phone opens the site while online. */
 
-const CACHE_VERSION = 'v1793215971';
+const CACHE_VERSION = 'v1793306181';
 const CACHE = 'singalong-' + CACHE_VERSION;
 
 // Everything the page needs. The song list is read and every song file added at install time.
@@ -16,6 +16,11 @@ self.addEventListener('install', ev => {
     try {
       const list = await (await fetch('songs/index.json', { cache: 'no-cache' })).json();
       await cache.addAll(list.map(f => 'songs/' + f));
+      // Timing files (songs/<song>.timing.json) exist only for songs that have been recorded; fetch each, skip misses
+      await Promise.all(list.map(async f => {
+        const url = 'songs/' + f.replace(/\.txt$/, '.timing.json');
+        try { const r = await fetch(url, { cache: 'no-cache' }); if (r.ok) await cache.put(url, r); } catch (e) {}
+      }));
     } catch (e) { /* songs will be cached as they are opened */ }
     self.skipWaiting();
   })());

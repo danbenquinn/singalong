@@ -10,31 +10,26 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#101418">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css?v=1793215971">
+  <link rel="stylesheet" href="style.css?v=1793306181">
 </head>
 <body>
 
-  <!-- Row 1: song (tap for the picker), words heard in Voice mode, text size -->
+  <!-- Row 1: song (tap for the picker), text size -->
   <header id="topbar">
     <button id="open-picker" title="Song picker">
       <span id="title">Loading…</span><span id="artist"></span>
     </button>
-    <span id="voice-heard"></span>
     <div id="tools">
       <button id="font-minus" title="Smaller text">−</button>
       <button id="font-plus" title="Larger text">+</button>
     </div>
   </header>
 
-  <!-- Row 2: mode, key, speed (or the live voice status) -->
+  <!-- Row 2: pacing (Timed from a recording / Even), key, speed -->
   <div id="controls">
-    <div id="mode">
-      <button data-mode="manual">Manual</button>
-      <button data-mode="voice">Voice</button>
-    </div>
+    <span id="pace" title="Even pacing (no timing file)">Even</span>
     <select id="key" title="Key (melody range)"></select>
     <span id="speed-label">Speed</span>
-    <span id="voice-row" hidden><span id="voice-dot"></span><span id="voice-status"></span></span>
     <input type="range" id="speed" min="0" max="2" step="0.05" value="1">
     <span id="speed-value">1×</span>
   </div>
@@ -68,7 +63,7 @@
     </div>
   </div>
 
-  <script src="config.js?v=1793215971"></script>
-  <script src="app.js?v=1793215971"></script>
+  <script src="config.js?v=1793306181"></script>
+  <script src="app.js?v=1793306181"></script>
 </body>
 </html>

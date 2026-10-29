@@ -63,7 +63,6 @@ body {
 #title { font-weight: 600; font-size: 16px; }
 #artist { color: var(--dim); font-size: 13px; }
 #artist:not(:empty)::before { content: ' · '; }
-#voice-heard { flex: 0 1 auto; min-width: 0; color: var(--dim); font-style: italic; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 #tools { flex: 0 0 auto; display: flex; gap: 6px; }
 #tools button {
   font-size: 18px; line-height: 1;
@@ -82,9 +81,11 @@ body {
   height: 40px;
   font-size: 14px;
 }
-#mode { flex: 0 0 auto; display: flex; border: 1px solid var(--support); border-radius: 7px; overflow: hidden; }
-#mode button { font-size: 14px; padding: 0 10px; height: 30px; background: #1a1a1f; color: var(--dim); border: 0; }
-#mode button.on { background: var(--mma-blue); color: #fff; }
+/* Pacing badge: Timed (from a recording's timing file) or Even (constant rate) */
+#pace { flex: 0 0 auto; font-size: 13px; line-height: 28px; padding: 0 9px; border: 1px solid var(--support);
+        border-radius: 7px; color: var(--dim); white-space: nowrap; }
+#pace.timed { color: var(--mma-green); border-color: var(--mma-green); }
+#pace.stale { color: var(--mma-amber); border-color: var(--mma-amber); }
 #key {
   flex: 0 1 auto; min-width: 0; max-width: 42%;
   font-size: 14px; height: 32px; padding: 0 6px;
@@ -106,13 +107,6 @@ body {
 #speed-value { color: var(--dim); flex: 0 0 auto; min-width: 34px; text-align: right; transition: color 0.3s; }
 #speed-value.flash { color: var(--mma-amber); }
 
-/* Voice status, in place of the "Speed" label */
-#voice-row { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; color: var(--dim); white-space: nowrap; }
-#voice-row[hidden] { display: none; }
-#voice-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--support); }
-#voice-dot.listening { background: var(--mma-red); animation: pulse 1.2s ease-in-out infinite; }
-#voice-dot.matched { background: var(--mma-green); animation: none; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.35; } }
 
 /* Right-edge column: play button above the drag bar */
 #sidebar {
@@ -250,10 +244,10 @@ body {
 }
 #gate-msg { color: var(--mma-red); text-align: center; min-height: 1.2em; }
 
-/* Narrow (portrait phone): drop the "Speed" word and tighten the toggle so the slider keeps some length */
+/* Narrow (portrait phone): drop the "Speed" word and tighten the badge so the slider keeps some length */
 @media (max-width: 600px) {
   #speed-label { display: none; }
-  #mode button { padding: 0 8px; }
+  #pace { padding: 0 7px; }
   #key { max-width: 150px; }
   #speed-value { min-width: 28px; }
 }

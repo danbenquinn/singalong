@@ -11,12 +11,14 @@ A phone-sized lyrics-and-chords teleprompter. Plain HTML, CSS and JavaScript; no
 ├── app.js            all the behaviour (parsing song files, drawing, scrolling)
 ├── songs/
 │   ├── index.json    the list of song files — generated, do not edit by hand
-│   └── *.txt         one song per file
+│   ├── *.txt         one song per file
+│   └── *.timing.json word timings from a recording (optional; made by lyric-alignment-builder)
 ├── config.js         the SHA-256 hash of the password (written by set-password.sh)
 ├── set-password.sh   choose a new password, then publish
 ├── make-index.sh     rebuilds songs/index.json from the files in songs/ (publish.sh runs it)
 ├── publish.sh        commit + push to GitHub, which republishes the site
 ├── tools/import_songs.py   the one-off importer that built the library from the docx and the originals
+├── lyric-alignment-builder/  recordings → timing files; local only, not in git (see its README)
 └── README.md         this file
 ```
 
@@ -29,7 +31,7 @@ key: G              ← the key the chords below are written in
 low: D4             ← lowest melody note, scientific pitch (middle C is C4)
 high: E5            ← highest melody note
 tags: xmas          ← comma-separated; any word works, the picker's filter buttons come from these
-speed: 6            ← seconds per typed line when the speed slider is at 1× (slider runs 0–2×)
+speed: 6            ← seconds per typed line at 1× — only used when the song has no timing file
 capo: 3             ← optional; shown after the artist
 # any line without a colon, like this one, is a comment
 ---
@@ -44,6 +46,8 @@ Rules of thumb:
 - A line is treated as a **chord line** when every "word" on it looks like a chord (`G`, `Am7`, `Dsus4`, `G/B`, `N.C.`, `|`). It attaches to the lyric line right below it. A chord line with nothing below it (or a blank line below) is shown on its own, for intros and outros.
 - Chords sit over the character in the same column. Use spaces, not tabs, to position them (tabs are converted to 4 spaces, which is rarely what you want).
 - `[Verse 1]`, `[Chorus]`, `[Bridge]` — anything in square brackets on its own line — is a section label.
+- A **bare** label (nothing under it before the next blank line, e.g. a second `[Chorus]`) repeats the lines
+  written under the last label of that name, so the chorus is on screen each time it's sung.
 - Blank lines separate sections.
 - Long lines are wrapped on the phone automatically; each chord stays over its character.
 
@@ -54,18 +58,15 @@ Rules of thumb:
 - **Drag the lyrics** and they follow your finger, like a web page; a flick coasts. Finger down = earlier
   words (text moves down). The bar on the right works the same way: its thumb sits at the bottom at the
   start of the song and dragging it down scrolls back.
-- **▶** (top of the right-hand column) starts the pointer moving; a song opens paused at 1×.
-- **Manual**: the speed slider sets the rate (1× = the song's `speed`).
-- **Voice**: the pointer still moves on its own, but ▶ also turns on the microphone (Safari asks the
-  first time) and the rate is fitted live to the words heard — the slider shows the fitted rate and
-  is read-only. Each recognised word is looked for near the projected position; the search widens
-  with the square root of the time since the last match, so a lost singer is found again without a
-  repeated chorus pulling the pointer away. A hit eases the pointer to that word and nudges the rate.
-  Hearing nothing changes nothing: the pointer keeps going at the last rate. The status row shows a red
-  pulsing dot while listening, green on a fresh match, the seconds since the last match, and the last
-  words heard. Safari stops listening after a pause; the page restarts it.
+- **▶** (top of the right-hand column) starts the pointer moving; a song opens paused at 1×. Press it
+  as you start the first word (or the intro chords, if the song file has them).
+- **Pacing.** The badge left of the key says which: **Timed** — the song has `songs/<song>.timing.json`
+  (made from a recording with `lyric-alignment-builder/`), so every word lasts as long as it did when you
+  sang it, and 1× is the recording's pace. **Even** — no timing file: the song's `speed` is shared evenly
+  over each line's words. Amber **Even** means a timing file exists but the lyrics have changed since it was
+  made; re-run the builder. The **speed slider** multiplies either kind (0–2×).
 - **Pedal / keys**: Page Down (or ↓ / →) = speed up by 0.1×, Page Up (or ↑ / ←) = slow down by 0.1×,
-  Space = pause / resume. In Voice mode the nudge applies to the fitted rate. A Bluetooth page-turner
+  Space = pause / resume. A Bluetooth page-turner
   pedal pairs with the phone as a keyboard (Settings › Bluetooth); set it to a mode that sends Page
   Up/Down or arrow keys and it needs nothing from the site. The speed value flashes amber on each press.
 - **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
@@ -78,6 +79,9 @@ Drop a new `.txt` into `songs/` (or edit one), then in Terminal:
 ```
 cd ~/Library/CloudStorage/OneDrive-UniversityofVirginia/DQ/Life/Art/active/-singalong && bash publish.sh
 ```
+
+To pace a song from a recording, see `lyric-alignment-builder/README.md`: record it, `bash align.sh <song>`,
+check it with `bash review.sh <song>`, then publish as above.
 
 It rebuilds the index, commits, and pushes; the site updates about a minute later. The imported songs
 still have empty `low:` / `high:` lines and a guessed `key:` — fill those in as you get to each song.
@@ -104,8 +108,8 @@ phones never pair a new page with an old script.
 `sw.js` is a service worker: the first time the site is opened online it stores the page and every
 song on the phone, and from then on serves them when there is no signal (network first, so edits
 still arrive when online). Each publish stamps a new version into `sw.js`; the phone picks it up on
-its next online visit. Manual mode, transposing and wake lock all work offline. Voice mode does not:
-Safari's speech recogniser runs on Apple's servers, so with no internet it reports "offline".
+its next online visit. Everything works offline, timing files included (they are cached alongside the
+songs).
 
 ## Testing on the Mac
 

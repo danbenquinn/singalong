@@ -2,3 +2,6 @@
 .DS_Store
 ._*
 *.tmp
+
+# Local tooling that builds songs/*.timing.json; recordings and the model stay on this Mac
+lyric-alignment-builder/
