@@ -15,7 +15,6 @@
   --bg: #000000;          /* one background, as in the decks */
   --fg: #f0f0f5;          /* lyric text */
   --chord: var(--mma-amber);   /* chords */
-  --done: var(--mma-green);    /* words already sung */
   --dim: #9090a0;         /* section labels, secondary text */
   --support: #4a4a52;     /* button borders and the like */
   --focus: 35%;           /* where the current line sits, as a fraction of the viewport height */
@@ -108,7 +107,7 @@ body {
 #speed-value.flash { color: var(--mma-amber); }
 
 
-/* Right-edge column: play button above the drag bar */
+/* Right edge: play button */
 #sidebar {
   position: absolute;
   top: 4px; bottom: 8px; right: 4px;
@@ -122,24 +121,6 @@ body {
   border: 0; border-radius: 12px;
 }
 #play.paused { background: #1a1a1f; color: var(--fg); border: 1px solid var(--support); }
-#scrollbar {
-  position: relative;
-  flex: 1 1 auto;
-  margin: 0 2px;
-  border-radius: 22px;
-  background: rgba(255, 255, 255, 0.06);
-  touch-action: none;           /* the page must not scroll while dragging */
-}
-#thumb {
-  position: absolute;
-  left: 4px; right: 4px;
-  top: 0;
-  height: 80px;
-  border-radius: 18px;
-  background: var(--support);
-  touch-action: none;
-}
-#thumb.active { background: var(--mma-blue); }
 
 /* ---------- Song viewport ---------- */
 #viewport {
@@ -158,6 +139,7 @@ body {
   line-height: 1.25;
   will-change: transform;
 }
+#song.glide { transition: transform 0.35s ease-out; }   /* the next line sliding into the middle */
 
 /* A "row" is one screen-line of lyrics with its chord line above it */
 .row {
@@ -176,7 +158,6 @@ body {
   line-height: 1;
 }
 
-.w.done, .row.instr.done .chord { color: var(--done); }
 
 .label {
   color: var(--dim);

@@ -48,6 +48,10 @@ Rules of thumb:
 - `[Verse 1]`, `[Chorus]`, `[Bridge]` — anything in square brackets on its own line — is a section label.
 - A **bare** label (nothing under it before the next blank line, e.g. a second `[Chorus]`) repeats the lines
   written under the last label of that name, so the chorus is on screen each time it's sung.
+- **Lead-in:** chord lines with no lyrics before the first sung line (e.g. `[Intro]` then `G   C   D   G`)
+  are the intro. They last as long as the opening lyric lines take to get through the same number of
+  chords — `G C D G` over a verse that starts `G C` / `D G` lasts two lines. `(piano)`-style lines up there
+  count too. Press ▶ as you start the intro.
 - Blank lines separate sections.
 - Long lines are wrapped on the phone automatically; each chord stays over its character.
 
@@ -55,11 +59,12 @@ Rules of thumb:
 
 - **Tap the title** to open the song picker: search by title or artist, filter by tag (the buttons come
   from the tags in the song files), tap a song to open it. The last song opened is remembered.
+- **The line being sung sits in the middle of the screen**; when the next line starts it slides up into
+  its place. Nothing is coloured as it's sung — the middle of the screen is the "you are here".
 - **Drag the lyrics** and they follow your finger, like a web page; a flick coasts. Finger down = earlier
-  words (text moves down). The bar on the right works the same way: its thumb sits at the bottom at the
-  start of the song and dragging it down scrolls back.
-- **▶** (top of the right-hand column) starts the pointer moving; a song opens paused at 1×. Press it
-  as you start the first word (or the intro chords, if the song file has them).
+  words (text moves down). Let go and the nearest line settles into the middle.
+- **▶** (top right) starts the pointer moving; a song opens paused at 1×. Press it as you start playing:
+  the intro chords if the song file has them (see Lead-in above), otherwise the first word.
 - **Pacing.** The badge left of the key says which: **Timed** — the song has `songs/<song>.timing.json`
   (made from a recording with `lyric-alignment-builder/`), so every word lasts as long as it did when you
   sang it, and 1× is the recording's pace. **Even** — no timing file: the song's `speed` is shared evenly
