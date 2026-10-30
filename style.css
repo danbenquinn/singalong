@@ -85,6 +85,9 @@ body {
         border-radius: 7px; color: var(--dim); white-space: nowrap; }
 #pace.timed { color: var(--mma-green); border-color: var(--mma-green); }
 #pace.stale { color: var(--mma-amber); border-color: var(--mma-amber); }
+#pace.can-time { color: var(--fg); border-color: var(--mma-green); border-style: dashed; }   /* Even by choice */
+#pace { background: transparent; font-family: inherit; cursor: pointer; }
+#pace:disabled { cursor: default; opacity: 1; }
 #key {
   flex: 0 1 auto; min-width: 0; max-width: 42%;
   font-size: 14px; height: 32px; padding: 0 6px;

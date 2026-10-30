@@ -462,16 +462,31 @@ function secondsPerWordAt(p) {
 // The timing file for the open song, used only if it matches what is on screen word for word.
 let timingFile = null;   // as loaded (null: none)
 let timing = null;       // timingFile when it matches the rendered words, else null
+let timingUsable = false; // a timing file exists and matches the lyrics
+let preferEven = false;    // you tapped the badge to switch this song to Even (remembered per song)
 function checkTiming() {
   const s = timingFile && timingFile.slots;
-  const ok = Array.isArray(s) && s.length === wordCount && s.every((x, i) => (x.w || '') === wordTexts[i]);
-  timing = ok ? timingFile : null;
+  timingUsable = Array.isArray(s) && s.length === wordCount && s.every((x, i) => (x.w || '') === wordTexts[i]);
+  timing = timingUsable && !preferEven ? timingFile : null;
   const badge = document.getElementById('pace');
   badge.textContent = timing ? 'Timed' : 'Even';
   badge.classList.toggle('timed', !!timing);
-  badge.title = timing ? 'Paced by the recorded timing (1× = as recorded)'
+  badge.classList.toggle('can-time', timingUsable && !timing);      // Even by choice: tap to go back to Timed
+  badge.classList.toggle('stale', !timingUsable && !!timingFile);
+  badge.disabled = !timingUsable;
+  badge.title = timing ? 'Paced by the recorded timing (1× = as recorded). Tap for even pacing.'
+    : timingUsable ? 'Even pacing by choice. Tap to use the recorded timing.'
     : timingFile ? 'Timing file is out of date for these lyrics — using even pacing' : 'Even pacing (no timing file)';
-  badge.classList.toggle('stale', !timing && !!timingFile);
+}
+// Tap the badge: switch between Timed and Even (only when the song has usable timing). The text keeps its place.
+function togglePace() {
+  if (!timingUsable) return;
+  preferEven = !preferEven;
+  try { localStorage.setItem('pace:' + currentSong.file, preferEven ? 'even' : 'timed'); } catch (e) {}
+  const y = shownY;
+  checkTiming();
+  buildScrollMap();
+  shownY = y;            // ease from where the text is now instead of jumping
 }
 async function loadTiming(filename) {
   try {
@@ -757,6 +772,7 @@ async function loadSong(filename) {
   currentSong = parseSong(await res.text());
   currentSong.file = filename;
   timingFile = await loadTiming(filename);
+  try { preferEven = localStorage.getItem('pace:' + filename) === 'even'; } catch (e) { preferEven = false; }
   progress = 0;
   flingVelocity = 0;
   setSpeed(1);
@@ -804,6 +820,7 @@ async function start() {
   document.getElementById('key').addEventListener('change', ev => { applyKey(); ev.target.blur(); });   // blur: pedal keys must not change the key
   document.getElementById('speed').addEventListener('input', ev => setSpeed(Number(ev.target.value)));
   document.getElementById('play').addEventListener('click', togglePause);
+  document.getElementById('pace').addEventListener('click', ev => { togglePace(); ev.target.blur(); });   // blur: pedal keys
   setupPicker();
   setSpeed(1);
   setPlaying(false);

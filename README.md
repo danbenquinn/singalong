@@ -81,7 +81,9 @@ Rules of thumb:
   (made from a recording with `lyric-alignment-builder/`), so every word lasts as long as it did when you
   sang it, and 1× is the recording's pace. **Even** — no timing file: the song's `speed` is shared evenly
   over each line's words. Amber **Even** means a timing file exists but the lyrics have changed since it was
-  made; re-run the builder. The **speed slider** multiplies either kind (0–2×).
+  made; re-run the builder. **Tap the badge** on a song that has timing to switch between Timed and Even
+  (a dashed green **Even** means Even by choice; tap again for Timed). Remembered per song on the device.
+  The **speed slider** multiplies either kind (0–2×).
 - **Pedal / keys**: Page Down (or ↓ / →) = speed up by 0.1×, Page Up (or ↑ / ←) = slow down by 0.1×,
   Space = pause / resume. A Bluetooth page-turner
   pedal pairs with the phone as a keyboard (Settings › Bluetooth); set it to a mode that sends Page
