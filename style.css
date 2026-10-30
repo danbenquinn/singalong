@@ -159,6 +159,7 @@ body {
 }
 
 
+#version { color: var(--dim); font-size: 12px; text-align: center; padding: 8px 0 14px; }   /* in the song picker */
 .instr-label { color: var(--dim); font-style: italic; }   /* "[Instrumental]" in place of lyrics */
 
 .label {

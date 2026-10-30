@@ -3,7 +3,7 @@
    publish.sh rewrites CACHE_VERSION on every publish, so a new version replaces the old copy the
    next time the phone opens the site while online. */
 
-const CACHE_VERSION = 'v1793370176';
+const CACHE_VERSION = 'v1793370853';
 const CACHE = 'singalong-' + CACHE_VERSION;
 
 // Everything the page needs. The song list is read and every song file added at install time.
@@ -40,7 +40,10 @@ self.addEventListener('fetch', ev => {
   ev.respondWith((async () => {
     const cache = await caches.open(CACHE);
     try {
-      const fresh = await fetch(ev.request);
+      // cache: 'no-cache' = always ask the server whether the file changed (a cheap check when it hasn't).
+      // Without it the browser's own cache can hand back the old index.html for up to 10 minutes after a
+      // publish (GitHub Pages says files may be cached that long), and with it the old app.js.
+      const fresh = await fetch(ev.request, { cache: 'no-cache' });
       if (fresh.ok) cache.put(stripVersion(ev.request), fresh.clone());
       return fresh;
     } catch (e) {

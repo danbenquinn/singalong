@@ -689,7 +689,18 @@ function openPicker() {
 }
 function closePicker() { document.getElementById('picker').hidden = true; }
 
+// Which publish this is: publish.sh stamps ?v=<unix time> on app.js. Shown at the bottom of the song picker,
+// so after publishing you can see whether the phone has picked up the new version.
+function showVersion() {
+  const m = /[?&]v=(\d+)/.exec((document.querySelector('script[src*="app.js"]') || {}).src || '');
+  const when = m ? new Date(Number(m[1]) * 1000) : null;
+  document.getElementById('version').textContent = when
+    ? 'Version published ' + when.toLocaleString([], { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' })
+    : 'Version: unpublished copy';
+}
+
 function setupPicker() {
+  showVersion();
   document.getElementById('open-picker').addEventListener('click', openPicker);
   document.getElementById('close-picker').addEventListener('click', closePicker);
   document.getElementById('search').addEventListener('input', renderSongList);
