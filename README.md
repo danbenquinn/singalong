@@ -48,10 +48,20 @@ Rules of thumb:
 - `[Verse 1]`, `[Chorus]`, `[Bridge]` — anything in square brackets on its own line — is a section label.
 - A **bare** label (nothing under it before the next blank line, e.g. a second `[Chorus]`) repeats the lines
   written under the last label of that name, so the chorus is on screen each time it's sung.
-- **Lead-in:** chord lines with no lyrics before the first sung line (e.g. `[Intro]` then `G   C   D   G`)
-  are the intro. They last as long as the opening lyric lines take to get through the same number of
-  chords — `G C D G` over a verse that starts `G C` / `D G` lasts two lines. `(piano)`-style lines up there
-  count too. Press ▶ as you start the intro.
+- **Instrumental lines:** a chord line with `[Instrumental]` under it shows the chords with
+  *[Instrumental]* where the lyrics would be, and is a line like any other (it scrolls past the middle in
+  its turn). Use them for intros and mid-song breaks:
+  ```
+  G             C
+  [Instrumental]
+  D             G
+  [Instrumental]
+  ```
+  (`[Instrumental]` on its own, with no chord line above it, is still just a section label.)
+- **Lead-in:** instrumental lines (or chords-only / `(piano)` lines) before the first sung line are the
+  intro. Each is timed chord-for-chord from the opening lyric lines: above, `G C` lasts as long as the first
+  verse line (also `G C`), `D G` as long as the second. Timed songs have this worked out in the timing file
+  by the builder; Even songs use the same rule. Press ▶ as you start the intro.
 - Blank lines separate sections.
 - Long lines are wrapped on the phone automatically; each chord stays over its character.
 
@@ -59,10 +69,12 @@ Rules of thumb:
 
 - **Tap the title** to open the song picker: search by title or artist, filter by tag (the buttons come
   from the tags in the song files), tap a song to open it. The last song opened is remembered.
-- **The line being sung sits in the middle of the screen**; when the next line starts it slides up into
-  its place. Nothing is coloured as it's sung — the middle of the screen is the "you are here".
+- **Smooth scroll.** The text moves steadily upward; each line crosses the middle of the screen halfway
+  through the time it's sung, so the middle is the "you are here" (nothing is coloured as it's sung).
+  The motion eases between lines rather than stopping, so it may run a touch ahead or behind in between.
+  `SMOOTH` in app.js sets how lazy that easing is.
 - **Drag the lyrics** and they follow your finger, like a web page; a flick coasts. Finger down = earlier
-  words (text moves down). Let go and the nearest line settles into the middle.
+  words (text moves down).
 - **▶** (top right) starts the pointer moving; a song opens paused at 1×. Press it as you start playing:
   the intro chords if the song file has them (see Lead-in above), otherwise the first word.
 - **Pacing.** The badge left of the key says which: **Timed** — the song has `songs/<song>.timing.json`

@@ -8,9 +8,10 @@ speed: 6
 capo: 3
 # key guessed from the last chord; fill in low/high · (Original by Alexa, modified by Dan in 2026; Capo 3)
 ---
-[Intro]
-G       C       D       G
-
+G             C
+[Instrumental]
+D             G
+[Instrumental]
      G                      C
 Your work is your work, your life is your life;
   D                    G

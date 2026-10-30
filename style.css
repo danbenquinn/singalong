@@ -139,7 +139,7 @@ body {
   line-height: 1.25;
   will-change: transform;
 }
-#song.glide { transition: transform 0.35s ease-out; }   /* the next line sliding into the middle */
+
 
 /* A "row" is one screen-line of lyrics with its chord line above it */
 .row {
@@ -158,6 +158,8 @@ body {
   line-height: 1;
 }
 
+
+.instr-label { color: var(--dim); font-style: italic; }   /* "[Instrumental]" in place of lyrics */
 
 .label {
   color: var(--dim);

@@ -10,6 +10,8 @@
    A chord line directly above a lyric line belongs to it.
    A bare section label ("[Chorus]" with nothing under it) means "sing it
    again": the lines written under the last [Chorus] are repeated there.
+   A chord line with "[Instrumental]" under it is an instrumental line: the
+   chords are played, "[Instrumental]" sits where the lyrics would be.
    lyric-alignment-builder/songfile.py follows the same rules; keep them in step.
    ===================================================================== */
 
@@ -69,6 +71,9 @@ function parseSong(text) {
       if (bare && sections[key]) sections[key].forEach(b => blocks.push({ ...b, repeat: true }));
       else current = { label: key, lines: [] };
       i++;
+    } else if (isChordLine(line) && next !== undefined && /^\s*\[instrumental\]\s*$/i.test(next)) {
+      addLine({ type: 'line', chords: parseChordLine(line), text: '', instrumental: true });
+      i += 2;
     } else if (isChordLine(line)) {
       const chords = parseChordLine(line);
       const nextIsLyric = next !== undefined && next.trim() !== '' && !isChordLine(next) && !isLabel(next);
@@ -230,13 +235,14 @@ function renderSong(song) {
 
     if (b.text === '') {
       // Chords only: an instrumental row. It counts as one "word" so the pointer can pass through it.
-      const row = el('div', 'row instr');
+      const row = el('div', 'row instr' + (b.instrumental ? ' instrumental' : ''));
       for (const c of placeChords(chords, 0, Infinity)) row.appendChild(chordEl(c));
+      if (b.instrumental) row.appendChild(el('span', 'instr-label', '[Instrumental]'));
       row.dataset.i = wordCount;
       rowEls.push({ el: row, firstWord: wordCount, lastWord: wordCount, line: lineWords.length });
       lineChords.push({ n: chordCount(b.chords), lyric: false });
       wordLine.push(lineWords.length); lineWords.push(1);
-      wordTexts.push('');
+      wordTexts.push(b.instrumental ? '[Instrumental]' : '');
       wordCount++;
       container.appendChild(row);
       continue;
@@ -275,34 +281,43 @@ function renderSong(song) {
   }
   computeLeadIn();
   checkTiming();
+  buildScrollMap();
 }
 
 // Lines on screen that aren't sung: "(piano)", "(piano + fiddle)", "Interlude:"
 function isDirection(text) { const t = text.trim(); return /^\(.*\)$/.test(t) || /^[A-Za-z][\w ]*:$/.test(t); }
 function chordCount(chords) { return chords.filter(c => c.name !== '|' && c.name !== '(' && c.name !== ')').length; }
 
-/* Lead-in: chords-only rows (and "(piano)"-style lines) before the first lyric (an intro) last as long as the opening lyric lines take
-   to get through the same number of chords. Intro "G C D G" over a verse that starts "G C / D G" lasts
-   two lines. (Timed songs get this from lyric-alignment-builder, which uses the same rule.) */
+/* Lead-in: instrumental / chords-only lines (and "(piano)"-style lines) before the first lyric are an intro.
+   Each lasts as long as the opening lyric lines take to play the same chords: intro "G C" / "D G" over a
+   verse that starts "G C" / "D G" — the first intro line lasts as long as the first lyric line, and so on.
+   This is for Even pacing; timed songs get it baked into the timing file by lyric-alignment-builder,
+   which uses the same rule. */
+function chordTime(p, lines) {          // seconds into `lines` [{n chords, dur}] at which chord number p starts
+  let t = 0, seen = 0;
+  for (const L of lines) {
+    if (!L.n) { t += L.dur; continue; }  // a line with no chord change: the chord carries on
+    if (p <= seen + L.n) return t + L.dur * (p - seen) / L.n;
+    seen += L.n; t += L.dur;
+  }
+  return t + (p - seen) * (seen ? t / seen : secondsPerLine() / 2);   // ran out of verse: keep the same pace
+}
 function computeLeadIn() {
   leadSecs = {};
-  const intro = [];                                   // [{words, n}] leading chords-only / "(piano)" lines
-  for (let li = 0; li < lineChords.length && !lineChords[li].lyric; li++) {
+  const intro = [];                                   // leading non-lyric lines: [{words, n}]
+  let li = 0;
+  for (; li < lineChords.length && !lineChords[li].lyric; li++) {
     const words = [];
     wordLine.forEach((l, w) => { if (l === li) words.push(w); });
     if (words.length) intro.push({ words, n: lineChords[li].n });
   }
-  const total = intro.reduce((a, r) => a + r.n, 0);
-  if (!total) return;
-  let need = total, lines = 0;
-  for (let li = intro.length; li < lineChords.length && need > 0; li++) {
-    const n = lineChords[li].n;
-    if (!n) { lines += 1; continue; }                 // a lyric line with no chord change still takes its time
-    lines += Math.min(1, need / n);
-    need -= n;
+  const verse = lineChords.slice(li).map(L => ({ n: L.n, dur: secondsPerLine() }));
+  let pos = 0;
+  for (const r of intro) {
+    const secs = chordTime(pos + r.n, verse) - chordTime(pos, verse);
+    pos += r.n;
+    if (secs > 0) for (const w of r.words) leadSecs[w] = secs / r.words.length;
   }
-  if (need > 0) lines += need;                        // ran out of chords: about a line per chord left over
-  for (const r of intro) for (const w of r.words) leadSecs[w] = lines * secondsPerLine() * r.n / total / r.words.length;
 }
 
 function el(tag, cls, text) {
@@ -331,27 +346,70 @@ function rowAt(wordIndex) {
   const i = Math.max(0, Math.min(wordIndex, wordCount - 1));
   return rowEls.find(r => i >= r.firstWord && i <= r.lastWord) || rowEls[rowEls.length - 1];
 }
-function rowAnchorY(row) {           // where the lyric text of a row sits, in song coordinates
-  return row.el.offsetTop + row.el.offsetHeight * 0.65;
-}
-function lineCentreY(row) {          // middle of the whole typed line (all its wrapped rows, chords included)
-  const rows = rowEls.filter(r => r.line === row.line);
-  const top = rows[0].el.offsetTop, last = rows[rows.length - 1].el;
-  return (top + last.offsetTop + last.offsetHeight) / 2;
-}
-
 function setProgress(p) {
   progress = Math.max(0, Math.min(wordCount, p));
-  if (!rowEls.length) return;
-  const song = document.getElementById('song');
+}
+
+/* Smooth scroll. Each typed line passes the middle of the screen halfway through the time it is sung;
+   between those moments the text moves at a steady speed (so it never stops and jumps). What is drawn
+   then eases towards that position with a quarter-second lag, which rounds off the changes of speed
+   from one line to the next. A finger on the text (or a flick coasting) moves it directly. */
+let scrollMap = null;      // {cum: seconds at 1× before each word, anchors: [{t, y}] one per typed line}
+let shownY = null;         // the y currently drawn (song coordinates at the focus point)
+const SMOOTH = 0.25;       // seconds; bigger = lazier, smoother scroll
+
+function buildScrollMap() {
+  const cum = [0];
+  for (let i = 0; i < wordCount; i++) cum.push(cum[i] + secondsPerWordAt(i));
+  const anchors = [];
+  let cur = null;
+  for (const r of rowEls) {
+    if (!cur || cur.line !== r.line) { cur = { line: r.line, first: r.firstWord, last: r.lastWord, top: r.el.offsetTop, bottom: 0 }; anchors.push(cur); }
+    cur.last = r.lastWord;
+    cur.bottom = r.el.offsetTop + r.el.offsetHeight;
+  }
+  scrollMap = { cum, anchors: anchors.map(L => ({ t: (cum[L.first] + cum[L.last + 1]) / 2, y: (L.top + L.bottom) / 2 })) };
+  shownY = null;            // re-laid out: jump straight to the right place
+}
+function songTime(p) {      // seconds into the song (at 1×) at progress p
+  const c = scrollMap.cum, i = Math.max(0, Math.min(Math.floor(p), wordCount - 1));
+  return c[i] + (p - i) * (c[i + 1] - c[i]);
+}
+function progressAtTime(t) {
+  const c = scrollMap.cum;
+  if (t <= 0) return 0;
+  if (t >= c[wordCount]) return wordCount;
+  let lo = 0, hi = wordCount;
+  while (hi - lo > 1) { const m = (lo + hi) >> 1; if (c[m] <= t) lo = m; else hi = m; }
+  return lo + (t - c[lo]) / ((c[lo + 1] - c[lo]) || 1);
+}
+// Piecewise-linear through the anchors, extended past the ends with the first / last segment's slope
+function interp(x, xs, ys) {
+  const n = xs.length;
+  if (n === 1) return ys[0];
+  let k = 0;
+  while (k < n - 2 && x > xs[k + 1]) k++;
+  const dx = xs[k + 1] - xs[k];
+  return dx ? ys[k] + (x - xs[k]) * (ys[k + 1] - ys[k]) / dx : ys[k + 1];
+}
+function yOfProgress(p) {
+  if (!scrollMap || !scrollMap.anchors.length) return 0;
+  const a = scrollMap.anchors;
+  return interp(songTime(p), a.map(x => x.t), a.map(x => x.y));
+}
+function progressOfY(y) {
+  if (!scrollMap || !scrollMap.anchors.length) return 0;
+  const a = scrollMap.anchors;
+  return Math.max(0, Math.min(wordCount, progressAtTime(interp(y, a.map(x => x.y), a.map(x => x.t)))));
+}
+function drawScroll(dt) {
+  if (!rowEls.length || !scrollMap) return;
+  const target = yOfProgress(progress);
+  const direct = dragging || Math.abs(flingVelocity) > 5;
+  if (shownY === null || direct) shownY = target;
+  else shownY += (target - shownY) * (1 - Math.exp(-dt / SMOOTH));
   const focusY = document.getElementById('viewport').clientHeight * 0.5;
-  // While a finger is moving the text (or a flick coasts) it follows smoothly, word by word.
-  // Otherwise the line being sung sits still in the middle of the screen, and the next line
-  // slides up into its place when it starts.
-  const following = dragging || Math.abs(flingVelocity) > 5;
-  const y = following ? yOfProgress(progress) : lineCentreY(rowAt(Math.floor(progress)));
-  song.classList.toggle('glide', !following);
-  song.style.transform = `translateY(${focusY - y}px)`;
+  document.getElementById('song').style.transform = `translateY(${focusY - shownY}px)`;
 }
 
 function nextLine() {
@@ -422,27 +480,6 @@ async function loadTiming(filename) {
   } catch (e) { return null; }
 }
 
-// progress → y (song coordinates) and back; both piecewise-linear between row anchors
-function yOfProgress(p) {
-  const row = rowAt(Math.floor(p));
-  const idx = rowEls.indexOf(row);
-  const next = rowEls[idx + 1];
-  const frac = Math.min(1, Math.max(0, (p - row.firstWord) / (row.lastWord - row.firstWord + 1)));
-  return next ? rowAnchorY(row) + frac * (rowAnchorY(next) - rowAnchorY(row)) : rowAnchorY(row);
-}
-function progressOfY(y) {
-  if (!rowEls.length) return 0;
-  if (y <= rowAnchorY(rowEls[0])) return 0;
-  for (let i = 0; i < rowEls.length - 1; i++) {
-    const y0 = rowAnchorY(rowEls[i]), y1 = rowAnchorY(rowEls[i + 1]);
-    if (y < y1) {
-      const r = rowEls[i];
-      return r.firstWord + (y - y0) / (y1 - y0) * (r.lastWord - r.firstWord + 1);
-    }
-  }
-  return wordCount;
-}
-
 function tick(now) {
   if (lastTick !== null) {
     const dt = Math.min(0.1, (now - lastTick) / 1000);
@@ -455,6 +492,7 @@ function tick(now) {
       setProgress(progress + dt * speedMultiplier / secondsPerWordAt(progress));
       if (progress >= wordCount) setPlaying(false);
     }
+    drawScroll(dt);
   }
   lastTick = now;
   requestAnimationFrame(tick);
@@ -497,7 +535,7 @@ function setupLyricDrag() {
   vp.addEventListener('pointerdown', ev => {
     if (ev.target.closest('#sidebar')) return;
     active = true; moved = false; dragging = true; flingVelocity = 0;
-    startY = ev.clientY; startSongY = yOfProgress(progress);
+    startY = ev.clientY; startSongY = shownY !== null ? shownY : yOfProgress(progress);   // grab the text where it is drawn
     samples = [[ev.timeStamp, ev.clientY]];
     vp.setPointerCapture(ev.pointerId);
   });
