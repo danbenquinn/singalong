@@ -88,8 +88,8 @@ body {
 #pace.can-time { color: var(--fg); border-color: var(--mma-green); border-style: dashed; }   /* Even by choice */
 #pace { background: transparent; font-family: inherit; cursor: pointer; }
 #pace:disabled { cursor: default; opacity: 1; }
-#key {
-  flex: 0 1 auto; min-width: 0; max-width: 42%;
+#key, #capo {
+  flex: 0 0 auto; min-width: 0;          /* as wide as the chosen option, so nothing is cut off */
   font-size: 14px; height: 32px; padding: 0 6px;
   background: #1a1a1f; color: var(--fg);
   border: 1px solid var(--support); border-radius: 7px;
@@ -235,6 +235,7 @@ body {
 @media (max-width: 600px) {
   #speed-label { display: none; }
   #pace { padding: 0 7px; }
-  #key { max-width: 150px; }
+  #key, #capo { font-size: 13px; padding: 0 3px; }
+  #speed { min-width: 50px; }
   #speed-value { min-width: 28px; }
 }

@@ -10,7 +10,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="theme-color" content="#101418">
   <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css?v=1793382727">
+  <link rel="stylesheet" href="style.css?v=1793444093">
 </head>
 <body>
 
@@ -25,10 +25,11 @@
     </div>
   </header>
 
-  <!-- Row 2: pacing (Timed from a recording / Even), key, speed -->
+  <!-- Row 2: pacing (Timed from a recording / Even), key it sounds in, capo, speed -->
   <div id="controls">
     <button id="pace" title="Even pacing (no timing file)" disabled>Even</button>
-    <select id="key" title="Key (melody range)"></select>
+    <select id="key" title="Key it sounds in (melody range)"></select>
+    <select id="capo" title="Capo: chords shown as the shapes to play with the capo on (* = fewest hard chords)"></select>
     <span id="speed-label">Speed</span>
     <input type="range" id="speed" min="0" max="2" step="0.05" value="1">
     <span id="speed-value">1×</span>
@@ -63,7 +64,7 @@
     </div>
   </div>
 
-  <script src="config.js?v=1793382727"></script>
-  <script src="app.js?v=1793382727"></script>
+  <script src="config.js?v=1793444093"></script>
+  <script src="app.js?v=1793444093"></script>
 </body>
 </html>

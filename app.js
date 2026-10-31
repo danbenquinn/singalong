@@ -603,36 +603,97 @@ function setFontSize(px) {
 }
 
 /* =====================================================================
-   5b. KEY DROPDOWN
-   Each option shows the key and the melody range you would get in it.
-   The chosen key is remembered per song on this device.
+   5b. KEY AND CAPO
+   Key: the key the song SOUNDS in, with the melody range you'd sing in it
+   — the same for everyone, whatever they play. Capo: none, or 1–8; the
+   chords drop by that many semitones so a guitarist reads the shapes to
+   play with the capo on. The * marks the capo needing the fewest chords
+   outside the basic open ones (ties go to the lower capo).
+   In the song file, `key:` is the key the chords are written in and
+   `capo:` the capo they're written for (so the song sounds in key + capo,
+   and that capo is the starting choice); `low:`/`high:` are sounding pitches.
+   Both choices are remembered per song on this device.
    ===================================================================== */
+
+const BASIC_CHORDS = new Set(['C', 'G', 'D', 'F', 'A', 'E', 'Fm', 'Em', 'Am', 'Dm']);
+const MAX_CAPO = 8;
+
+function writtenCapo(song) { const c = parseInt(song.meta.capo, 10); return c >= 0 && c <= 11 ? c : 0; }
+function soundingHome(song) {          // the key the song sounds in as written (key + capo)
+  return KEYS[(noteToIndex(keyRoot(song.meta.key)) + writtenCapo(song)) % 12];
+}
+// Semitones to shift the written chords for sounding key k and capo c
+function chordShift(song, k, c) { return writtenCapo(song) + semitonesBetween(soundingHome(song), k) - c; }
+function shapeKey(song, k, c) { return KEYS[(noteToIndex(k) - c + 12) % 12]; }   // the key the shapes are in
+
+// "Am7" → "Am", "D7" → "D", "G/B" → "G", "Dsus4" → "D": the root, and m if minor
+function basicForm(name) {
+  const m = name.match(/^([A-G][#b]?)(m(?!aj))?/);
+  return m ? m[1] + (m[2] ? 'm' : '') : null;
+}
+function hardChordCount(song, k, c) {  // distinct chords outside BASIC_CHORDS at this key and capo
+  const shift = chordShift(song, k, c), flats = FLAT_KEYS.has(shapeKey(song, k, c));
+  const hard = new Set();
+  for (const b of song.blocks) for (const ch of (b.chords || [])) {
+    const f = basicForm(transposeChord(ch.name, shift, flats));
+    if (f && !BASIC_CHORDS.has(f)) hard.add(f);
+  }
+  return hard.size;
+}
+function recommendedCapo(song, k) {
+  let best = 0, bestN = Infinity;
+  for (let c = 0; c <= MAX_CAPO; c++) {
+    const n = hardChordCount(song, k, c);
+    if (n < bestN) { best = c; bestN = n; }           // strictly fewer: ties keep the lower capo
+  }
+  return best;
+}
 
 function buildKeyDropdown(song) {
   const sel = document.getElementById('key');
   sel.innerHTML = '';
-  const home = keyRoot(song.meta.key);
+  const home = soundingHome(song);
   for (const k of KEYS) {
-    const semis = semitonesBetween(home, k);
     const opt = document.createElement('option');
     opt.value = k;
-    const range = rangeText(song.meta, semis, FLAT_KEYS.has(k));
+    const range = rangeText(song.meta, semitonesBetween(home, k), FLAT_KEYS.has(k));
     opt.textContent = k + (range ? ' (' + range + ')' : '');
     sel.appendChild(opt);
   }
-  // Start from the remembered key for this song, else the written key
   let chosen = null;
-  try { chosen = localStorage.getItem('key:' + song.file); } catch (e) {}
-  sel.value = KEYS.includes(chosen) ? chosen : KEYS[noteToIndex(home)];   // KEYS is indexed by semitone
+  try { chosen = localStorage.getItem('soundKey:' + song.file); } catch (e) {}
+  sel.value = KEYS.includes(chosen) ? chosen : home;
+  let capo = null;
+  try { capo = localStorage.getItem('capo:' + song.file); } catch (e) {}
+  capo = capo === null ? writtenCapo(song) : Number(capo);
+  buildCapoDropdown(song, Math.min(MAX_CAPO, Math.max(0, capo || 0)));
   applyKey();
 }
 
+function buildCapoDropdown(song, selected) {
+  const sel = document.getElementById('capo');
+  const rec = recommendedCapo(song, document.getElementById('key').value);
+  sel.innerHTML = '';
+  for (let c = 0; c <= MAX_CAPO; c++) {
+    const opt = document.createElement('option');
+    opt.value = c;
+    opt.textContent = (c ? 'Capo ' + c : 'No capo') + (c === rec ? '*' : '');
+    sel.appendChild(opt);
+  }
+  sel.value = String(selected);
+}
+
 function applyKey() {
-  const sel = document.getElementById('key');
-  const k = sel.value;
-  currentSemis = semitonesBetween(keyRoot(currentSong.meta.key), k);
-  currentFlats = FLAT_KEYS.has(k);
-  try { localStorage.setItem('key:' + currentSong.file, k); } catch (e) {}
+  const k = document.getElementById('key').value;
+  const capoSel = document.getElementById('capo');
+  buildCapoDropdown(currentSong, Number(capoSel.value) || 0);   // the * may move with the key
+  const c = Number(capoSel.value) || 0;
+  currentSemis = chordShift(currentSong, k, c);
+  currentFlats = FLAT_KEYS.has(shapeKey(currentSong, k, c));
+  try {
+    localStorage.setItem('soundKey:' + currentSong.file, k);
+    localStorage.setItem('capo:' + currentSong.file, String(c));
+  } catch (e) {}
   renderSong(currentSong);
   setProgress(progress);
 }
@@ -780,7 +841,7 @@ async function loadSong(filename) {
   try { localStorage.setItem('lastSong', filename); } catch (e) {}
   document.getElementById('title').textContent = currentSong.meta.title || filename;
   document.getElementById('artist').textContent =
-    (currentSong.meta.artist || '') + (currentSong.meta.capo ? ' · Capo ' + currentSong.meta.capo : '');
+    currentSong.meta.artist || '';
   document.title = currentSong.meta.title || 'Singalong';
   buildKeyDropdown(currentSong);   // also renders the song and resets the pointer
   keepAwake();
@@ -818,6 +879,7 @@ async function start() {
   });
 
   document.getElementById('key').addEventListener('change', ev => { applyKey(); ev.target.blur(); });   // blur: pedal keys must not change the key
+  document.getElementById('capo').addEventListener('change', ev => { applyKey(); ev.target.blur(); });
   document.getElementById('speed').addEventListener('input', ev => setSpeed(Number(ev.target.value)));
   document.getElementById('play').addEventListener('click', togglePause);
   document.getElementById('pace').addEventListener('click', ev => { togglePace(); ev.target.blur(); });   // blur: pedal keys

@@ -27,12 +27,12 @@ A phone-sized lyrics-and-chords teleprompter. Plain HTML, CSS and JavaScript; no
 ```
 title: Amazing Grace
 artist: John Newton
-key: G              ← the key the chords below are written in
-low: D4             ← lowest melody note, scientific pitch (middle C is C4)
-high: E5            ← highest melody note
+key: G              ← the key the chords below are written in (with capo:, the shapes' key)
+low: D4             ← lowest melody note as it sounds, scientific pitch (middle C is C4)
+high: E5            ← highest melody note as it sounds
 tags: xmas          ← comma-separated; any word works, the picker's filter buttons come from these
 speed: 6            ← seconds per typed line at 1× — only used when the song has no timing file
-capo: 3             ← optional; shown after the artist
+capo: 3             ← optional: the chords are shapes for this capo (sounds in key + capo; starting capo)
 # any line without a colon, like this one, is a comment
 ---
 [Verse 1]
@@ -88,7 +88,11 @@ Rules of thumb:
   Space = pause / resume. A Bluetooth page-turner
   pedal pairs with the phone as a keyboard (Settings › Bluetooth); set it to a mode that sends Page
   Up/Down or arrow keys and it needs nothing from the site. The speed value flashes amber on each press.
-- **Key** dropdown transposes; each option shows the melody range in that key. Remembered per song.
+- **Key** dropdown: the key the song *sounds* in, with the melody range you'd sing in it — the same for
+  everyone, whatever they're playing. Picking another key transposes the chords.
+- **Capo** dropdown: No capo, or 1–8. The chords drop by that many semitones, so you read the shapes to play
+  with the capo on (choose No capo on piano). `*` marks the capo needing the fewest chords outside the basic
+  open ones (C G D F A E, Am Dm Em Fm; ties go to the lower capo). Key and capo are remembered per song.
 - **− / +** change the text size. Remembered on the device.
 
 ## Adding or editing a song

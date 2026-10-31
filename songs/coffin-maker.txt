@@ -1,12 +1,12 @@
 title: Coffin Maker
 artist: Daniel Quinn (2005)
-key: D
-low: 
-high: 
+key: G
+low: A3
+high: Bb4
 tags: original
 speed: 6
 capo: 3
-# key guessed from the last chord; fill in low/high · (Original by Alexa, modified by Dan in 2026; Capo 3)
+# chords are G shapes for capo 3, so it sounds in Bb · (Original by Alexa, modified by Dan in 2026)
 ---
 G             C
 [Instrumental]
